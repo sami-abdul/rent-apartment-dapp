@@ -4,7 +4,7 @@ import "./Repository.sol";
 
 contract DataController is Repository {
 
-    function DataController(){
+    function DataController() public {
         landlord = msg.sender;
     }
 
@@ -15,7 +15,8 @@ contract DataController is Repository {
     }
 
     function getApartment(address _id) public view returns(address, address, string, uint, uint8, uint) {
-        return apartments[_id];
+        Apartment apartment = apartments[_id];
+        return (apartment.id, apartment.tenant, apartment.location, apartment.rentPrice, apartment.rentHikeRate, apartment.rentDate);
     }
 
     function isApartmentRented(address _id) public view returns(bool) {
@@ -37,7 +38,7 @@ contract DataController is Repository {
 
     // Public functions allowed for Landlord only
 
-    function getHireRequestsForLandlord(address _id) public onlyOwner view returns(address, uint, uint8) {
+    function getHireRequestsForLandlord(address _id) public onlyOwner view returns(address[], address[], address[], uint[], uint8[]) {
         Request request = requestsForLandlord[hireRequests[_id]];
         return (request.from, request.rentPrice, request.rentHikeRate);
     }
