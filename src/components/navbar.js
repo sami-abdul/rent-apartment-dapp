@@ -9,11 +9,11 @@ class CustomNavbar extends Component {
     }
     render() {
         return (
-            <Navbar className = 'teal grey darken-3' brand='Application' right>
+            <Navbar className = 'teal grey darken-3' brand='Rent Apartment' right>
             {
                 (this.props.isLogin) ? 
                 (<NavItem href='javascript:void(0)' onClick = {this.logoutHandler.bind(this)}>logout</NavItem>) :
-                (<NavItem href='javascript:void(0)' title = 'Contact me at maazjawaid28@gmail.com'>Help</NavItem>)
+                (null)
             }
         </Navbar>
         )

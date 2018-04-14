@@ -6,6 +6,11 @@ import {
     Link
 } from 'react-router-dom';
 import $ from "jquery";
+
+const divStyle = {
+    marginLeft: '700px',
+    marginTop:"250px"
+  };
 class Signin extends Component {
     constructor(props) {
         super(props);
@@ -58,7 +63,7 @@ class Signin extends Component {
 	<Modal
     header="Sign In"
     style={{height:"50%",overflow:"hidden"}}
-	trigger={<Button>SignIn</Button>}>
+	trigger={<Button style={divStyle}>SignIn</Button>}>
     <Row >
                 <Col s={3}></Col>
                 <Col s={6} style = {{height : '400px',  borderTop : 'none'}}>

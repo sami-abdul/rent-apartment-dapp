@@ -7,6 +7,10 @@ import {
 import { Col, ProgressBar, Row, Input, Button, Dropdown, NavItem,Select,Modal } from 'react-materialize';
 import Background from '../images/img1.jpg';
 
+const divStyle = {
+    marginLeft: '700px',
+    marginTop:"250px"
+  };
 
 class Signup extends Component {
     constructor(props) {
@@ -90,7 +94,7 @@ class Signup extends Component {
     header='Signup'
     style={{height:"90%",overflow:"hidden"}}
 	fixedFooter
-	trigger={<Button>Signup</Button>}>
+	trigger={<Button style={divStyle}>Signup</Button>}>
     <Row >
                 <Col s={3}></Col>
                 <Col s={6} style={{ height: '500px',  }}>
