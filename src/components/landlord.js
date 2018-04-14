@@ -27,7 +27,7 @@ class Landlord extends Component {
                 price : this.refs.price.state.value,
                 // exp : this.refs.experience.state.value
             }
-            console.log(CompanyInfo);
+            console.log(AppartmentInfo);
             // this.props.showNotification();
             //  this.props.setCompanyProfileToFirebase(CompanyInfo, this.props.uid)
         }

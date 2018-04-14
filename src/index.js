@@ -7,12 +7,12 @@ import store from './store';
 import firebase from 'firebase'
 
 var config = {
-  apiKey: "AIzaSyDH32991nn_rOMIrbAPdzzjCx7hGWQHeQY",
-  authDomain: "hackathon1st-64cbd.firebaseapp.com",
-  databaseURL: "https://hackathon1st-64cbd.firebaseio.com",
-  projectId: "hackathon1st-64cbd",
+  apiKey: "AIzaSyCuXOJcskkV5oMZ5B8dQPIPbqtY4ljZ6Js",
+  authDomain: "rent-appartment.firebaseapp.com",
+  databaseURL: "https://rent-appartment.firebaseio.com",
+  projectId: "rent-appartment",
   storageBucket: "",
-  messagingSenderId: "1773010402"
+  messagingSenderId: "1090151029505"
 };
 firebase.initializeApp(config);
 
