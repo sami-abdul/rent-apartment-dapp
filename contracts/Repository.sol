@@ -5,8 +5,8 @@ import "./Ownable.sol";
 contract Repository is Ownable {
 
     struct Apartment {
-        address id;
-        uint16 key;
+        bytes32 id;
+        uint key;
         address tenant;
         string location;
         uint rentPrice;
@@ -15,15 +15,15 @@ contract Repository is Ownable {
     }
 
     struct Payment {
-        address id;
-        address apartment;
+        bytes32 id;
+        bytes32 apartment;
         uint amount;
         uint date;
     }
 
     struct Request {
-        address id;
-        address apartment;
+        bytes32 id;
+        bytes32 apartment;
         address from;
         uint rentPrice;
         uint8 rentHikeRate;
@@ -33,11 +33,11 @@ contract Repository is Ownable {
 
     mapping(address => uint) internal balances;
 
-    mapping(address => address) internal tenantsToApartment;
-    mapping(address => Apartment) internal apartments;
+    mapping(address => bytes32) internal tenantsToApartment;
+    mapping(bytes32 => Apartment) internal apartments;
 
     mapping(address => Payment) internal paymentHistory;
 
-    mapping(address => address[]) internal hireRequests;
-    mapping(address => Request[]) internal requestsForLandlord;
+    mapping(bytes32 => bytes32[]) internal hireRequests;
+    mapping(bytes32 => Request) internal requestsForLandlord;
 }
