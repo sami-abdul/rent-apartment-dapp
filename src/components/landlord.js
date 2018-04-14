@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Input, Icon, Row, Tab, Tabs, Button, CollapsibleItem, Collapsible } from 'react-materialize'
 import { fetchAllProfiles } from '../store/actions/action';
+
+const contract = require('truffle-contract')
+
+import DataControllerContract from '/home/sami/rent-apartment-dapp/build/contracts/DataController.json'
+import getWeb3 from '/home/sami/rent-apartment-dapp/src/utils/getWeb3'
+
 // import { setCompanyProfileToFirebase } from '../store/actions/action';
 
 
@@ -10,7 +16,21 @@ import { fetchAllProfiles } from '../store/actions/action';
 //     Link
 //   } from 'react-router-dom';
 
+var dataControllerContract
+var deployedInstance
+var mAccounts
+
 class Landlord extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+          web3: null,
+          data: []
+        }
+      }
+
     submit(event){
         // console.log( this.refs.cgpa.state.value, this.refs.cgpa.value)
         // console.log( this.refs.number.state.value, this.refs.number.value)
@@ -25,15 +45,65 @@ class Landlord extends Component {
             let AppartmentInfo = {
                 address : this.refs.address.state.value,
                 price : this.refs.price.state.value,
-                 Apartmenthike : this.refs.Apartmenthike.state.value
+                Apartmenthike : this.refs.Apartmenthike.state.value
             }
-            console.log(AppartmentInfo);
+            this.addApartment(AppartmentInfo)
             // this.props.showNotification();
             //  this.props.setCompanyProfileToFirebase(CompanyInfo, this.props.uid)
         }
     }
+
+    addApartment(data) {
+        let gasEstimate
+        deployedInstance.addApartment.estimateGas(data.address, data.AppartmentHike, data.price)
+        .then((result) => {
+            gasEstimate = result * 2
+            console.log("Estimated gas to add an apartment: " + gasEstimate)
+        })
+        .then((result) => {
+            deployedInstance.addApartment(
+              data.address, 6, data.price, {
+                  from: mAccounts[0],
+                  gas: gasEstimate,
+                  gasPrice: this.state.web3.eth.gasPrice
+                }
+            )
+        })
+    }
+
     componentWillMount() {
+        getWeb3
+          .then(results => {
+            this.setState({
+              web3: results.web3
+            })
+            this.instantiateContract()
+          })
+          .catch(() => {
+            console.log('Error finding web3.')
+          })
+
         this.props.fetchAllProfiles();
+    }
+
+    instantiateContract() {
+        dataControllerContract = contract(DataControllerContract)
+        dataControllerContract.setProvider(this.state.web3.currentProvider)
+
+        this.state.web3.eth.getAccounts((error, accounts) => {
+          dataControllerContract.deployed().then((instance) => {
+            deployedInstance = instance
+            mAccounts = accounts
+            this.getData()
+          })
+        })
+    }
+
+    getData() {
+        deployedInstance.getApartments.call({ from: mAccounts[0] })
+        .then((result) => {
+            this.setState({ data: result })
+        })
     }
 
     render() {
@@ -65,9 +135,9 @@ class Landlord extends Component {
                     </Tab>
                     {/* defaultValue={this.props.user.lastName} */}
                     <Tab title="Add Apartment " ><form onSubmit = {this.submit.bind(this)}>
-                        <Input s={12} label="Appartment Address" ref="address" />
-                        <Input s={6} label="Appartment hike" ref="Apartmenthike" />
-                        <Input type="number" s={6} label="Landlord Contact" ref="price"/> <br/>
+                        <Input s={12} label="Address" ref="address" />
+                        <Input s={6} label="Hike rate" ref="Apartmenthike" />
+                        <Input type="number" s={6} label="Rent" ref="price"/> <br/>
                         <Button className="btn waves-effect waves-light" type="submit" name="action" title = 'submit' style = {{display : 'block'}}>Submit</Button>
 
                     </form></Tab>

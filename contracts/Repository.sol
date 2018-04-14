@@ -31,6 +31,8 @@ contract Repository is Ownable {
 
     address public landlord;
 
+    Apartment[] apartmentsArr;
+
     mapping(address => uint) internal balances;
 
     mapping(address => bytes32) internal tenantsToApartment;
