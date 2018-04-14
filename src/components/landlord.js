@@ -17,7 +17,7 @@ class Landlord extends Component {
         // console.log( this.refs.field.state.value, this.refs.field.value)
         // console.log( this.refs.cgpa.state.value)
         event.preventDefault();
-        if(   this.refs.number.state.value === undefined || this.refs.field.state.value === undefined || this.refs.experience.state.value === undefined)
+        if(   this.refs.Apartmenthike.state.value === undefined ||  this.refs.price.state.value === undefined || this.refs.address.state.value === undefined)
         {
             alert("all the fields are required");
         }
@@ -25,7 +25,7 @@ class Landlord extends Component {
             let AppartmentInfo = {
                 address : this.refs.address.state.value,
                 price : this.refs.price.state.value,
-                // exp : this.refs.experience.state.value
+                 Apartmenthike : this.refs.Apartmenthike.state.value
             }
             console.log(AppartmentInfo);
             // this.props.showNotification();
@@ -40,7 +40,7 @@ class Landlord extends Component {
         return (
             <div>
                 <Tabs className='tab-demo z-depth-1'>
-                    <Tab title="Students Data">
+                    <Tab title="Apartments Data">
                         <div>
                             {
                                 this.props.allUserData.map((user, ind) => {
@@ -64,10 +64,10 @@ class Landlord extends Component {
                         </div>
                     </Tab>
                     {/* defaultValue={this.props.user.lastName} */}
-                    <Tab title="Submit Add" ><form onSubmit = {this.submit.bind(this)}>
+                    <Tab title="Add Apartment " ><form onSubmit = {this.submit.bind(this)}>
                         <Input s={12} label="Appartment Address" ref="address" />
-                        <Input s={6} label="Price" ref="price" />
-                        <Input type="number" s={6} label="Landlord Contact" ref="number"/>
+                        <Input s={6} label="Appartment hike" ref="Apartmenthike" />
+                        <Input type="number" s={6} label="Landlord Contact" ref="price"/> <br/>
                         <Button className="btn waves-effect waves-light" type="submit" name="action" title = 'submit' style = {{display : 'block'}}>Submit</Button>
 
                     </form></Tab>

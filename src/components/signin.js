@@ -60,10 +60,11 @@ class Signin extends Component {
     render() {
         return (
             <div>
-	<Modal
+	{/* <Modal
     header="Sign In"
     style={{height:"50%",overflow:"hidden"}}
-	trigger={<Button style={divStyle}>SignIn</Button>}>
+	trigger={<Button style={divStyle}>SignIn</Button>}
+    > */}
     <Row >
                 <Col s={3}></Col>
                 <Col s={6} style = {{height : '400px',  borderTop : 'none'}}>
@@ -95,7 +96,7 @@ class Signin extends Component {
                 </Col>
                 <Col s={3}></Col>
             </Row>
-</Modal>
+{/* </Modal> */}
 </div>
             // <Row >
             //     <Col s={3}></Col>

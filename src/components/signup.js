@@ -90,14 +90,14 @@ class Signup extends Component {
         };
         //   style={ sectionStyle }s
         return (
-            <Modal
-    header='Signup'
-    style={{height:"90%",overflow:"hidden"}}
-	fixedFooter
-	trigger={<Button style={divStyle}>Signup</Button>}>
+    //         <Modal
+    // header='Signup'
+    // style={{height:"90%",overflow:"hidden"}}
+	// fixedFooter
+	// trigger={<Button style={divStyle}>Signup</Button>}>
     <Row >
                 <Col s={3}></Col>
-                <Col s={6} style={{ height: '500px',  }}>
+                <Col s={6} style={{ height: '500px', borderTop : 'none' }}>
                     
                     <form onSubmit={this.signup.bind(this)}>
                         <Input s={6} name='firstname' value={this.state.firstName} onChange={this._onChangeUserName} label="first Name" />
@@ -139,7 +139,7 @@ class Signup extends Component {
 
                 <Col s={3}></Col>
             </Row>
-</Modal>
+// </Modal>
             
         )
     }
