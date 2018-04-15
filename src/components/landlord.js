@@ -5,8 +5,8 @@ import { fetchAllProfiles } from '../store/actions/action';
 
 const contract = require('truffle-contract')
 
-import DataControllerContract from '/home/sami/rent-apartment-dapp/build/contracts/DataController.json'
-import getWeb3 from '/home/sami/rent-apartment-dapp/src/utils/getWeb3'
+import DataControllerContract from '../../build/contracts/DataController.json'
+import getWeb3 from '../utils/getWeb3'
 
 // import { setCompanyProfileToFirebase } from '../store/actions/action';
 
@@ -69,6 +69,9 @@ class Landlord extends Component {
                 }
             )
         })
+        .then(() => {
+            this.getData()
+        })
     }
 
     componentWillMount() {
@@ -102,7 +105,27 @@ class Landlord extends Component {
     getData() {
         deployedInstance.getApartments.call({ from: mAccounts[0] })
         .then((result) => {
-            this.setState({ data: result })
+            let count = 0
+            let nestedCount = 0
+            let arr = []
+            result.map((items) => {
+                count++
+                items.map((item) => {
+                    if (count == 1) {
+                        arr[nestedCount] = item
+                    } else {
+                        arr[nestedCount] += "," + item
+                    }
+                    nestedCount++
+                })
+                nestedCount = 0
+            })
+
+            this.setState({
+                data: arr
+            })
+            console.log(result)
+            console.log(this.state.data)
         })
     }
 
