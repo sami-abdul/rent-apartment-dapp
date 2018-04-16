@@ -58,7 +58,7 @@ contract DataController is Repository {
 
     // Public functions allowed for Landlord only
 
-    function getHireRequestsForLandlord(bytes32 _apartment) public onlyOwner view returns(bytes32[], address[], uint[], uint8[]) {
+    function getHireRequests(bytes32 _apartment) public onlyOwner view returns(bytes32[], address[], uint[], uint8[]) {
         bytes32[] requestAddresses = hireRequests[_apartment];
 
         bytes32[] memory ids = new bytes32[](requestAddresses.length);
