@@ -133,7 +133,7 @@ class Landlord extends Component {
         return (
             <div>
                 <Tabs className='tab-demo z-depth-1'>
-                    <Tab title="Apartments Data">
+                    <Tab title="Apartments">
                         <div>
                             {
                                 this.props.allUserData.map((user, ind) => {

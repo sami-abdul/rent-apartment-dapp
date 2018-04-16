@@ -70,9 +70,9 @@ class Signin extends Component {
                 <Col s={6} style = {{height : '400px',  borderTop : 'none'}}>
                     
                     <form onSubmit={this.signin.bind(this)}>
-                        <Input s= {12} type="email" name='email' value={this.state.email} title = 'type password here' onChange={this._onChangeEmail} label="Type Email Here" validate></Input>
+                        <Input s= {12} type="email" name='email' value={this.state.email} title = 'type password here' onChange={this._onChangeEmail} label="Email" validate></Input>
                         <br />
-                        <Input s= {12} type='password' name='password' value={this.state.password} title = 'type email here' onChange={this._onChangePassword} label='Type Password Here' validate/>
+                        <Input s= {12} type='password' name='password' value={this.state.password} title = 'type email here' onChange={this._onChangePassword} label='Password' validate/>
                         <br />
                         {/* <Row >
                             <Input s={6} type='select' label="Login As" defaultValue='Student' onChange={this._onChangeType}>

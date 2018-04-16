@@ -14,13 +14,14 @@ contract DataController is Repository {
         balances[msg.sender];
     }
 
-    function getApartment(bytes32 _id) public view returns(bytes32, address, string, uint, uint8) {
+    function getApartment(bytes32 _id) public view returns(bytes32, bytes32, address, string, uint, uint8) {
         Apartment apartment = apartments[_id];
-        return (apartment.id, apartment.tenant, apartment.location, apartment.rentPrice, apartment.rentHikeRate);
+        return (apartment.id, apartment.name, apartment.tenant, apartment.location, apartment.rentPrice, apartment.rentHikeRate);
     }
 
-    function getApartments() public view returns(bytes32[], address[], bytes32[], uint[], uint8[]) {
+    function getApartments() public view returns(bytes32, bytes32[], address[], bytes32[], uint[], uint8[]) {
         bytes32[] memory ids = new bytes32[](apartmentsArr.length);
+        bytes32[] memory names = new bytes32[](apartmentsArr.length);
         address[] memory tenants = new address[](apartmentsArr.length);
         bytes32[] memory locations = new bytes32[](apartmentsArr.length);
         uint[] memory rentPrices = new uint[](apartmentsArr.length);
@@ -28,13 +29,14 @@ contract DataController is Repository {
 
         for (uint i = 0; i < apartmentsArr.length; i++) {
             ids[i] = apartmentsArr[i].id;
+            names[i] = apartmentsArr[i].name;
             tenants[i] = apartmentsArr[i].tenant;
             locations[i] = _stringToBytes32(apartmentsArr[i].location);
             rentPrices[i] = apartmentsArr[i].rentPrice;
             rentHikeRates[i] = apartmentsArr[i].rentHikeRate;
         }
 
-        return (ids, tenants, locations, rentPrices, rentHikeRates);
+        return (ids, names, tenants, locations, rentPrices, rentHikeRates);
     }
 
     function isApartmentRented(bytes32 _id) public view returns(bool) {
@@ -84,9 +86,9 @@ contract DataController is Repository {
         return false;
     }
 
-    function addApartment(string _location, uint _rentPrice, uint8 _rentHikeRate) public returns(bytes32 id) {
+    function addApartment(bytes32 _name, bytes32 _location, uint _rentPrice, uint8 _rentHikeRate) public returns(bytes32 id) {
         id = sha3(_location);
-        Apartment memory apartment = Apartment(id, 123456, address(0), _location, _rentPrice, _rentHikeRate, 0);
+        Apartment memory apartment = Apartment(id, 123456, _name, address(0), _location, _rentPrice, _rentHikeRate, 0);
         apartments[id] = apartment;
         apartmentsArr.push(apartment);
         return id;
