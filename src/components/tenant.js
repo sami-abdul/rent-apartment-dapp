@@ -17,6 +17,11 @@ var dataControllerContract
 var deployedInstance
 var mAccounts
 
+const divStyle = {
+    
+    marginTop:"20px"
+  };
+
 class Tenant extends Component {
 
     constructor(props) {
@@ -40,7 +45,7 @@ class Tenant extends Component {
             console.log('Error finding web3.')
         })
 
-        this.props.fetchAllProfiles();
+        // this.props.fetchAllProfiles();
     }
 
     instantiateContract() {
@@ -61,22 +66,28 @@ class Tenant extends Component {
         // console.log( this.refs.field.state.value, this.refs.field.value)
         // console.log( this.refs.cgpa.state.value)
         event.preventDefault();
-        if (this.refs.cgpa.state.value === undefined || this.refs.number.state.value === undefined || this.refs.field.state.value === undefined || this.refs.experience.state.value === undefined) {
-            alert("all the fields are required");
+        if (this.refs.search.state.value === undefined) {
+            alert("TextBox is Empty");
+        }
+        else if(this.refs.search.state.value.length > 32){
+            alert("")
         }
         else {
-            let userInfo = {
-                firstName: this.props.user.firstName,
-                lastName: this.props.user.lastName,
+             let appartment = {
+                appart: this.refs.search.state.value,
+             }
+             console.log(appartment);
+            //     firstName: this.props.user.firstName,
+            //     lastName: this.props.user.lastName,
 
-                cgpa: this.refs.cgpa.state.value,
-                number: this.refs.number.state.value,
-                field: this.refs.field.state.value,
-                exp: this.refs.experience.state.value
-            }
-            console.log(userInfo);
-            // this.props.showNotification();
-            this.props.setUserProfileToFirebase(userInfo, this.props.uid)
+            //     cgpa: this.refs.cgpa.state.value,
+            //     number: this.refs.number.state.value,
+            //     field: this.refs.field.state.value,
+            //     exp: this.refs.experience.state.value
+            // }
+            // console.log(userInfo);
+            // // this.props.showNotification();
+            // this.props.setUserProfileToFirebase(userInfo, this.props.uid)
         }
     }
     // componentWillMount() {
@@ -93,9 +104,18 @@ class Tenant extends Component {
     render() {
         return (
             <div>
+                
                 <Tabs className='tab-demo z-depth-1'>
-                    <Tab title="Profile">
-                        {(this.props.user.firstTime) ? (
+                    <Tab title="Appartments">
+                    <form onSubmit = {this.submit.bind(this)}>
+                    
+                    
+                        <br/>
+                    <Input label="Search Appartment" ref="search" s={8} />
+                    <Button style={divStyle}  className="btn waves-effect waves-light" type="submit" name="action" title='Search' >Search</Button>
+                    
+                     </form>
+                        {/* {(this.props.user.firstTime) ? (
                             <form onSubmit={this.submit.bind(this)}>
                                 <Input s={6} label="First Name" defaultValue={this.props.user.firstName} disabled />
                                 <Input s={6} label="Last Name" defaultValue={this.props.user.lastName} disabled />
@@ -117,9 +137,9 @@ class Tenant extends Component {
                                     <h4><span>Contact Number : </span> <span>{this.props.user.number}</span></h4>
                                     <br />
                                     <h4><span>Experience : </span> <span>{this.props.user.exp}</span></h4>
-                                </div>)}
+                                </div>)} */}
                     </Tab>
-                    <Tab title="Companies Data" >
+                    {/* <Tab title="Companies Data" >
                     <div>
                         {
                             this.props.allCompanyData.map((user, ind) => {
@@ -140,7 +160,7 @@ class Tenant extends Component {
                             })
                         }
                     </div>
-                    </Tab>
+                    </Tab> */}
 
                 </Tabs>
 

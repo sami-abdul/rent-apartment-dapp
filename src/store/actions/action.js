@@ -79,7 +79,7 @@ export function logout() {
             dispatch({ type: "SHOW_PROGRESS_BAR", payload: false })
             dispatch({ type: "IS_LOGIN", payload: false })
             // Sign-out successful.
-            history.push('/signin');
+            history.push('/');
         }, function (error) {
             // An error happened.
         });

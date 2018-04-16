@@ -41,12 +41,20 @@ class Landlord extends Component {
         {
             alert("all the fields are required");
         }
+        else if(this.refs.address.state.value.length > 32 || this.refs.name.state.value.length > 32){
+            alert("Address and Name must be less than 32 characters :");
+        }
+        
         else{
             let AppartmentInfo = {
+                name:this.refs.name.state.value.length,
                 address : this.refs.address.state.value,
                 price : this.refs.price.state.value,
                 Apartmenthike : this.refs.Apartmenthike.state.value
+                
             }
+            console.log(this.refs.address.state.value);
+            // console.log(this.refs.name.state.value.length);
             this.addApartment(AppartmentInfo)
             // this.props.showNotification();
             //  this.props.setCompanyProfileToFirebase(CompanyInfo, this.props.uid)
@@ -55,13 +63,13 @@ class Landlord extends Component {
 
     addApartment(data) {
         let gasEstimate
-        deployedInstance.addApartment.estimateGas("name", data.address, 6, data.price)
+        deployedInstance.addApartment.estimateGas(data.name, data.address, data.price, data.Apartmenthike)
         .then((result) => {
             gasEstimate = result * 2
             console.log("Estimated gas to add an apartment: " + gasEstimate)
         })
         .then((result) => {
-            deployedInstance.addApartment("name", data.address, 6, data.price, {
+            deployedInstance.addApartment(data.name, data.address, data.price, data.Apartmenthike, {
                   from: mAccounts[0],
                   gas: gasEstimate,
                   gasPrice: this.state.web3.eth.gasPrice
@@ -149,22 +157,25 @@ class Landlord extends Component {
                                     var partsArray = apartment.split(',');
                                     console.log(partsArray);
 
-                                    let apartmentString = hexToString(partsArray[2]);
+                                    let apartmentString = hexToString(partsArray[1]);
+                                    let apartmentAddress = hexToString(partsArray[3]);
                                     console.log(apartmentString);
 
                                     return (
                                     <Collapsible key={ind}>
                                         <CollapsibleItem header={apartmentString}>
-                                            <span>id: </span> <span>{partsArray[0]}</span>
+                                            <span>Apartment Name: </span> <span>{apartmentString}</span>
                                             <br />
-                                            <span>tenants : </span> <span>{partsArray[1]}</span>
+                                            <span>ID: </span> <span>{partsArray[0]}</span>
                                             <br />
 
-                                            <span>location : </span> <span>{partsArray[2]}</span>
+                                            <span>Tenant Address: </span> <span>{partsArray[2]}</span>
                                             <br />
-                                            <span>Rent Price : </span> <span>{partsArray[3]}</span>
+                                            <span>Location: </span> <span>{apartmentAddress}</span>
                                             <br />
-                                            <span>Rent Hike : </span> <span>{partsArray[4]}</span>
+                                            <span>Rent Price: </span> <span>{partsArray[4]}</span>
+                                            <br />
+                                            <span>Rent Hike Rate: </span> <span>{partsArray[5]}</span>
 
                                         </CollapsibleItem>
                                     </Collapsible>
@@ -175,6 +186,7 @@ class Landlord extends Component {
                     </Tab>
                     {/* defaultValue={this.props.user.lastName} */}
                     <Tab title="Add Apartment " ><form onSubmit = {this.submit.bind(this)}>
+                    <Input s={12} label="Aparrtment Name" ref="name" /> 
                         <Input s={12} label="Address" ref="address" />
                         <Input type="number" s={6} label="Hike rate" ref="Apartmenthike" />
                         <Input type="number" s={6} label="Rent" ref="price"/> <br/>

@@ -82,7 +82,7 @@ class Signin extends Component {
                             </Input>
                         </Row> */}
                         <Button className="btn waves-effect waves-light" type="submit" name="action" title = 'signin' style = {{display : 'block'}}>Signin</Button>
-                        <Link to='/'>Create Account</Link>
+                        <Link to='/signup'>Create Account</Link>
                     <div><p style = {{color : "red"}}>{this.props.errorMsg}</p></div>
                     </form>
                     {

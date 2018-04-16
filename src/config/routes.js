@@ -22,8 +22,8 @@ const BasicRouting = (props) => {
           (!(props.isLogin)) ? 
           (
             <div>
-            <Route exact path="/" component={Signup} />
-            <Route path="/signin" component={Signin} />
+            <Route exact path="/" component={Signin} />
+            <Route path="/signup" component={Signup} />
             </div>
           ) :
           (
