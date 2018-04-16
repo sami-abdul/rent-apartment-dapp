@@ -27,7 +27,8 @@ class Landlord extends Component {
 
         this.state = {
           web3: null,
-          data: []
+          data: [],
+          requests: []
         }
     }
 
@@ -110,6 +111,11 @@ class Landlord extends Component {
     }
 
     getData() {
+        this.getApartment()
+        this.getRequests()
+    }
+
+    getApartment() {
         deployedInstance.getApartments.call({ from: mAccounts[0] })
         .then((result) => {
             let count = 0
@@ -131,7 +137,32 @@ class Landlord extends Component {
             this.setState({
                 data: arr
             })
-           // console.log(result)
+            console.log(this.state.data)
+        })
+    }
+
+    getRequests() {
+        deployedInstance.getRequests.call({ from: mAccounts[0] })
+        .then((result) => {
+            let count = 0
+            let nestedCount = 0
+            let arr = []
+            result.map((items) => {
+                count++
+                items.map((item) => {
+                    if (count == 1) {
+                        arr[nestedCount] = item
+                    } else {
+                        arr[nestedCount] += "," + item
+                    }
+                    nestedCount++
+                })
+                nestedCount = 0
+            })
+
+            this.setState({
+                data: arr
+            })
             console.log(this.state.data)
         })
     }
@@ -193,7 +224,7 @@ class Landlord extends Component {
                         <Button className="btn waves-effect waves-light" type="submit" name="action" title = 'submit' style = {{display : 'block'}}>Submit</Button>
 
                     </form></Tab>
-                    <Tab title="Request" >
+                    <Tab title="Requests" >
                       </Tab>
                 </Tabs>
             </div>
