@@ -69,14 +69,16 @@ class Tenant extends Component {
         if (this.refs.search.state.value === undefined) {
             alert("TextBox is Empty");
         }
-        else if(this.refs.search.state.value.length > 32){
-            alert("")
-        }
+        // else if(this.refs.search.state.value.length > 32){
+        //     alert("ID must be less than 32 characters")
+        // }
         else {
              let appartment = {
                 appart: this.refs.search.state.value,
              }
-             console.log(appartment);
+             console.log(this.refs.search.state.value);
+             console.log(typeof this.refs.search.state.value);
+            this.getData(this.refs.search.state.value);
             //     firstName: this.props.user.firstName,
             //     lastName: this.props.user.lastName,
 
@@ -97,7 +99,11 @@ class Tenant extends Component {
     getData(apartmentId) {
         deployedInstance.getApartment.call(apartmentId, { from: mAccounts[1] })
         .then((result) => {
-            console.log(result)
+            this.setState({
+                data: result
+            })
+            console.log(result);
+            console.log(this.state.data);
         })
     }
 
