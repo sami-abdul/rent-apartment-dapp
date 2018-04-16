@@ -47,7 +47,7 @@ class Landlord extends Component {
         
         else{
             let AppartmentInfo = {
-                name:this.refs.name.state.value.length,
+                name:this.refs.name.state.value,
                 address : this.refs.address.state.value,
                 price : this.refs.price.state.value,
                 Apartmenthike : this.refs.Apartmenthike.state.value
