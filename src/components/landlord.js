@@ -124,7 +124,7 @@ class Landlord extends Component {
             this.setState({
                 data: arr
             })
-            console.log(result)
+           // console.log(result)
             console.log(this.state.data)
         })
     }
@@ -132,26 +132,44 @@ class Landlord extends Component {
     render() {
         return (
             <div>
-                <Tabs className='tab-demo z-depth-1'>
+                <Tabs className='tab-demo z-request-1'>
                     <Tab title="Apartments Data">
                         <div>
                             {
-                                this.props.allUserData.map((user, ind) => {
-                                    return (<Collapsible key={ind}>
-                                        <CollapsibleItem header={user.firstName}>
-                                            <span>Full Name : </span> <span>{user.firstName + ' '}{user.lastName}</span>
+                                this.state.data.map((apartment, ind) => {
+                                    function hexToString (hex) {
+                                        var string = '';
+                                        for (var i = 0; i < hex.length; i += 2) {
+                                          string += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+                                        }
+                                        return string;
+                                    }
+
+                                    console.log(apartment, "apartment");
+                                    console.log(ind, "ind");
+                                    var partsArray = apartment.split(',');
+                                    console.log(partsArray);
+
+                                    let apartmentString = hexToString(partsArray[2]);
+                                    console.log(apartmentString);
+
+                                    return (
+                                    <Collapsible key={ind}>
+                                        <CollapsibleItem header={apartmentString}>
+                                            <span>id: </span> <span>{partsArray[0]}</span>
                                             <br />
-                                            <span>CGPA : </span> <span>{user.cgpa}</span>
+                                            <span>tenants : </span> <span>{partsArray[1]}</span>
                                             <br />
 
-                                            <span>Field : </span> <span>{user.field}</span>
+                                            <span>location : </span> <span>{partsArray[2]}</span>
                                             <br />
-                                            <span>Contact Number : </span> <span>{user.number}</span>
+                                            <span>Rent Price : </span> <span>{partsArray[3]}</span>
                                             <br />
-                                            <span>Experience : </span> <span>{user.exp}</span>
+                                            <span>Rent Hike : </span> <span>{partsArray[4]}</span>
 
                                         </CollapsibleItem>
-                                    </Collapsible>)
+                                    </Collapsible>
+                                    )
                                 })
                             }
                         </div>
@@ -159,12 +177,13 @@ class Landlord extends Component {
                     {/* defaultValue={this.props.user.lastName} */}
                     <Tab title="Add Apartment " ><form onSubmit = {this.submit.bind(this)}>
                         <Input s={12} label="Address" ref="address" />
-                        <Input s={6} label="Hike rate" ref="Apartmenthike" />
+                        <Input type="number" s={6} label="Hike rate" ref="Apartmenthike" />
                         <Input type="number" s={6} label="Rent" ref="price"/> <br/>
                         <Button className="btn waves-effect waves-light" type="submit" name="action" title = 'submit' style = {{display : 'block'}}>Submit</Button>
 
                     </form></Tab>
-
+                    <Tab title="Request" >
+                      </Tab>
                 </Tabs>
             </div>
         )
