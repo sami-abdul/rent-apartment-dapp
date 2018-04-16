@@ -121,6 +121,8 @@ class Tenant extends Component {
                     <Button style={divStyle}  className="btn waves-effect waves-light" type="submit" name="action" title='Search' >Search</Button>
                     
                      </form>
+                     
+                        
                         {/* {(this.props.user.firstTime) ? (
                             <form onSubmit={this.submit.bind(this)}>
                                 <Input s={6} label="First Name" defaultValue={this.props.user.firstName} disabled />

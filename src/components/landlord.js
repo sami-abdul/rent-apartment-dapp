@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Input, Icon, Row, Tab, Tabs, Button, CollapsibleItem, Collapsible } from 'react-materialize'
 import { fetchAllProfiles } from '../store/actions/action';
-
+import img from "../images/building.png"
 const contract = require('truffle-contract')
 
 import DataControllerContract from '../../build/contracts/DataController.json'
@@ -19,6 +19,13 @@ import getWeb3 from '../utils/getWeb3'
 var dataControllerContract
 var deployedInstance
 var mAccounts
+
+const imgStyle = {
+    
+    float:"left",
+    height:"170px"
+  };
+
 
 class Landlord extends Component {
 
@@ -47,7 +54,7 @@ class Landlord extends Component {
         
         else{
             let AppartmentInfo = {
-                name:this.refs.name.state.value.length,
+                name:this.refs.name.state.value,
                 address : this.refs.address.state.value,
                 price : this.refs.price.state.value,
                 Apartmenthike : this.refs.Apartmenthike.state.value
@@ -139,10 +146,13 @@ class Landlord extends Component {
     render() {
         return (
             <div>
+                {/* <img src={require("building.png")} alt="Buildings" align="right" /> */}
+                
                 <Tabs className='tab-demo z-depth-1'>
                     <Tab title="Apartments">
                         <div>
                             {
+
                                 this.state.data.map((apartment, ind) => {
                                     function hexToString (hex) {
                                         var string = '';
@@ -160,10 +170,12 @@ class Landlord extends Component {
                                     let apartmentString = hexToString(partsArray[1]);
                                     let apartmentAddress = hexToString(partsArray[3]);
                                     console.log(apartmentString);
-
+                                    
                                     return (
                                     <Collapsible key={ind}>
                                         <CollapsibleItem header={apartmentString}>
+                                        <p>
+                                        <img src={img} alt="Buildings" style={imgStyle} />      
                                             <span>Apartment Name: </span> <span>{apartmentString}</span>
                                             <br />
                                             <span>ID: </span> <span>{partsArray[0]}</span>
@@ -176,7 +188,7 @@ class Landlord extends Component {
                                             <span>Rent Price: </span> <span>{partsArray[4]}</span>
                                             <br />
                                             <span>Rent Hike Rate: </span> <span>{partsArray[5]}</span>
-
+                                            </p>
                                         </CollapsibleItem>
                                     </Collapsible>
                                     )
