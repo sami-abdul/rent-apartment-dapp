@@ -7,8 +7,9 @@ contract Repository is Ownable {
     struct Apartment {
         bytes32 id;
         uint key;
+        bytes32 name;
         address tenant;
-        string location;
+        bytes32 location;
         uint rentPrice;
         uint8 rentHikeRate;
         uint rentDate;
@@ -31,10 +32,9 @@ contract Repository is Ownable {
 
     address public landlord;
 
-    Apartment[] apartmentsArr;
-
     mapping(address => uint) internal balances;
 
+    Apartment[] apartmentsArr;
     mapping(address => bytes32) internal tenantsToApartment;
     mapping(bytes32 => Apartment) internal apartments;
 

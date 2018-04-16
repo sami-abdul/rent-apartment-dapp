@@ -100,15 +100,15 @@ class Signup extends Component {
                 <Col s={6} style={{ height: '500px', borderTop : 'none' }}>
                     
                     <form onSubmit={this.signup.bind(this)}>
-                        <Input s={6} name='firstname' value={this.state.firstName} onChange={this._onChangeUserName} label="first Name" />
+                        <Input s={6} name='firstname' value={this.state.firstName} onChange={this._onChangeUserName} label="First Name" />
                         <Input s={6} label="Last Name" name='lastname' value={this.state.lastName} onChange={this._onChangLastName} />
                         <br />
-                        <Input label='email' s={12} type='text' name='email' value={this.state.email} title='type email here' onChange={this._onChangeEmail} />
+                        <Input label='Email' s={12} type='text' name='email' value={this.state.email} title='type email here' onChange={this._onChangeEmail} />
                         <br />
-                        <Input label='password' s={12} type='password' name='password' title='type password here' value={this.state.password} onChange={this._onChangePassword} />
+                        <Input label='Password' s={12} type='password' name='password' title='type password here' value={this.state.password} onChange={this._onChangePassword} />
                         <br />
                         <Row >
-                            <Input s={6} type='select' label="Login As" defaultValue='Tenant' onChange={this._onChangeType}>
+                            <Input s={6} type='select' label="Sign up as" defaultValue='Tenant' onChange={this._onChangeType}>
                                 <option value='Tenant'>Tenant</option>
                                 <option value='Landlord'>Landlord</option>
                                 
