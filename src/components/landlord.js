@@ -29,7 +29,7 @@ class Landlord extends Component {
           web3: null,
           data: []
         }
-      }
+    }
 
     submit(event){
         // console.log( this.refs.cgpa.state.value, this.refs.cgpa.value)
@@ -55,14 +55,13 @@ class Landlord extends Component {
 
     addApartment(data) {
         let gasEstimate
-        deployedInstance.addApartment.estimateGas(data.address, data.AppartmentHike, data.price)
+        deployedInstance.addApartment.estimateGas("name", data.address, 6, data.price)
         .then((result) => {
             gasEstimate = result * 2
             console.log("Estimated gas to add an apartment: " + gasEstimate)
         })
         .then((result) => {
-            deployedInstance.addApartment(
-              data.address, 6, data.price, {
+            deployedInstance.addApartment("name", data.address, 6, data.price, {
                   from: mAccounts[0],
                   gas: gasEstimate,
                   gasPrice: this.state.web3.eth.gasPrice

@@ -4,10 +4,8 @@
     <list default="true" id="d10c9f86-3427-40e4-ac05-fc5215971ec0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/DataController.sol" afterPath="$PROJECT_DIR$/contracts/DataController.sol" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/Repository.sol" afterPath="$PROJECT_DIR$/contracts/Repository.sol" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/landlord.js" afterPath="$PROJECT_DIR$/src/components/landlord.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/signin.js" afterPath="$PROJECT_DIR$/src/components/signin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/signup.js" afterPath="$PROJECT_DIR$/src/components/signup.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/tenant.js" afterPath="$PROJECT_DIR$/src/components/tenant.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,21 +17,43 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DataController.sol" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/contracts/DataController.sol">
+      <file leaf-file-name="landlord.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/landlord.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="8" column="5" lean-forward="true" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+            <state relative-caret-position="218">
+              <caret line="71" column="93" lean-forward="false" selection-start-line="71" selection-start-column="93" selection-end-line="71" selection-end-column="93" />
+              <folding>
+                <element signature="e#0#6934#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tenant.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/tenant.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="304">
+              <caret line="19" column="17" lean-forward="false" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Repository.sol" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DataController.sol" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/contracts/DataController.sol">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="16" column="33" lean-forward="false" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Repository.sol" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/contracts/Repository.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="539">
-              <caret line="44" column="1" lean-forward="true" selection-start-line="44" selection-start-column="1" selection-end-line="44" selection-end-column="1" />
+            <state relative-caret-position="112">
+              <caret line="7" column="19" lean-forward="true" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -52,6 +72,7 @@
       <find>allUserData</find>
       <find>email</find>
       <find>type</find>
+      <find>Landlord</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -71,9 +92,10 @@
         <option value="$PROJECT_DIR$/truffle-config.js" />
         <option value="$PROJECT_DIR$/src/components/signup.js" />
         <option value="$PROJECT_DIR$/src/components/signin.js" />
-        <option value="$PROJECT_DIR$/src/components/landlord.js" />
-        <option value="$PROJECT_DIR$/contracts/DataController.sol" />
         <option value="$PROJECT_DIR$/contracts/Repository.sol" />
+        <option value="$PROJECT_DIR$/src/components/tenant.js" />
+        <option value="$PROJECT_DIR$/contracts/DataController.sol" />
+        <option value="$PROJECT_DIR$/src/components/landlord.js" />
       </list>
     </option>
   </component>
@@ -97,7 +119,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -187,6 +208,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -493,7 +515,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1366" y="0" width="1024" height="768" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -506,11 +527,10 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28372094" sideWeight="0.4968504" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45736435" sideWeight="0.4968504" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23108384" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23619632" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -522,6 +542,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -534,10 +555,44 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/components/landlord.js">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2112">
+          <caret line="132" column="25" lean-forward="true" selection-start-line="132" selection-start-column="25" selection-end-line="132" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#6934#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/tenant.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="19" column="17" lean-forward="false" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/Repository.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="27" column="21" lean-forward="true" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/DataController.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="8" column="5" lean-forward="true" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/landlord.js">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#6562#0" expanded="false" />
+            <element signature="e#0#6934#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -563,7 +618,7 @@
         <state relative-caret-position="2224">
           <caret line="139" column="42" lean-forward="false" selection-start-line="139" selection-start-column="42" selection-end-line="139" selection-end-column="42" />
           <folding>
-            <element signature="e#0#6562#0" expanded="false" />
+            <element signature="e#0#6934#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -628,7 +683,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
           <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -636,7 +690,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="310">
           <caret line="167" column="0" lean-forward="true" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -644,33 +697,40 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24">
           <caret line="70" column="20" lean-forward="true" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/landlord.js">
+    <entry file="file://$PROJECT_DIR$/src/components/tenant.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="135" column="42" lean-forward="false" selection-start-line="135" selection-start-column="42" selection-end-line="135" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#6562#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contracts/DataController.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="8" column="5" lean-forward="true" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+        <state relative-caret-position="304">
+          <caret line="19" column="17" lean-forward="false" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/contracts/Repository.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="44" column="1" lean-forward="true" selection-start-line="44" selection-start-column="1" selection-end-line="44" selection-end-column="1" />
+        <state relative-caret-position="112">
+          <caret line="7" column="19" lean-forward="true" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/DataController.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="16" column="33" lean-forward="false" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/landlord.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="71" column="93" lean-forward="false" selection-start-line="71" selection-start-column="93" selection-end-line="71" selection-end-column="93" />
+          <folding>
+            <element signature="e#0#6934#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

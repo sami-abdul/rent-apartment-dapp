@@ -14,12 +14,12 @@ contract DataController is Repository {
         balances[msg.sender];
     }
 
-    function getApartment(bytes32 _id) public view returns(bytes32, bytes32, address, string, uint, uint8) {
+    function getApartment(bytes32 _id) public view returns(bytes32, bytes32, address, bytes32, uint, uint8) {
         Apartment apartment = apartments[_id];
         return (apartment.id, apartment.name, apartment.tenant, apartment.location, apartment.rentPrice, apartment.rentHikeRate);
     }
 
-    function getApartments() public view returns(bytes32, bytes32[], address[], bytes32[], uint[], uint8[]) {
+    function getApartments() public view returns(bytes32[], bytes32[], address[], bytes32[], uint[], uint8[]) {
         bytes32[] memory ids = new bytes32[](apartmentsArr.length);
         bytes32[] memory names = new bytes32[](apartmentsArr.length);
         address[] memory tenants = new address[](apartmentsArr.length);
@@ -31,7 +31,7 @@ contract DataController is Repository {
             ids[i] = apartmentsArr[i].id;
             names[i] = apartmentsArr[i].name;
             tenants[i] = apartmentsArr[i].tenant;
-            locations[i] = _stringToBytes32(apartmentsArr[i].location);
+            locations[i] = apartmentsArr[i].location;
             rentPrices[i] = apartmentsArr[i].rentPrice;
             rentHikeRates[i] = apartmentsArr[i].rentHikeRate;
         }

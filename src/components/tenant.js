@@ -2,12 +2,59 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Input, Icon, Row, Tab, Tabs, Button, CollapsibleItem, Collapsible } from 'react-materialize'
 import { setUserProfileToFirebase } from '../store/actions/action';
+
+const contract = require('truffle-contract')
+
+import DataControllerContract from '../../build/contracts/DataController.json'
+import getWeb3 from '../utils/getWeb3'
+
 // import { fetchAllCompanyProfiles } from '../store/actions/action';
 // import {
 //     Link
 //   } from 'react-router-dom';
 
+var dataControllerContract
+var deployedInstance
+var mAccounts
+
 class Tenant extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            web3: null,
+            data: null
+        }
+    }
+
+    componentWillMount() {
+        getWeb3
+        .then(results => {
+            this.setState({
+                web3: results.web3
+            })
+            this.instantiateContract()
+        })
+        .catch(() => {
+            console.log('Error finding web3.')
+        })
+
+        this.props.fetchAllProfiles();
+    }
+
+    instantiateContract() {
+        dataControllerContract = contract(DataControllerContract)
+        dataControllerContract.setProvider(this.state.web3.currentProvider)
+
+        this.state.web3.eth.getAccounts((error, accounts) => {
+            dataControllerContract.deployed().then((instance) => {
+                deployedInstance = instance
+                mAccounts = accounts
+            })
+        })
+    }
+
     submit(event) {
         // console.log( this.refs.cgpa.state.value, this.refs.cgpa.value)
         // console.log( this.refs.number.state.value, this.refs.number.value)
@@ -36,11 +83,16 @@ class Tenant extends Component {
     //     this.props.fetchAllCompanyProfiles();
     // }
 
+    getData(apartmentId) {
+        deployedInstance.getApartment.call(apartmentId, { from: mAccounts[1] })
+        .then((result) => {
+            console.log(result)
+        })
+    }
 
     render() {
         return (
             <div>
-
                 <Tabs className='tab-demo z-depth-1'>
                     <Tab title="Profile">
                         {(this.props.user.firstTime) ? (
