@@ -86,7 +86,7 @@ contract DataController is Repository {
         return false;
     }
 
-    function addApartment(bytes32 _name, bytes32 _location, uint _rentPrice, uint8 _rentHikeRate) public returns(bytes32 id) {
+    function addApartment(bytes32 _name, bytes32 _location, uint _rentPrice, uint8 _rentHikeRate) public onlyOwner returns(bytes32 id) {
         id = sha3(_location);
         Apartment memory apartment = Apartment(id, 123456, _name, address(0), _location, _rentPrice, _rentHikeRate, 0);
         apartments[id] = apartment;
