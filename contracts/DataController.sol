@@ -3,7 +3,7 @@ pragma solidity ^0.4.2;
 import "./Repository.sol";
 
 /*
-    Data controller smart contract
+Data controller smart contract
 */
 
 contract DataController is Repository {
@@ -14,6 +14,20 @@ contract DataController is Repository {
     }
 
     // Public functions open for anyone
+
+    // Function used to create a new user
+    function createUser(bytes32 _email, address _wallet, bool _isLandlord) public view returns(bool) {
+        require(isUserUnique(_email));
+        User user = User(_email, _wallet, _isLandlord);
+        users[_email] = user;
+    }
+
+    // Function used to deposit ether to smart contract
+    function depositEtherInEscrow() public payable returns(bool success) {
+        require(escrowBalances[msg.sender] + msg.value > escrowBalances[msg.sender]);
+        escrowBalances[msg.sender] = msg.value;
+        return true;
+    }
 
     // Function used to get the deposited ether balance
     function getBalance() public view returns(uint) {
@@ -62,13 +76,6 @@ contract DataController is Repository {
         return (payment.id, payment.apartment, payment.amount);
     }
 
-    // Function used to deposit ether to smart contract
-    function depositEtherInEscrow() public payable returns(bool success) {
-        require(escrowBalances[msg.sender] + msg.value > escrowBalances[msg.sender]);
-        escrowBalances[msg.sender] = msg.value;
-        return true;
-    }
-
     // Function used to check if the request was sent
     function isRequestSent(bytes32 _apartment, bytes32 _potentialTenant) public view returns(bool) {
         Request[] requests = apartmentToRequests[_apartment];
@@ -76,6 +83,13 @@ contract DataController is Repository {
             if (requests[i].apartment == _apartment && requests[i].from == _potentialTenant) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    function isUserUnique(bytes32 _email) returns(bool) {
+        if (users[_email]._email != _email) {
+            return true;
         }
         return false;
     }
@@ -97,6 +111,7 @@ contract DataController is Repository {
         return (ids, froms);
     }
 
+    // Function used to get all requests for a landlord
     function getAllHireRequests() public view returns(bytes32[], address[]) {
         Request[] requests = hireRequests[_apartment];
 
@@ -149,6 +164,7 @@ contract DataController is Repository {
         success = true;
     }
 
+    // Function used to hike rent
     function hikeRent(bytes32 _apartment) public public onlyLandlord(_apartment) returns (bool success) {
 
     }
