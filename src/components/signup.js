@@ -108,7 +108,8 @@ class Signup extends Component {
                         <Input label='Password' s={12} type='password' name='password' title='type password here' value={this.state.password} onChange={this._onChangePassword} />
                         <br />
                         <Row >
-                            <Input s={6} type='select' label="Sign up as" defaultValue='Tenant' onChange={this._onChangeType}>
+                            <Input s={6} type='select' label="Sign up as"  onChange={this._onChangeType}>
+                            <option value="" disabled selected>Choose your option</option>
                                 <option value='Tenant'>Tenant</option>
                                 <option value='Landlord'>Landlord</option>
                                 

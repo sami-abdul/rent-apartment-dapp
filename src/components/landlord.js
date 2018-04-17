@@ -180,7 +180,7 @@ class Landlord extends Component {
                 {/* <img src={require("building.png")} alt="Buildings" align="right" /> */}
                 
                 <Tabs className='tab-demo z-depth-1'>
-                    <Tab title="Apartments">
+                    <Tab title="Apartments" className="active">
                         <div>
                             {
 

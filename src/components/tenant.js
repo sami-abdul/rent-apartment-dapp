@@ -29,7 +29,9 @@ class Tenant extends Component {
 
         this.state = {
             web3: null,
-            data: null
+            data: null,
+            apatmentData :["Apartment ID","Apartment Name","Apartment Owner","Apartment Tenant", "Apartment Location","Apartment Rent Price","Apartment Hike Rate"],
+            index:0
         }
     }
 
@@ -106,6 +108,7 @@ class Tenant extends Component {
             console.log(this.state.data);
         })
     }
+    
 
     render() {
         return (
@@ -113,6 +116,7 @@ class Tenant extends Component {
                 
                 <Tabs className='tab-demo z-depth-1'>
                     <Tab title="Appartments">
+                    0x7735364e0f66b30976c986f54bd3e7440a3f4da438ac425a6fcfdf264f3bd486
                     <form onSubmit = {this.submit.bind(this)}>
                     
                     
@@ -121,7 +125,47 @@ class Tenant extends Component {
                     <Button style={divStyle}  className="btn waves-effect waves-light" type="submit" name="action" title='Search' >Search</Button>
                     
                      </form>
-                     
+                     <div>
+                         
+                            {
+                                
+                                (this.state.data) ? (
+                                    //apatmentData :["Apartment ID","Apartment Name","Apartment Owner","Apartment Tenant", "Apartment Location","Apartment Rent Price","Apartment Hike Rate"],
+                                    <div>
+                                        <br/>
+                                 Apartment Name: {this.state.data[1]}
+                                    <br/>
+                                    Apartment ID: {this.state.data[0]}
+                                    <br/>
+                                    Apartment Owner: {this.state.data[2]}
+                                    <br/>
+                                    Apartment Tenant: {this.state.data[3]}
+                                    <br/>
+                                    Apartment Location: {this.state.data[4]}
+                                    <br/>
+                                    Apartment Rent Price: {this.state.data[5].c[0]}
+                                    <br/>
+                                    Apartment Hike Rate: {this.state.data[6].c[0]}
+                                    <br/>
+                                    
+                                    
+                                    </div>
+                                    //  this.state.data.map((apartment, ind) => {
+                                    //  console.log(apartment);
+                                    //      <p key={ind}>
+                                        
+                                    // <div>{apartment}</div>
+                                    // <br/>      
+                                    
+                                    // </p>
+                                    //  })
+                                    
+                                ) : (
+                                    null
+                                )
+                               
+                                }
+                                </div>
                         
                         {/* {(this.props.user.firstTime) ? (
                             <form onSubmit={this.submit.bind(this)}>
