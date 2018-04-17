@@ -1,12 +1,13 @@
 pragma solidity ^0.4.2;
 
 import "./Repository.sol";
+import "./DateTime.sol";
 
 /*
 Data controller smart contract
 */
 
-contract DataController is Repository {
+contract DataController is Repository, DateTime {
 
     // Data controller constructor
     function DataController() public {
@@ -18,8 +19,7 @@ contract DataController is Repository {
     // Function used to create a new user
     function createUser(bytes32 _email, address _wallet, bool _isLandlord) public view returns(bool) {
         require(isUserUnique(_email));
-        User user = User(_email, _wallet, _isLandlord);
-        users[_email] = user;
+        users[_email] = User(_email, _wallet, _isLandlord);
     }
 
     // Function used to deposit ether to smart contract
@@ -77,7 +77,7 @@ contract DataController is Repository {
     }
 
     // Function used to check if the request was sent
-    function isRequestSent(bytes32 _apartment, bytes32 _potentialTenant) public view returns(bool) {
+    function isRequestSent(bytes32 _apartment, address _potentialTenant) public view returns(bool) {
         Request[] requests = apartmentToRequests[_apartment];
         for (uint i = 0; i < requests.length; i++) {
             if (requests[i].apartment == _apartment && requests[i].from == _potentialTenant) {
@@ -89,7 +89,7 @@ contract DataController is Repository {
 
     // Function used to check if the user email address is unique
     function isUserUnique(bytes32 _email) returns(bool) {
-        if (users[_email]._email != _email) {
+        if (users[_email].email != _email) {
             return true;
         }
         return false;
@@ -101,8 +101,8 @@ contract DataController is Repository {
     function getHireRequestsOfApartment(bytes32 _apartment) public onlyLandlord(_apartment) view returns(bytes32[], address[]) {
         Request[] requests = apartmentToRequests[_apartment];
 
-        bytes32[] memory ids = new bytes32[](requestAddresses.length);
-        address[] memory froms = new address[](requestAddresses.length);
+        bytes32[] memory ids = new bytes32[](requests.length);
+        address[] memory froms = new address[](requests.length);
 
         for (uint i = 0; i < requests.length; i++) {
             ids[i] = requests[i].id;
@@ -114,15 +114,13 @@ contract DataController is Repository {
 
     // Function used to get all requests for a landlord
     function getAllHireRequests() public view returns(bytes32[], address[]) {
-        Request[] requests = hireRequests[_apartment];
+        bytes32[] memory ids = new bytes32[](requestsArr.length);
+        address[] memory froms = new address[](requestsArr.length);
 
-        bytes32[] memory ids = new bytes32[](requestAddresses.length);
-        address[] memory froms = new address[](requestAddresses.length);
-
-        for (uint i = 0; i < requests.length; i++) {
-            if (requests[i].to ==  msg.sender) {
-                ids[i] = request.id;
-                froms[i] = request.from;
+        for (uint i = 0; i < requestsArr.length; i++) {
+            if (requestsArr[i].to ==  msg.sender) {
+                ids[i] = requestsArr[i].id;
+                froms[i] = requestsArr[i].from;
             }
         }
 
@@ -139,7 +137,7 @@ contract DataController is Repository {
     }
 
     // Function used to edit apartment by the landlord
-    function editApartment(bytes32 _id, bytes32 _name, bytes32 _location, uint _rentPrice, uint8 _rentHikeRate) public public onlyLandlord(_id) returns(bool success) {
+    function editApartment(bytes32 _id, bytes32 _name, bytes32 _location, uint _rentPrice, uint8 _rentHikeRate) public onlyLandlord(_id) returns(bool success) {
         apartments[_id].name = _name;
         apartments[_id].location = _location;
         apartments[_id].rentPrice = _rentPrice;
@@ -147,11 +145,12 @@ contract DataController is Repository {
     }
 
     // Function used to approve hire request by tenant
-    function approveHireRequest(bytes32 _request, bytes32 _apartment, address _potentialTenant) public public onlyLandlord(_apartment) returns (bool success) {
+    function approveHireRequest(bytes32 _request, bytes32 _apartment, address _potentialTenant) public onlyLandlord(_apartment) returns (bool success) {
         require(isRequestSent(_apartment, _potentialTenant));
 
         apartments[_apartment].tenant = _potentialTenant;
         tenantsToApartment[_potentialTenant] = _apartment;
+        tenantToOwner[_potentialTenant] = msg.sender;
 
         delete hireRequests[_request];
         delete apartmentToRequests[_apartment];
@@ -159,14 +158,14 @@ contract DataController is Repository {
     }
 
     // Function used to reject all hire requests
-    function rejectAllHireRequests(bytes32 _request, bytes32 _apartment) public public onlyLandlord(_apartment) returns (bool success) {
+    function rejectAllHireRequests(bytes32 _request, bytes32 _apartment) public onlyLandlord(_apartment) returns (bool success) {
         delete hireRequests[_request];
         delete apartmentToRequests[_apartment];
         success = true;
     }
 
     // Function used to hike rent
-    function hikeRent(bytes32 _apartment) public public onlyLandlord(_apartment) returns (bool success) {
+    function hikeRent(bytes32 _apartment) public onlyLandlord(_apartment) returns (bool success) {
 
     }
 
@@ -203,8 +202,11 @@ contract DataController is Repository {
         Request memory request = Request(id, _apartment, _to, msg.sender);
         hireRequests[id] = request;
         apartmentToRequests[_apartment].push(request);
+        requestsArr.push(request);
         success = true;
     }
+
+    // Utility functions
 
     function _stringToBytes32(string memory source) returns (bytes32 result) {
         bytes memory tempEmptyStringTest = bytes(source);
@@ -217,8 +219,10 @@ contract DataController is Repository {
         }
     }
 
+    // Modifiers
+
     modifier onlyLandlord(bytes32 _apartment) {
-        require(apartments[_apartment] == msg.sender);
+        require(apartments[_apartment].owner == msg.sender);
         _;
     }
 
