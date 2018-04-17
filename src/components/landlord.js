@@ -97,7 +97,7 @@ class Landlord extends Component {
     }
 
     getApartment() {
-        deployedInstance.getApartments.call({ from: mAccounts[0] })
+        deployedInstance.getApartments.call({ from: this.props.user.wallet })
         .then((result) => {
             let count = 0
             let nestedCount = 0
@@ -123,7 +123,7 @@ class Landlord extends Component {
     }
 
     getBalance() {
-        deployedInstance.getBalance.call({ from: mAccounts[0] })
+        deployedInstance.getBalance.call({ from: this.props.user.wallet })
         .then((result) => {
             this.setState({
                 balance: result.toNumber()
@@ -141,7 +141,7 @@ class Landlord extends Component {
         })
         .then((result) => {
             deployedInstance.createUser("email", "wallet", true, {
-                  from: mAccounts[0],
+                  from: this.props.user.wallet,
                   gas: gasEstimate,
                   gasPrice: this.state.web3.eth.gasPrice
                 }
@@ -161,7 +161,7 @@ class Landlord extends Component {
         })
         .then((result) => {
             deployedInstance.addApartment(data.name, data.address, data.price, data.Apartmenthike, {
-                  from: mAccounts[0],
+                  from: this.props.user.wallet,
                   gas: gasEstimate,
                   gasPrice: this.state.web3.eth.gasPrice
                 }
@@ -181,7 +181,7 @@ class Landlord extends Component {
         })
         .then((result) => {
             deployedInstance.editApartment(data.name, data.address, data.price, data.Apartmenthike, {
-                  from: mAccounts[0],
+                  from: this.props.user.wallet,
                   gas: gasEstimate,
                   gasPrice: this.state.web3.eth.gasPrice
                 }
@@ -193,7 +193,7 @@ class Landlord extends Component {
     }
 
     getRequests() {
-        deployedInstance.getRequests.call({ from: mAccounts[0] })
+        deployedInstance.getRequests.call({ from: this.props.user.wallet })
         .then((result) => {
             let count = 0
             let nestedCount = 0
@@ -227,7 +227,7 @@ class Landlord extends Component {
         })
         .then((result) => {
             deployedInstance.approveHireRequest("request id", "apartment id", "tenant address", {
-                  from: mAccounts[0],
+                  from: this.props.user.wallet,
                   gas: gasEstimate,
                   gasPrice: this.state.web3.eth.gasPrice
                 }

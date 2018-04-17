@@ -8,11 +8,6 @@ const contract = require('truffle-contract')
 import DataControllerContract from '../../build/contracts/DataController.json'
 import getWeb3 from '../utils/getWeb3'
 
-// import { fetchAllCompanyProfiles } from '../store/actions/action';
-// import {
-//     Link
-//   } from 'react-router-dom';
-
 var dataControllerContract
 var deployedInstance
 var mAccounts
@@ -30,6 +25,7 @@ class Tenant extends Component {
         this.state = {
             web3: null,
             data: null,
+            paymentHistory: [],
             apatmentData :["Apartment ID","Apartment Name","Apartment Owner","Apartment Tenant", "Apartment Location","Apartment Rent Price","Apartment Hike Rate"],
             index:0
         }
@@ -46,8 +42,6 @@ class Tenant extends Component {
         .catch(() => {
             console.log('Error finding web3.')
         })
-
-        // this.props.fetchAllProfiles();
     }
 
     instantiateContract() {
@@ -63,17 +57,10 @@ class Tenant extends Component {
     }
 
     submit(event) {
-        // console.log( this.refs.cgpa.state.value, this.refs.cgpa.value)
-        // console.log( this.refs.number.state.value, this.refs.number.value)
-        // console.log( this.refs.field.state.value, this.refs.field.value)
-        // console.log( this.refs.cgpa.state.value)
         event.preventDefault();
         if (this.refs.search.state.value === undefined) {
             alert("TextBox is Empty");
         }
-        // else if(this.refs.search.state.value.length > 32){
-        //     alert("ID must be less than 32 characters")
-        // }
         else {
              let appartment = {
                 appart: this.refs.search.state.value,
@@ -81,25 +68,36 @@ class Tenant extends Component {
              console.log(this.refs.search.state.value);
              console.log(typeof this.refs.search.state.value);
             this.getData(this.refs.search.state.value);
-            //     firstName: this.props.user.firstName,
-            //     lastName: this.props.user.lastName,
-
-            //     cgpa: this.refs.cgpa.state.value,
-            //     number: this.refs.number.state.value,
-            //     field: this.refs.field.state.value,
-            //     exp: this.refs.experience.state.value
-            // }
-            // console.log(userInfo);
-            // // this.props.showNotification();
-            // this.props.setUserProfileToFirebase(userInfo, this.props.uid)
         }
     }
-    // componentWillMount() {
-    //     this.props.fetchAllCompanyProfiles();
-    // }
+
+    hireApartment(data) {
+        let gasEstimate
+        deployedInstance.hireApartment.estimateGas(data.apartment, data.owner)
+        .then((result) => {
+            gasEstimate = result * 2
+            console.log("Estimated gas to edit an apartment: " + gasEstimate)
+        })
+        .then((result) => {
+            deployedInstance.hireApartment(data.apartment, data.owner, {
+                  from: this.props.user.wallet,
+                  gas: gasEstimate,
+                  gasPrice: this.state.web3.eth.gasPrice
+                }
+            )
+        })
+        .then(() => {
+            this.getData()
+        })
+    }
 
     getData(apartmentId) {
-        deployedInstance.getApartment.call(apartmentId, { from: mAccounts[1] })
+        this.getApartment(apartmentId)
+        this.getPaymentHistory(apartmentId)
+    }
+
+    getApartment(apartmentId) {
+        deployedInstance.getApartment.call(apartmentId, { from: this.props.user.wallet })
         .then((result) => {
             this.setState({
                 data: result
@@ -108,15 +106,24 @@ class Tenant extends Component {
             console.log(this.state.data);
         })
     }
-    
 
+    getPaymentHistory(apartmentId) {
+        deployedInstance.getPaymentHistory.call(apartmentId, { from: this.props.user.wallet })
+        .then((result) => {
+            this.setState({
+                paymentHistory: result
+            })
+            console.log(result);
+            console.log(this.state.data);
+        })
+    }
+4
     render() {
         return (
             <div>
                 
                 <Tabs className='tab-demo z-depth-1'>
                     <Tab title="Appartments">
-                    0x7735364e0f66b30976c986f54bd3e7440a3f4da438ac425a6fcfdf264f3bd486
                     <form onSubmit = {this.submit.bind(this)}>
                     
                     

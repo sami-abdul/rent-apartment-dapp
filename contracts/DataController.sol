@@ -202,11 +202,6 @@ contract DataController is Repository, DateTime {
         return false;
     }
 
-    // Function used to hike rent
-    function hikeRent(bytes32 _apartment) public onlyLandlord(_apartment) returns (bool success) {
-
-    }
-
 
     // Public functions allowed for current tenants only
 
