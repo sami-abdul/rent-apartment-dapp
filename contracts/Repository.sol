@@ -68,7 +68,7 @@ contract Repository is Ownable {
     mapping(bytes32 => Apartment) internal apartments;
 
     // Payment data store
-    mapping(address => Payment) internal paymentHistory;
+    mapping(address => Payment[]) internal paymentHistory;
 
     // Hire requests data stores
     Request[] requestsArr;

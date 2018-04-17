@@ -71,12 +71,6 @@ contract DataController is Repository, DateTime {
         return false;
     }
 
-    // Function used to get the payment history
-    function getPaymentHistory() public view returns(bytes32, bytes32, uint) {
-        Payment payment = paymentHistory[msg.sender];
-        return (payment.id, payment.apartment, payment.amount);
-    }
-
     // Function used to check if the request was sent
     function isRequestSent(bytes32 _apartment, address _potentialTenant) public view returns(bool) {
         Request[] requests = apartmentToRequests[_apartment];
@@ -184,7 +178,7 @@ contract DataController is Repository, DateTime {
     // Function used to collect rent
     function collectRent(bytes32 _apartment) returns (bool success) {
         Apartment apartment = apartments[_apartment];
-        uint rentPrice = apartment.rentPrice;
+        uint rentPrice = apartment.rentPrice * (apartment.rentHikeRate / 100 + 1);
         address tenant = apartment.tenant;
         if (toTimestamp(apartment.nextRentDate.year, apartment.nextRentDate.month, apartment.nextRentDate.day) >= now) {
             require(balances[tenant] >= rentPrice);
@@ -201,7 +195,7 @@ contract DataController is Repository, DateTime {
             apartmentsArr[apartments[_apartment].index].nextRentDate = nextRentDate;
 
             bytes32 paymentId = sha3(_apartment, msg.sender, tenant);
-            paymentHistory[tenant] = Payment(paymentId, _apartment, msg.sender, rentPrice, now);
+            paymentHistory[tenant].push(Payment(paymentId, _apartment, msg.sender, rentPrice, now));
 
             return true;
         }
@@ -215,6 +209,24 @@ contract DataController is Repository, DateTime {
 
 
     // Public functions allowed for current tenants only
+
+    function getPaymentHistory(bytes32 _apartment) public onlyTenant returns(address[], uint[], uint[]) {
+        Payment[] payments = paymentHistory[msg.sender];
+
+        address[] memory tos = new address[](payments.length);
+        uint[] memory amounts = new uint[](payments.length);
+        uint[] memory dates = new uint[](payments.length);
+
+        for (uint i = 0; i < payments.length; i++) {
+            if (payments[i].apartment == _apartment) {
+                tos[i] = payments[i].to;
+                amounts[i] = payments[i].amount;
+                dates[i] = payments[i].date;
+            }
+        }
+
+        return(tos, amounts, dates);
+    }
 
 
     // Public function allowed for potential tenants only
