@@ -47,8 +47,8 @@ export function signupAction(user) {
                 console.log('signed up successfully', createdUser.uid);
                 console.log('type', user.type);
                 delete user.password;
-                user.uid = createdUser.uid;
-                firebase.database().ref('users/' + createdUser.uid + '/').set(user)
+                user.wallet = user.wallet;
+                firebase.database().ref('users/' + user.wallet + '/').set(user)
                     .then(() => {
                         dispatch({ type: 'USER', payload: user})
                         dispatch({ type: 'CURRENT_USER_UID', payload: createdUser.uid })

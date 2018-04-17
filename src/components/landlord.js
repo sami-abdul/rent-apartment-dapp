@@ -3,18 +3,11 @@ import { connect } from 'react-redux';
 import { Input, Icon, Row, Tab, Tabs, Button, CollapsibleItem, Collapsible } from 'react-materialize'
 import { fetchAllProfiles } from '../store/actions/action';
 import img from "../images/building.png"
+
 const contract = require('truffle-contract')
 
 import DataControllerContract from '../../build/contracts/DataController.json'
 import getWeb3 from '../utils/getWeb3'
-
-// import { setCompanyProfileToFirebase } from '../store/actions/action';
-
-
-
-// import {
-//     Link
-//   } from 'react-router-dom';
 
 var dataControllerContract
 var deployedInstance

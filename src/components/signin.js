@@ -7,24 +7,48 @@ import {
 } from 'react-router-dom';
 import $ from "jquery";
 
+const contract = require('truffle-contract')
+
+import DataControllerContract from '../../build/contracts/DataController.json'
+import getWeb3 from '../utils/getWeb3'
+
+var dataControllerContract
+var deployedInstance
+var mAccounts
+
 const divStyle = {
     marginLeft: '700px',
     marginTop:"250px"
   };
+
 class Signin extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            web3: null
         }
         this.signin = this.signin.bind(this);
         this._onChangeEmail = this._onChangeEmail.bind(this);
         this._onChangePassword = this._onChangePassword.bind(this);
-        // this._onChangeType=this._onChangeType.bind(this);
     }
 
-    signin(event) {//Method that dispatch an action
+    instantiateContract() {
+        dataControllerContract = contract(DataControllerContract)
+        dataControllerContract.setProvider(this.state.web3.currentProvider)
+
+        this.state.web3.eth.getAccounts((error, accounts) => {
+          dataControllerContract.deployed().then((instance) => {
+            deployedInstance = instance
+            mAccounts = accounts
+            this.getData()
+          })
+        })
+    }
+
+    signin(event) {
         event.preventDefault();
         if((this.state.email === '' || this.state.password === ''))
         {
@@ -38,33 +62,26 @@ class Signin extends Component {
             this.props.signinWithEmailPassword(user);
         }
     }
-    // _onChangeType(ev){
-    //     console.log(ev.target.value);
-    //     this.setState({
-    //         type:ev.target.value
-    //     })
-    // }
-    _onChangeEmail(event) {// Onchange Event Handlers
+
+    _onChangeEmail(event) {
         this.setState({
             email: event.target.value
         })
     }
+
     _onChangePassword(event) {
         this.setState({
             password: event.target.value
         })
     }
+
     componentWillMount(){
         this.props.errorMessage('');
     }
+
     render() {
         return (
             <div>
-	{/* <Modal
-    header="Sign In"
-    style={{height:"50%",overflow:"hidden"}}
-	trigger={<Button style={divStyle}>SignIn</Button>}
-    > */}
     <Row >
                 <Col s={3}></Col>
                 <Col s={6} style = {{height : '400px',  borderTop : 'none'}}>
@@ -74,13 +91,6 @@ class Signin extends Component {
                         <br />
                         <Input s= {12} type='password' name='password' value={this.state.password} title = 'type email here' onChange={this._onChangePassword} label='Password' validate/>
                         <br />
-                        {/* <Row >
-                            <Input s={6} type='select' label="Login As" defaultValue='Student' onChange={this._onChangeType}>
-                                <option value='Student'>Student</option>
-                                <option value='Company'>Company</option>
-                                
-                            </Input>
-                        </Row> */}
                         <Button className="btn waves-effect waves-light" type="submit" name="action" title = 'signin' style = {{display : 'block'}}>Signin</Button>
                         <Link to='/signup'>Create Account</Link>
                     <div><p style = {{color : "red"}}>{this.props.errorMsg}</p></div>
@@ -98,37 +108,6 @@ class Signin extends Component {
             </Row>
 {/* </Modal> */}
 </div>
-            // <Row >
-            //     <Col s={3}></Col>
-            //     <Col s={6} style = {{height : '400px', border: '1px solid gray', borderTop : 'none'}}>
-            //         <h1>Signin</h1>
-            //         <form onSubmit={this.signin.bind(this)}>
-            //             <Input s= {12} type="email" name='email' value={this.state.email} title = 'type password here' onChange={this._onChangeEmail} label="Type Email Here" validate></Input>
-            //             <br />
-            //             <Input s= {12} type='password' name='password' value={this.state.password} title = 'type email here' onChange={this._onChangePassword} label='Type Password Here' validate/>
-            //             <br />
-            //             {/* <Row >
-            //                 <Input s={6} type='select' label="Login As" defaultValue='Student' onChange={this._onChangeType}>
-            //                     <option value='Student'>Student</option>
-            //                     <option value='Company'>Company</option>
-                                
-            //                 </Input>
-            //             </Row> */}
-            //             <Button className="btn waves-effect waves-light" type="submit" name="action" title = 'signin' style = {{display : 'block'}}>Signin</Button>
-            //             <Link to='/'>Create Account</Link>
-            //         <div><p style = {{color : "red"}}>{this.props.errorMsg}</p></div>
-            //         </form>
-            //         {
-            //             (this.props.progressBarDisplay) ? (
-            //                 <Col s={12}>
-            //                     <ProgressBar />
-            //                 </Col>
-            //             ) :
-            //                 null
-            //         }
-            //     </Col>
-            //     <Col s={3}></Col>
-            // </Row>
         )
     }
 }
