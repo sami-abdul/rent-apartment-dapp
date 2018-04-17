@@ -229,10 +229,10 @@ class Landlord extends Component {
                     </Tab>
                     {/* defaultValue={this.props.user.lastName} */}
                     <Tab title="Add Apartment " ><form onSubmit = {this.submit.bind(this)}>
-                    <Input s={12} label="Aparrtment Name" ref="name" /> 
-                        <Input s={12} label="Address" ref="address" />
-                        <Input type="number" s={6} label="Hike rate" ref="Apartmenthike" />
-                        <Input type="number" s={6} label="Rent" ref="price"/> <br/>
+                    <Input s={12} label="Apartment Name" ref="name" />
+                        <Input s={12} label="Apartment Location" ref="address" />
+                        <Input type="number" s={6} label="Monthly Hike Rate (%)" ref="Apartmenthike" />
+                        <Input type="number" s={6} label="Apartment Monthly Rent (ETH)" ref="price"/> <br/>
                         <Button className="btn waves-effect waves-light" type="submit" name="action" title = 'submit' style = {{display : 'block'}}>Submit</Button>
 
                     </form></Tab>
