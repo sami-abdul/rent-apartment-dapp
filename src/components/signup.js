@@ -7,6 +7,15 @@ import {
 import { Col, ProgressBar, Row, Input, Button, Dropdown, NavItem,Select,Modal } from 'react-materialize';
 import Background from '../images/img1.jpg';
 
+const contract = require('truffle-contract')
+
+import DataControllerContract from '../../build/contracts/DataController.json'
+import getWeb3 from '../utils/getWeb3'
+
+var dataControllerContract
+var deployedInstance
+var mAccounts
+
 const divStyle = {
     marginLeft: '700px',
     marginTop:"250px"
@@ -20,6 +29,7 @@ class Signup extends Component {
             firstName: '',
             lastName: '',
             password: '',
+            wallet: '',
             type:''
         }
         this.signup = this.signup.bind(this);
@@ -28,11 +38,14 @@ class Signup extends Component {
         this._onChangePassword = this._onChangePassword.bind(this);
         this._onChangLastName = this._onChangLastName.bind(this);
         this._onChangeType=this._onChangeType.bind(this);
+        this._onChangeWallet=this._onChangeWallet.bind(this);
     }
 
     signup(event) {
         event.preventDefault();
-        if ((this.state.firstName === '' || this.state.lastName === '' || this.state.email === '' || this.state.password === '')) {
+        if ((this.state.firstName === '' || this.state.lastName === '' || this.state.email === '' || this.state.password === '' 
+        || this.state.wallet === ''
+    )) {
             this.props.errorMessage('All the fields are required!');
         }
         else {
@@ -41,8 +54,9 @@ class Signup extends Component {
                 firstName: this.state.firstName,
                 lastName: this.state.lastName,
                 password: this.state.password,
-                type:this.state.type,
-                firstTime:true
+                type: this.state.type,
+                firstTime: true,
+                wallet: this.state.wallet
             }
             console.log(user)
             this.props.signupwithEmailPassword(user);
@@ -73,6 +87,11 @@ class Signup extends Component {
             password: event.target.value
         })
     }
+    _onChangeWallet(event) {
+        this.setState({
+            wallet: event.target.value
+        })
+    }
     _onChangLastName(event) {
         this.setState({
             lastName: event.target.value
@@ -87,14 +106,8 @@ class Signup extends Component {
             width: "100%",
             height: "100%",
             backgroundImage: "url(" + Background + ")"
-        };
-        //   style={ sectionStyle }s
+        }
         return (
-    //         <Modal
-    // header='Signup'
-    // style={{height:"90%",overflow:"hidden"}}
-	// fixedFooter
-	// trigger={<Button style={divStyle}>Signup</Button>}>
     <Row >
                 <Col s={3}></Col>
                 <Col s={6} style={{ height: '500px', borderTop : 'none' }}>
@@ -107,6 +120,8 @@ class Signup extends Component {
                         <br />
                         <Input label='Password' s={12} type='password' name='password' title='type password here' value={this.state.password} onChange={this._onChangePassword} />
                         <br />
+                        <Input label='Wallet Address' s={42} type='text' name='wallet' title='type wallet address here' value={this.state.wallet} onChange={this._onChangeWallet} />
+                        <br />
                         <Row >
                             <Input s={6} type='select' label="Sign up as"  onChange={this._onChangeType}>
                             <option value="" disabled selected>Choose your option</option>
@@ -115,14 +130,6 @@ class Signup extends Component {
                                 
                             </Input>
                         </Row>
-                        {/* <Dropdown trigger={
-                            <Button>Select one</Button>
-                        }>
-                            <NavItem>Student</NavItem>
-                            <NavItem>Company</NavItem>
-                            <NavItem divider />
-                            <NavItem>Admin</NavItem>
-                        </Dropdown> */}
                         
                         <Button className="btn waves-effect waves-light" type="submit" name="action" title='signup' style={{ display: 'block' }}>Signup</Button>
                         <Link to='/'>Already have an account?</Link>
