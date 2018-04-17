@@ -57,7 +57,7 @@ contract Repository is Ownable {
 
     // Mapping used to store users registered on the platform
 //    mapping(bytes32 => User) users;
-//    mapping(address => address) tenantToOwner;
+   mapping(address => address) tenantToOwner;
 
     // Mapping used to store ether balances of all the entities
     mapping(address => uint) internal balances;
