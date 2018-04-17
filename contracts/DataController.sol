@@ -25,8 +25,8 @@ contract DataController is Repository, DateTime {
 
     // Function used to deposit ether to smart contract
     function depositEther() public payable returns(bool success) {
-        require(balances[msg.sender] + msg.value > balances[msg.sender]);
-        balances[msg.sender] = msg.value;
+//        require(balances[msg.sender] + msg.value > balances[msg.sender]);
+        balances[msg.sender] += msg.value;
         return true;
     }
 

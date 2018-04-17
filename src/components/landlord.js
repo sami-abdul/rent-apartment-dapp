@@ -55,6 +55,23 @@ class Landlord extends Component {
         }
     }
 
+    submitEther(event){
+        event.preventDefault();
+        if(   this.refs.ether.state.value === undefined)
+        {
+            alert("The field is required");
+        }
+        
+        else {
+            let data = {
+                ether: this.refs.ether.state.value,
+                
+            }
+            console.log(this.refs.address.state.value);
+            this.depositEther(data)
+        }
+    }
+
     componentWillMount() {
         getWeb3
           .then(results => {
@@ -121,7 +138,7 @@ class Landlord extends Component {
             this.setState({
                 balance: result.toNumber()
             })
-            console.log(this.state.balance)
+            console.log("Balance: " + this.state.balance)
         })
     }
 
@@ -252,15 +269,15 @@ class Landlord extends Component {
 
     depositEther(data) {
         let gasEstimate
-        deployedInstance.depositEther.estimateGas(data.ether)
+        deployedInstance.depositEther.estimateGas()
         .then((result) => {
             gasEstimate = result * 2
-            console.log("Estimated gas to collect rent: " + gasEstimate)
+            console.log("Estimated gas to deposit ether: " + gasEstimate)
         })
         .then((result) => {
-            deployedInstance.depositEther(data.ether, {
+            deployedInstance.depositEther( {
                   from: this.props.user.wallet,
-                  value: web3.eth.toWei('ether', data.ether),
+                  value: data.ether,
                   gas: gasEstimate,
                   gasPrice: this.state.web3.eth.gasPrice
                 }
@@ -337,6 +354,10 @@ class Landlord extends Component {
                     </form></Tab>
                     <Tab title="Requests" >
                       </Tab>
+                      <Tab title="Deposit Ether " ><form onSubmit = {this.submitEther.bind(this)}>
+                        <Input type="number" s={6} label="Enter amount (ETH)" ref="ether" />
+                        <Button className="btn waves-effect waves-light" type="submit" name="action" title = 'submit' style = {{display : 'block'}}>Submit</Button>
+                    </form></Tab>
                 </Tabs>
             </div>
         )

@@ -102,7 +102,7 @@ class Tenant extends Component {
         .then((result) => {
             deployedInstance.depositEther(data.ether, {
                   from: this.props.user.wallet,
-                  value: web3.eth.toWei('ether', data.ether),
+                  value: this.state.web3.eth.toWei('ether', data.ether),
                   gas: gasEstimate,
                   gasPrice: this.state.web3.eth.gasPrice
                 }
@@ -255,6 +255,10 @@ class Tenant extends Component {
                     </Tab> */}
 
                 </Tabs>
+                <Tab title="Deposit Ether " ><form onSubmit = {this.submitEther.bind(this)}>
+                        <Input type="number" s={6} label="Enter amount (ETH)" ref="ether" />
+                        <Button className="btn waves-effect waves-light" type="submit" name="action" title = 'submit' style = {{display : 'block'}}>Submit</Button>
+                    </form></Tab>
 
             </div>
         )

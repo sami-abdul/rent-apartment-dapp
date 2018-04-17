@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d10c9f86-3427-40e4-ac05-fc5215971ec0" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/DataController.sol" afterPath="$PROJECT_DIR$/contracts/DataController.sol" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/landlord.js" afterPath="$PROJECT_DIR$/src/components/landlord.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/tenant.js" afterPath="$PROJECT_DIR$/src/components/tenant.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/actions/action.js" afterPath="$PROJECT_DIR$/src/store/actions/action.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,12 +20,11 @@
       <file leaf-file-name="DataController.sol" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/contracts/DataController.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="101">
-              <caret line="110" column="29" lean-forward="false" selection-start-line="110" selection-start-column="29" selection-end-line="110" selection-end-column="29" />
+            <state relative-caret-position="245">
+              <caret line="28" column="42" lean-forward="true" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="42" />
               <folding>
                 <element signature="e#78#114#0" expanded="false" />
                 <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
-                <element signature="n#!!block;n#depositEther#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#getApartments#0;n#DataController#0" expanded="false" />
@@ -53,7 +52,7 @@
         <entry file="file://$PROJECT_DIR$/contracts/Repository.sol">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="827">
-              <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+              <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -104,8 +103,8 @@
         <option value="$PROJECT_DIR$/contracts/Ownable.sol" />
         <option value="$PROJECT_DIR$/contracts/DateTime.sol" />
         <option value="$PROJECT_DIR$/src/components/landlord.js" />
-        <option value="$PROJECT_DIR$/contracts/DataController.sol" />
         <option value="$PROJECT_DIR$/contracts/Repository.sol" />
+        <option value="$PROJECT_DIR$/contracts/DataController.sol" />
       </list>
     </option>
   </component>
@@ -569,7 +568,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#12129#0" expanded="false" />
+            <element signature="e#0#13533#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -588,7 +587,6 @@
           <folding>
             <element signature="e#78#114#0" expanded="false" />
             <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#depositEther#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartments#0;n#DataController#0" expanded="false" />
@@ -616,7 +614,7 @@
         <state relative-caret-position="2224">
           <caret line="139" column="42" lean-forward="false" selection-start-line="139" selection-start-column="42" selection-end-line="139" selection-end-column="42" />
           <folding>
-            <element signature="e#0#12129#0" expanded="false" />
+            <element signature="e#0#13533#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -628,7 +626,6 @@
           <folding>
             <element signature="e#78#114#0" expanded="false" />
             <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#depositEther#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartments#0;n#DataController#0" expanded="false" />
@@ -748,7 +745,6 @@
           <folding>
             <element signature="e#78#114#0" expanded="false" />
             <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#depositEther#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartments#0;n#DataController#0" expanded="false" />
@@ -776,7 +772,7 @@
         <state relative-caret-position="356">
           <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
           <folding>
-            <element signature="e#0#12129#0" expanded="false" />
+            <element signature="e#0#13533#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -788,7 +784,6 @@
           <folding>
             <element signature="e#78#114#0" expanded="false" />
             <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#depositEther#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartments#0;n#DataController#0" expanded="false" />
@@ -816,7 +811,7 @@
         <state relative-caret-position="1232">
           <caret line="77" column="24" lean-forward="false" selection-start-line="77" selection-start-column="24" selection-end-line="77" selection-end-column="24" />
           <folding>
-            <element signature="e#0#12129#0" expanded="false" />
+            <element signature="e#0#13533#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -842,7 +837,6 @@
           <folding>
             <element signature="e#78#114#0" expanded="false" />
             <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#depositEther#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartments#0;n#DataController#0" expanded="false" />
@@ -870,7 +864,7 @@
         <state relative-caret-position="2112">
           <caret line="132" column="25" lean-forward="true" selection-start-line="132" selection-start-column="25" selection-end-line="132" selection-end-column="25" />
           <folding>
-            <element signature="e#0#12129#0" expanded="false" />
+            <element signature="e#0#13533#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -896,7 +890,6 @@
           <folding>
             <element signature="e#78#114#0" expanded="false" />
             <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#depositEther#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartments#0;n#DataController#0" expanded="false" />
@@ -924,7 +917,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#12129#0" expanded="false" />
+            <element signature="e#0#13533#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -943,7 +936,6 @@
           <folding>
             <element signature="e#78#114#0" expanded="false" />
             <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#depositEther#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartments#0;n#DataController#0" expanded="false" />
@@ -971,7 +963,7 @@
         <state relative-caret-position="2224">
           <caret line="139" column="42" lean-forward="false" selection-start-line="139" selection-start-column="42" selection-end-line="139" selection-end-column="42" />
           <folding>
-            <element signature="e#0#12129#0" expanded="false" />
+            <element signature="e#0#13533#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -983,7 +975,6 @@
           <folding>
             <element signature="e#78#114#0" expanded="false" />
             <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#depositEther#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartments#0;n#DataController#0" expanded="false" />
@@ -1094,7 +1085,7 @@
         <state relative-caret-position="308">
           <caret line="35" column="31" lean-forward="false" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
           <folding>
-            <element signature="e#0#12129#0" expanded="false" />
+            <element signature="e#0#13533#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1102,19 +1093,18 @@
     <entry file="file://$PROJECT_DIR$/contracts/Repository.sol">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="827">
-          <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/contracts/DataController.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="110" column="29" lean-forward="false" selection-start-line="110" selection-start-column="29" selection-end-line="110" selection-end-column="29" />
+        <state relative-caret-position="245">
+          <caret line="28" column="42" lean-forward="true" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="42" />
           <folding>
             <element signature="e#78#114#0" expanded="false" />
             <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#depositEther#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartments#0;n#DataController#0" expanded="false" />
