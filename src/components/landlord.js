@@ -24,8 +24,7 @@ const imgStyle = {
     
     float:"left",
     height:"170px"
-  };
-
+};
 
 class Landlord extends Component {
 
@@ -35,7 +34,8 @@ class Landlord extends Component {
         this.state = {
           web3: null,
           data: [],
-          requests: []
+          requests: [],
+          balance: 0
         }
     }
 
@@ -69,26 +69,6 @@ class Landlord extends Component {
         }
     }
 
-    addApartment(data) {
-        let gasEstimate
-        deployedInstance.addApartment.estimateGas(data.name, data.address, data.price, data.Apartmenthike)
-        .then((result) => {
-            gasEstimate = result * 2
-            console.log("Estimated gas to add an apartment: " + gasEstimate)
-        })
-        .then((result) => {
-            deployedInstance.addApartment(data.name, data.address, data.price, data.Apartmenthike, {
-                  from: mAccounts[0],
-                  gas: gasEstimate,
-                  gasPrice: this.state.web3.eth.gasPrice
-                }
-            )
-        })
-        .then(() => {
-            this.getData()
-        })
-    }
-
     componentWillMount() {
         getWeb3
           .then(results => {
@@ -120,6 +100,7 @@ class Landlord extends Component {
     getData() {
         this.getApartment()
         this.getRequests()
+        this.getBalance()
     }
 
     getApartment() {
@@ -148,6 +129,76 @@ class Landlord extends Component {
         })
     }
 
+    getBalance() {
+        deployedInstance.getBalance.call({ from: mAccounts[0] })
+        .then((result) => {
+            this.setState({
+                balance: result.toNumber()
+            })
+            console.log(this.state.balance)
+        })
+    }
+
+    createUser() {
+        let gasEstimate
+        deployedInstance.createUser.estimateGas("email", "wallet", true)
+        .then((result) => {
+            gasEstimate = result * 2
+            console.log("Estimated gas to edit an apartment: " + gasEstimate)
+        })
+        .then((result) => {
+            deployedInstance.createUser("email", "wallet", true, {
+                  from: mAccounts[0],
+                  gas: gasEstimate,
+                  gasPrice: this.state.web3.eth.gasPrice
+                }
+            )
+        })
+        .then(() => {
+            this.getData()
+        })
+    }
+
+    addApartment(data) {
+        let gasEstimate
+        deployedInstance.addApartment.estimateGas(data.name, data.address, data.price, data.Apartmenthike)
+        .then((result) => {
+            gasEstimate = result * 2
+            console.log("Estimated gas to add an apartment: " + gasEstimate)
+        })
+        .then((result) => {
+            deployedInstance.addApartment(data.name, data.address, data.price, data.Apartmenthike, {
+                  from: mAccounts[0],
+                  gas: gasEstimate,
+                  gasPrice: this.state.web3.eth.gasPrice
+                }
+            )
+        })
+        .then(() => {
+            this.getData()
+        })
+    }
+
+    editApartment() {
+        let gasEstimate
+        deployedInstance.editApartment.estimateGas("id", data.name, data.address, data.price, data.Apartmenthike)
+        .then((result) => {
+            gasEstimate = result * 2
+            console.log("Estimated gas to edit an apartment: " + gasEstimate)
+        })
+        .then((result) => {
+            deployedInstance.editApartment(data.name, data.address, data.price, data.Apartmenthike, {
+                  from: mAccounts[0],
+                  gas: gasEstimate,
+                  gasPrice: this.state.web3.eth.gasPrice
+                }
+            )
+        })
+        .then(() => {
+            this.getData()
+        })
+    }
+
     getRequests() {
         deployedInstance.getRequests.call({ from: mAccounts[0] })
         .then((result) => {
@@ -171,6 +222,26 @@ class Landlord extends Component {
                 data: arr
             })
             console.log(this.state.data)
+        })
+    }
+
+    approveHireRequest(data) {
+        let gasEstimate
+        deployedInstance.approveHireRequest.estimateGas("request id", "apartment id", "tenant address")
+        .then((result) => {
+            gasEstimate = result * 2
+            console.log("Estimated gas to approve hire request: " + gasEstimate)
+        })
+        .then((result) => {
+            deployedInstance.approveHireRequest("request id", "apartment id", "tenant address", {
+                  from: mAccounts[0],
+                  gas: gasEstimate,
+                  gasPrice: this.state.web3.eth.gasPrice
+                }
+            )
+        })
+        .then(() => {
+            this.getData()
         })
     }
 
@@ -253,7 +324,6 @@ function mapStateToProp(state) {
         uid:state.root.userID,
     })
 }
-
 
 function mapDispatchToProp(dispatch) {
     return ({
