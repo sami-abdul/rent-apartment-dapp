@@ -10,7 +10,9 @@ export function signinAction(user) {
         firebase.auth().signInWithEmailAndPassword(user.email, user.password)
             .then((signedinUser) => {
                 let type;
-                firebase.database().ref('users/' + signedinUser.wallet).once('value', (snapshot) => {
+                console.log(signedinUser)
+                firebase.database().ref('users/' + signedinUser.uid).once('value', (snapshot) => {
+                    console.log(snapshot.val())
                     type = snapshot.val().type;
                     dispatch({ type: 'USER', payload: snapshot.val()})
                     dispatch({ type: 'TYPE', payload : snapshot.val().type })
@@ -47,8 +49,9 @@ export function signupAction(user) {
                 console.log('signed up successfully', createdUser.uid);
                 console.log('type', user.type);
                 delete user.password;
+                user.uid=createdUser.uid;
                 user.wallet = user.wallet;
-                firebase.database().ref('users/' + user.wallet + '/').set(user)
+                firebase.database().ref('users/' + user.uid + '/').set(user)
                     .then(() => {
                         dispatch({ type: 'USER', payload: user})
                         dispatch({ type: 'CURRENT_USER_UID', payload: createdUser.uid })

@@ -27,7 +27,8 @@ class Tenant extends Component {
             data: null,
             paymentHistory: [],
             apatmentData :["Apartment ID","Apartment Name","Apartment Owner","Apartment Tenant", "Apartment Location","Apartment Rent Price","Apartment Hike Rate"],
-            index:0
+            index:0,
+            balance:0
         }
     }
 
@@ -104,6 +105,7 @@ class Tenant extends Component {
     getData(apartmentId) {
         this.getApartment(apartmentId)
         this.getPaymentHistory(apartmentId)
+        this.getBalance()
     }
 
     getApartment(apartmentId) {

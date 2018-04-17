@@ -30,7 +30,7 @@ class Signup extends Component {
             lastName: '',
             password: '',
             wallet: '',
-            type:''
+            type:'Tenant'
         }
         this.signup = this.signup.bind(this);
         this._onChangeEmail = this._onChangeEmail.bind(this);
