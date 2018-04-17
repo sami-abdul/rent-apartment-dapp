@@ -250,6 +250,27 @@ class Landlord extends Component {
         })
     }
 
+    depositEther(data) {
+        let gasEstimate
+        deployedInstance.depositEther.estimateGas(data.ether)
+        .then((result) => {
+            gasEstimate = result * 2
+            console.log("Estimated gas to collect rent: " + gasEstimate)
+        })
+        .then((result) => {
+            deployedInstance.depositEther(data.ether, {
+                  from: this.props.user.wallet,
+                  value: web3.eth.toWei('ether', data.ether),
+                  gas: gasEstimate,
+                  gasPrice: this.state.web3.eth.gasPrice
+                }
+            )
+        })
+        .then(() => {
+            this.getData()
+        })
+    }
+
     render() {
         return (
             <div>

@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d10c9f86-3427-40e4-ac05-fc5215971ec0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/DataController.sol" afterPath="$PROJECT_DIR$/contracts/DataController.sol" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/Repository.sol" afterPath="$PROJECT_DIR$/contracts/Repository.sol" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/landlord.js" afterPath="$PROJECT_DIR$/src/components/landlord.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/tenant.js" afterPath="$PROJECT_DIR$/src/components/tenant.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/actions/action.js" afterPath="$PROJECT_DIR$/src/store/actions/action.js" />
@@ -21,8 +20,8 @@
       <file leaf-file-name="DataController.sol" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/contracts/DataController.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="177" column="30" lean-forward="false" selection-start-line="177" selection-start-column="24" selection-end-line="177" selection-end-column="30" />
+            <state relative-caret-position="101">
+              <caret line="110" column="29" lean-forward="false" selection-start-line="110" selection-start-column="29" selection-end-line="110" selection-end-column="29" />
               <folding>
                 <element signature="e#78#114#0" expanded="false" />
                 <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
@@ -81,6 +80,7 @@
       <find>email</find>
       <find>type</find>
       <find>Landlord</find>
+      <find>collec</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -104,8 +104,8 @@
         <option value="$PROJECT_DIR$/contracts/Ownable.sol" />
         <option value="$PROJECT_DIR$/contracts/DateTime.sol" />
         <option value="$PROJECT_DIR$/src/components/landlord.js" />
-        <option value="$PROJECT_DIR$/contracts/Repository.sol" />
         <option value="$PROJECT_DIR$/contracts/DataController.sol" />
+        <option value="$PROJECT_DIR$/contracts/Repository.sol" />
       </list>
     </option>
   </component>
@@ -1109,8 +1109,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/contracts/DataController.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="177" column="30" lean-forward="false" selection-start-line="177" selection-start-column="24" selection-end-line="177" selection-end-column="30" />
+        <state relative-caret-position="101">
+          <caret line="110" column="29" lean-forward="false" selection-start-line="110" selection-start-column="29" selection-end-line="110" selection-end-column="29" />
           <folding>
             <element signature="e#78#114#0" expanded="false" />
             <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
