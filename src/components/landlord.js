@@ -179,7 +179,7 @@ class Landlord extends Component {
         })
     }
 
-    editApartment() {
+    editApartment(data) {
         let gasEstimate
         deployedInstance.editApartment.estimateGas("id", data.name, data.address, data.price, data.Apartmenthike)
         .then((result) => {
