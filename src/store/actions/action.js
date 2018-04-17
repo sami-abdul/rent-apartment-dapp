@@ -10,7 +10,7 @@ export function signinAction(user) {
         firebase.auth().signInWithEmailAndPassword(user.email, user.password)
             .then((signedinUser) => {
                 let type;
-                firebase.database().ref('users/' + signedinUser.uid).once('value', (snapshot) => {
+                firebase.database().ref('users/' + signedinUser.wallet).once('value', (snapshot) => {
                     type = snapshot.val().type;
                     dispatch({ type: 'USER', payload: snapshot.val()})
                     dispatch({ type: 'TYPE', payload : snapshot.val().type })

@@ -9,11 +9,11 @@ Repository smart contract
 contract Repository is Ownable {
 
     // User data struct
-    struct User {
-        bytes32 email;
-        address wallet;
-        bool isLandlord;
-    }
+//    struct User {
+//        bytes32 email;
+//        address wallet;
+//        bool isLandlord;
+//    }
 
     // Apartment data struct
     struct Apartment {
@@ -56,8 +56,8 @@ contract Repository is Ownable {
     address public owner;
 
     // Mapping used to store users registered on the platform
-    mapping(bytes32 => User) users;
-    mapping(address => address) tenantToOwner;
+//    mapping(bytes32 => User) users;
+//    mapping(address => address) tenantToOwner;
 
     // Mapping used to store ether balances of all the entities
     mapping(address => uint) internal balances;

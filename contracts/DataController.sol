@@ -18,10 +18,10 @@ contract DataController is Repository, DateTime {
     // Public functions open for anyone
 
     // Function used to create a new user
-    function createUser(bytes32 _email, address _wallet, bool _isLandlord) public view returns(bool) {
-        require(isUserUnique(_email));
-        users[_email] = User(_email, _wallet, _isLandlord);
-    }
+//    function createUser(bytes32 _email, address _wallet, bool _isLandlord) public view returns(bool) {
+//        require(isUserUnique(_email));
+//        users[_email] = User(_email, _wallet, _isLandlord);
+//    }
 
     // Function used to deposit ether to smart contract
     function depositEther() public payable returns(bool success) {
@@ -83,12 +83,12 @@ contract DataController is Repository, DateTime {
     }
 
     // Function used to check if the user email address is unique
-    function isUserUnique(bytes32 _email) returns(bool) {
-        if (users[_email].email != _email) {
-            return true;
-        }
-        return false;
-    }
+//    function isUserUnique(bytes32 _email) returns(bool) {
+//        if (users[_email].email != _email) {
+//            return true;
+//        }
+//        return false;
+//    }
 
 
     // Public functions allowed for Landlord only

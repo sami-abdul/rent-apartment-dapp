@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d10c9f86-3427-40e4-ac05-fc5215971ec0" name="Default" comment="" />
+    <list default="true" id="d10c9f86-3427-40e4-ac05-fc5215971ec0" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/DataController.sol" afterPath="$PROJECT_DIR$/contracts/DataController.sol" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/Repository.sol" afterPath="$PROJECT_DIR$/contracts/Repository.sol" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/landlord.js" afterPath="$PROJECT_DIR$/src/components/landlord.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/tenant.js" afterPath="$PROJECT_DIR$/src/components/tenant.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/actions/action.js" afterPath="$PROJECT_DIR$/src/store/actions/action.js" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,22 +18,20 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DataController.sol" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DataController.sol" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/contracts/DataController.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="640">
-              <caret line="93" column="44" lean-forward="false" selection-start-line="93" selection-start-column="44" selection-end-line="93" selection-end-column="44" />
+            <state relative-caret-position="341">
+              <caret line="177" column="30" lean-forward="false" selection-start-line="177" selection-start-column="24" selection-end-line="177" selection-end-column="30" />
               <folding>
                 <element signature="e#78#114#0" expanded="false" />
                 <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
-                <element signature="n#!!block;n#createUser#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#depositEther#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#getApartments#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#isApartmentRented#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#isRequestSent#0;n#DataController#0" expanded="false" />
-                <element signature="n#!!block;n#isUserUnique#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#getHireRequestsOfApartment#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#getAllHireRequests#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#addApartment#0;n#DataController#0" expanded="false" />
@@ -35,32 +39,23 @@
                 <element signature="n#!!block;n#approveHireRequest#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#rejectAllHireRequests#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#collectRent#0;n#DataController#0" expanded="false" />
+                <element signature="n#!!block;n#getPaymentHistory#0;n#DataController#0" expanded="false" />
+                <element signature="n#!!block;n#hireApartment#0;n#DataController#0" expanded="false" />
+                <element signature="n#!!block;n#_stringToBytes32#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#onlyLandlord#0;n#DataController#0" expanded="false" />
-                <marker date="1523962856217" expanded="true" signature="8273:8325" ph="/*...*/" />
-                <marker date="1523962856217" expanded="false" signature="8431:8985" ph="{...}" />
-                <marker date="1523962856217" expanded="true" signature="8726:8941" ph="{...}" />
-                <marker date="1523962856217" expanded="true" signature="8781:8931" ph="{...}" />
-                <marker date="1523962856217" expanded="true" signature="8992:9045" ph="/*...*/" />
-                <marker date="1523962856217" expanded="true" signature="9051:9100" ph="/*...*/" />
-                <marker date="1523962856217" expanded="false" signature="9210:9498" ph="{...}" />
-                <marker date="1523962856217" expanded="true" signature="9504:9524" ph="/*...*/" />
-                <marker date="1523962856217" expanded="false" signature="9603:9824" ph="{...}" />
-                <marker date="1523962856217" expanded="true" signature="9830:9842" ph="/*...*/" />
-                <marker date="1523962856217" expanded="false" signature="10006:10116" ph="{...}" />
-                <marker date="1523962856217" expanded="false" signature="10144:10217" ph="{...}" />
+                <element signature="n#!!block;n#onlyPotentialTenant#0;n#DataController#0" expanded="false" />
+                <element signature="n#!!block;n#onlyTenant#0;n#DataController#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="landlord.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/landlord.js">
+      <file leaf-file-name="Repository.sol" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/contracts/Repository.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="35" column="73" lean-forward="true" selection-start-line="35" selection-start-column="73" selection-end-line="35" selection-end-column="73" />
-              <folding>
-                <element signature="e#0#11819#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="827">
+              <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -108,9 +103,9 @@
         <option value="$PROJECT_DIR$/src/components/tenant.js" />
         <option value="$PROJECT_DIR$/contracts/Ownable.sol" />
         <option value="$PROJECT_DIR$/contracts/DateTime.sol" />
+        <option value="$PROJECT_DIR$/src/components/landlord.js" />
         <option value="$PROJECT_DIR$/contracts/Repository.sol" />
         <option value="$PROJECT_DIR$/contracts/DataController.sol" />
-        <option value="$PROJECT_DIR$/src/components/landlord.js" />
       </list>
     </option>
   </component>
@@ -134,8 +129,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -530,6 +525,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="50" y="0" width="1316" height="768" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -545,7 +541,8 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45581394" sideWeight="0.49370077" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17874016" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18188976" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -557,7 +554,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -573,7 +569,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#11819#0" expanded="false" />
+            <element signature="e#0#12129#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -592,14 +588,12 @@
           <folding>
             <element signature="e#78#114#0" expanded="false" />
             <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#createUser#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#depositEther#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartments#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#isApartmentRented#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#isRequestSent#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#isUserUnique#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getHireRequestsOfApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#addApartment#0;n#DataController#0" expanded="false" />
@@ -607,19 +601,12 @@
             <element signature="n#!!block;n#approveHireRequest#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#rejectAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#collectRent#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#getPaymentHistory#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#hireApartment#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#_stringToBytes32#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyLandlord#0;n#DataController#0" expanded="false" />
-            <marker date="1523962856217" expanded="true" signature="8273:8325" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="8431:8985" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8726:8941" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8781:8931" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8992:9045" ph="/*...*/" />
-            <marker date="1523962856217" expanded="true" signature="9051:9100" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="9210:9498" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="9504:9524" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="9603:9824" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="9830:9842" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="10006:10116" ph="{...}" />
-            <marker date="1523962856217" expanded="false" signature="10144:10217" ph="{...}" />
+            <element signature="n#!!block;n#onlyPotentialTenant#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#onlyTenant#0;n#DataController#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -629,7 +616,7 @@
         <state relative-caret-position="2224">
           <caret line="139" column="42" lean-forward="false" selection-start-line="139" selection-start-column="42" selection-end-line="139" selection-end-column="42" />
           <folding>
-            <element signature="e#0#11819#0" expanded="false" />
+            <element signature="e#0#12129#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -641,14 +628,12 @@
           <folding>
             <element signature="e#78#114#0" expanded="false" />
             <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#createUser#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#depositEther#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartments#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#isApartmentRented#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#isRequestSent#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#isUserUnique#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getHireRequestsOfApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#addApartment#0;n#DataController#0" expanded="false" />
@@ -656,19 +641,12 @@
             <element signature="n#!!block;n#approveHireRequest#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#rejectAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#collectRent#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#getPaymentHistory#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#hireApartment#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#_stringToBytes32#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyLandlord#0;n#DataController#0" expanded="false" />
-            <marker date="1523962856217" expanded="true" signature="8273:8325" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="8431:8985" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8726:8941" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8781:8931" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8992:9045" ph="/*...*/" />
-            <marker date="1523962856217" expanded="true" signature="9051:9100" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="9210:9498" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="9504:9524" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="9603:9824" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="9830:9842" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="10006:10116" ph="{...}" />
-            <marker date="1523962856217" expanded="false" signature="10144:10217" ph="{...}" />
+            <element signature="n#!!block;n#onlyPotentialTenant#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#onlyTenant#0;n#DataController#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -770,14 +748,12 @@
           <folding>
             <element signature="e#78#114#0" expanded="false" />
             <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#createUser#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#depositEther#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartments#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#isApartmentRented#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#isRequestSent#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#isUserUnique#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getHireRequestsOfApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#addApartment#0;n#DataController#0" expanded="false" />
@@ -785,19 +761,12 @@
             <element signature="n#!!block;n#approveHireRequest#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#rejectAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#collectRent#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#getPaymentHistory#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#hireApartment#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#_stringToBytes32#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyLandlord#0;n#DataController#0" expanded="false" />
-            <marker date="1523962856217" expanded="true" signature="8273:8325" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="8431:8985" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8726:8941" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8781:8931" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8992:9045" ph="/*...*/" />
-            <marker date="1523962856217" expanded="true" signature="9051:9100" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="9210:9498" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="9504:9524" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="9603:9824" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="9830:9842" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="10006:10116" ph="{...}" />
-            <marker date="1523962856217" expanded="false" signature="10144:10217" ph="{...}" />
+            <element signature="n#!!block;n#onlyPotentialTenant#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#onlyTenant#0;n#DataController#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -807,7 +776,7 @@
         <state relative-caret-position="356">
           <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
           <folding>
-            <element signature="e#0#11819#0" expanded="false" />
+            <element signature="e#0#12129#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -819,14 +788,12 @@
           <folding>
             <element signature="e#78#114#0" expanded="false" />
             <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#createUser#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#depositEther#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartments#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#isApartmentRented#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#isRequestSent#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#isUserUnique#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getHireRequestsOfApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#addApartment#0;n#DataController#0" expanded="false" />
@@ -834,19 +801,12 @@
             <element signature="n#!!block;n#approveHireRequest#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#rejectAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#collectRent#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#getPaymentHistory#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#hireApartment#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#_stringToBytes32#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyLandlord#0;n#DataController#0" expanded="false" />
-            <marker date="1523962856217" expanded="true" signature="8273:8325" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="8431:8985" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8726:8941" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8781:8931" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8992:9045" ph="/*...*/" />
-            <marker date="1523962856217" expanded="true" signature="9051:9100" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="9210:9498" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="9504:9524" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="9603:9824" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="9830:9842" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="10006:10116" ph="{...}" />
-            <marker date="1523962856217" expanded="false" signature="10144:10217" ph="{...}" />
+            <element signature="n#!!block;n#onlyPotentialTenant#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#onlyTenant#0;n#DataController#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -856,7 +816,7 @@
         <state relative-caret-position="1232">
           <caret line="77" column="24" lean-forward="false" selection-start-line="77" selection-start-column="24" selection-end-line="77" selection-end-column="24" />
           <folding>
-            <element signature="e#0#11819#0" expanded="false" />
+            <element signature="e#0#12129#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -882,14 +842,12 @@
           <folding>
             <element signature="e#78#114#0" expanded="false" />
             <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#createUser#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#depositEther#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartments#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#isApartmentRented#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#isRequestSent#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#isUserUnique#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getHireRequestsOfApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#addApartment#0;n#DataController#0" expanded="false" />
@@ -897,19 +855,12 @@
             <element signature="n#!!block;n#approveHireRequest#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#rejectAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#collectRent#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#getPaymentHistory#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#hireApartment#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#_stringToBytes32#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyLandlord#0;n#DataController#0" expanded="false" />
-            <marker date="1523962856217" expanded="true" signature="8273:8325" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="8431:8985" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8726:8941" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8781:8931" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8992:9045" ph="/*...*/" />
-            <marker date="1523962856217" expanded="true" signature="9051:9100" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="9210:9498" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="9504:9524" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="9603:9824" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="9830:9842" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="10006:10116" ph="{...}" />
-            <marker date="1523962856217" expanded="false" signature="10144:10217" ph="{...}" />
+            <element signature="n#!!block;n#onlyPotentialTenant#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#onlyTenant#0;n#DataController#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -919,7 +870,7 @@
         <state relative-caret-position="2112">
           <caret line="132" column="25" lean-forward="true" selection-start-line="132" selection-start-column="25" selection-end-line="132" selection-end-column="25" />
           <folding>
-            <element signature="e#0#11819#0" expanded="false" />
+            <element signature="e#0#12129#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -945,14 +896,12 @@
           <folding>
             <element signature="e#78#114#0" expanded="false" />
             <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#createUser#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#depositEther#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartments#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#isApartmentRented#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#isRequestSent#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#isUserUnique#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getHireRequestsOfApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#addApartment#0;n#DataController#0" expanded="false" />
@@ -960,19 +909,12 @@
             <element signature="n#!!block;n#approveHireRequest#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#rejectAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#collectRent#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#getPaymentHistory#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#hireApartment#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#_stringToBytes32#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyLandlord#0;n#DataController#0" expanded="false" />
-            <marker date="1523962856217" expanded="true" signature="8273:8325" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="8431:8985" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8726:8941" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8781:8931" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8992:9045" ph="/*...*/" />
-            <marker date="1523962856217" expanded="true" signature="9051:9100" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="9210:9498" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="9504:9524" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="9603:9824" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="9830:9842" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="10006:10116" ph="{...}" />
-            <marker date="1523962856217" expanded="false" signature="10144:10217" ph="{...}" />
+            <element signature="n#!!block;n#onlyPotentialTenant#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#onlyTenant#0;n#DataController#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -982,7 +924,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#11819#0" expanded="false" />
+            <element signature="e#0#12129#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1001,14 +943,12 @@
           <folding>
             <element signature="e#78#114#0" expanded="false" />
             <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#createUser#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#depositEther#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartments#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#isApartmentRented#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#isRequestSent#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#isUserUnique#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getHireRequestsOfApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#addApartment#0;n#DataController#0" expanded="false" />
@@ -1016,19 +956,12 @@
             <element signature="n#!!block;n#approveHireRequest#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#rejectAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#collectRent#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#getPaymentHistory#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#hireApartment#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#_stringToBytes32#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyLandlord#0;n#DataController#0" expanded="false" />
-            <marker date="1523962856217" expanded="true" signature="8273:8325" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="8431:8985" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8726:8941" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8781:8931" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8992:9045" ph="/*...*/" />
-            <marker date="1523962856217" expanded="true" signature="9051:9100" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="9210:9498" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="9504:9524" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="9603:9824" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="9830:9842" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="10006:10116" ph="{...}" />
-            <marker date="1523962856217" expanded="false" signature="10144:10217" ph="{...}" />
+            <element signature="n#!!block;n#onlyPotentialTenant#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#onlyTenant#0;n#DataController#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1038,7 +971,7 @@
         <state relative-caret-position="2224">
           <caret line="139" column="42" lean-forward="false" selection-start-line="139" selection-start-column="42" selection-end-line="139" selection-end-column="42" />
           <folding>
-            <element signature="e#0#11819#0" expanded="false" />
+            <element signature="e#0#12129#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1050,14 +983,12 @@
           <folding>
             <element signature="e#78#114#0" expanded="false" />
             <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#createUser#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#depositEther#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartments#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#isApartmentRented#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#isRequestSent#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#isUserUnique#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getHireRequestsOfApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#addApartment#0;n#DataController#0" expanded="false" />
@@ -1065,19 +996,12 @@
             <element signature="n#!!block;n#approveHireRequest#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#rejectAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#collectRent#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#getPaymentHistory#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#hireApartment#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#_stringToBytes32#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyLandlord#0;n#DataController#0" expanded="false" />
-            <marker date="1523962856217" expanded="true" signature="8273:8325" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="8431:8985" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8726:8941" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8781:8931" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8992:9045" ph="/*...*/" />
-            <marker date="1523962856217" expanded="true" signature="9051:9100" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="9210:9498" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="9504:9524" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="9603:9824" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="9830:9842" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="10006:10116" ph="{...}" />
-            <marker date="1523962856217" expanded="false" signature="10144:10217" ph="{...}" />
+            <element signature="n#!!block;n#onlyPotentialTenant#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#onlyTenant#0;n#DataController#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1151,13 +1075,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/contracts/Repository.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="619">
-          <caret line="70" column="31" lean-forward="false" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/home.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -1175,28 +1092,34 @@
     <entry file="file://$PROJECT_DIR$/src/components/landlord.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
-          <caret line="35" column="73" lean-forward="true" selection-start-line="35" selection-start-column="73" selection-end-line="35" selection-end-column="73" />
+          <caret line="35" column="31" lean-forward="false" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
           <folding>
-            <element signature="e#0#11819#0" expanded="false" />
+            <element signature="e#0#12129#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/Repository.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="827">
+          <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/contracts/DataController.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="93" column="44" lean-forward="false" selection-start-line="93" selection-start-column="44" selection-end-line="93" selection-end-column="44" />
+        <state relative-caret-position="341">
+          <caret line="177" column="30" lean-forward="false" selection-start-line="177" selection-start-column="24" selection-end-line="177" selection-end-column="30" />
           <folding>
             <element signature="e#78#114#0" expanded="false" />
             <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#createUser#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#depositEther#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartments#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#isApartmentRented#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#isRequestSent#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#isUserUnique#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getHireRequestsOfApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#addApartment#0;n#DataController#0" expanded="false" />
@@ -1204,19 +1127,12 @@
             <element signature="n#!!block;n#approveHireRequest#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#rejectAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#collectRent#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#getPaymentHistory#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#hireApartment#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#_stringToBytes32#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyLandlord#0;n#DataController#0" expanded="false" />
-            <marker date="1523962856217" expanded="true" signature="8273:8325" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="8431:8985" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8726:8941" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8781:8931" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="8992:9045" ph="/*...*/" />
-            <marker date="1523962856217" expanded="true" signature="9051:9100" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="9210:9498" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="9504:9524" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="9603:9824" ph="{...}" />
-            <marker date="1523962856217" expanded="true" signature="9830:9842" ph="/*...*/" />
-            <marker date="1523962856217" expanded="false" signature="10006:10116" ph="{...}" />
-            <marker date="1523962856217" expanded="false" signature="10144:10217" ph="{...}" />
+            <element signature="n#!!block;n#onlyPotentialTenant#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#onlyTenant#0;n#DataController#0" expanded="false" />
           </folding>
         </state>
       </provider>

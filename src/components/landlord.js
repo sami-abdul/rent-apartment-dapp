@@ -30,14 +30,9 @@ class Landlord extends Component {
           requests: [],
           balance: 0
         }
-        // this.editData=this.editData.bind(this);
     }
 
     submit(event){
-        // console.log( this.refs.cgpa.state.value, this.refs.cgpa.value)
-        // console.log( this.refs.number.state.value, this.refs.number.value)
-        // console.log( this.refs.field.state.value, this.refs.field.value)
-        // console.log( this.refs.cgpa.state.value)
         event.preventDefault();
         if(   this.refs.Apartmenthike.state.value === undefined ||  this.refs.price.state.value === undefined || this.refs.address.state.value === undefined)
         {
@@ -56,10 +51,7 @@ class Landlord extends Component {
                 
             }
             console.log(this.refs.address.state.value);
-            // console.log(this.refs.name.state.value.length);
             this.addApartment(AppartmentInfo)
-            // this.props.showNotification();
-            //  this.props.setCompanyProfileToFirebase(CompanyInfo, this.props.uid)
         }
     }
 
@@ -77,9 +69,6 @@ class Landlord extends Component {
 
         this.props.fetchAllProfiles();
     }
-
-    
-
 
     instantiateContract() {
         dataControllerContract = contract(DataControllerContract)
@@ -136,23 +125,29 @@ class Landlord extends Component {
         })
     }
 
-    createUser() {
-        let gasEstimate
-        deployedInstance.createUser.estimateGas("email", "wallet", true)
+    getRequests() {
+        deployedInstance.getAllHireRequests.call({ from: this.props.user.wallet })
         .then((result) => {
-            gasEstimate = result * 2
-            console.log("Estimated gas to edit an apartment: " + gasEstimate)
-        })
-        .then((result) => {
-            deployedInstance.createUser("email", "wallet", true, {
-                  from: this.props.user.wallet,
-                  gas: gasEstimate,
-                  gasPrice: this.state.web3.eth.gasPrice
-                }
-            )
-        })
-        .then(() => {
-            this.getData()
+            let count = 0
+            let nestedCount = 0
+            let arr = []
+            result.map((items) => {
+                count++
+                items.map((item) => {
+                    if (count == 1) {
+                        arr[nestedCount] = item
+                    } else {
+                        arr[nestedCount] += "," + item
+                    }
+                    nestedCount++
+                })
+                nestedCount = 0
+            })
+
+            this.setState({
+                data: arr
+            })
+            console.log(this.state.data)
         })
     }
 
@@ -215,32 +210,6 @@ class Landlord extends Component {
         })
     }
 
-    getRequests() {
-        deployedInstance.getRequests.call({ from: this.props.user.wallet })
-        .then((result) => {
-            let count = 0
-            let nestedCount = 0
-            let arr = []
-            result.map((items) => {
-                count++
-                items.map((item) => {
-                    if (count == 1) {
-                        arr[nestedCount] = item
-                    } else {
-                        arr[nestedCount] += "," + item
-                    }
-                    nestedCount++
-                })
-                nestedCount = 0
-            })
-
-            this.setState({
-                data: arr
-            })
-            console.log(this.state.data)
-        })
-    }
-
     approveHireRequest(data) {
         let gasEstimate
         deployedInstance.approveHireRequest.estimateGas("request id", "apartment id", "tenant address")
@@ -250,6 +219,26 @@ class Landlord extends Component {
         })
         .then((result) => {
             deployedInstance.approveHireRequest("request id", "apartment id", "tenant address", {
+                  from: this.props.user.wallet,
+                  gas: gasEstimate,
+                  gasPrice: this.state.web3.eth.gasPrice
+                }
+            )
+        })
+        .then(() => {
+            this.getData()
+        })
+    }
+
+    collectRent(data) {
+        let gasEstimate
+        deployedInstance.collectRent.estimateGas(data.id)
+        .then((result) => {
+            gasEstimate = result * 2
+            console.log("Estimated gas to collect rent: " + gasEstimate)
+        })
+        .then((result) => {
+            deployedInstance.collectRent(data.id, {
                   from: this.props.user.wallet,
                   gas: gasEstimate,
                   gasPrice: this.state.web3.eth.gasPrice

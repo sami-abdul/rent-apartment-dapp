@@ -127,7 +127,7 @@ class Tenant extends Component {
             console.log(this.state.data);
         })
     }
-4
+
     render() {
         return (
             <div>
