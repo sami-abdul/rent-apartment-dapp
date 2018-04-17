@@ -91,6 +91,16 @@ class Tenant extends Component {
         })
     }
 
+    getBalance() {
+        deployedInstance.getBalance.call({ from: this.props.user.wallet })
+        .then((result) => {
+            this.setState({
+                balance: result.toNumber()
+            })
+            console.log(this.state.balance)
+        })
+    }
+
     getData(apartmentId) {
         this.getApartment(apartmentId)
         this.getPaymentHistory(apartmentId)
