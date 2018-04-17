@@ -87,6 +87,7 @@ contract DataController is Repository {
         return false;
     }
 
+    // Function used to check if the user email address is unique
     function isUserUnique(bytes32 _email) returns(bool) {
         if (users[_email]._email != _email) {
             return true;

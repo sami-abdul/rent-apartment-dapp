@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d10c9f86-3427-40e4-ac05-fc5215971ec0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/DataController.sol" afterPath="$PROJECT_DIR$/contracts/DataController.sol" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/Repository.sol" afterPath="$PROJECT_DIR$/contracts/Repository.sol" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,10 +17,12 @@
       <file leaf-file-name="DataController.sol" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/contracts/DataController.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="21" column="29" lean-forward="false" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+            <state relative-caret-position="77">
+              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding>
+                <element signature="e#53#89#0" expanded="false" />
                 <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
+                <element signature="n#!!block;n#createUser#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#depositEtherInEscrow#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
@@ -45,16 +46,6 @@
                 <element signature="n#!!block;n#onlyPotentialTenant#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#onlyTenant#0;n#DataController#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Repository.sol" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/contracts/Repository.sol">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="49" column="61" lean-forward="false" selection-start-line="49" selection-start-column="61" selection-end-line="49" selection-end-column="61" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -94,8 +85,9 @@
         <option value="$PROJECT_DIR$/src/components/signin.js" />
         <option value="$PROJECT_DIR$/src/components/tenant.js" />
         <option value="$PROJECT_DIR$/src/components/landlord.js" />
-        <option value="$PROJECT_DIR$/contracts/DataController.sol" />
         <option value="$PROJECT_DIR$/contracts/Repository.sol" />
+        <option value="$PROJECT_DIR$/contracts/Ownable.sol" />
+        <option value="$PROJECT_DIR$/contracts/DataController.sol" />
       </list>
     </option>
   </component>
@@ -754,18 +746,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/contracts/Repository.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="49" column="61" lean-forward="false" selection-start-line="49" selection-start-column="61" selection-end-line="49" selection-end-column="61" />
+        <state relative-caret-position="80">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/Ownable.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="3" column="13" lean-forward="false" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/contracts/DataController.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="21" column="29" lean-forward="false" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+        <state relative-caret-position="77">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding>
+            <element signature="e#53#89#0" expanded="false" />
             <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#createUser#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#depositEtherInEscrow#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
