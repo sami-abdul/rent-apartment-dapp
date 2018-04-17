@@ -30,6 +30,7 @@ class Landlord extends Component {
           requests: [],
           balance: 0
         }
+        // this.editData=this.editData.bind(this);
     }
 
     submit(event){
@@ -76,6 +77,9 @@ class Landlord extends Component {
 
         this.props.fetchAllProfiles();
     }
+
+    
+
 
     instantiateContract() {
         dataControllerContract = contract(DataControllerContract)
@@ -172,9 +176,28 @@ class Landlord extends Component {
         })
     }
 
+    editData(id){
+        console.log(id);
+        let Apname= prompt("Enter Name");
+        let  Apaddress=prompt("Enter Adress");
+        let Apprice=parseInt(prompt("Enter Price"));
+        let Aphike=parseInt(prompt("Enter Hike"));
+        let editedApartment={
+            name:Apname,
+            address:Apaddress,
+            price:Apprice,
+            Apartmenthike:Aphike,
+            id:id
+
+        }
+        console.log(editedApartment)
+        
+        this.editApartment(editedApartment);
+    } 
+
     editApartment(data) {
         let gasEstimate
-        deployedInstance.editApartment.estimateGas("id", data.name, data.address, data.price, data.Apartmenthike)
+        deployedInstance.editApartment.estimateGas(data.id, data.name, data.address, data.price, data.Apartmenthike)
         .then((result) => {
             gasEstimate = result * 2
             console.log("Estimated gas to edit an apartment: " + gasEstimate)
@@ -283,6 +306,8 @@ class Landlord extends Component {
                                             <span>Rent Price: </span> <span>{partsArray[4]}</span>
                                             <br />
                                             <span>Rent Hike Rate: </span> <span>{partsArray[5]}</span>
+                                            <br/>
+                                            <Button className="btn waves-effect waves-light"   title = 'edit' style = {{display : 'block'}} onClick = {()=>{this.editData(partsArray[0]).bind(this)}}>EDIT</Button>
                                             </p>
                                         </CollapsibleItem>
                                     </Collapsible>
