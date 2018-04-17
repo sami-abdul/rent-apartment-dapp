@@ -14,6 +14,7 @@ contract DataController is Repository, DateTime {
         owner = msg.sender;
     }
 
+
     // Public functions open for anyone
 
     // Function used to create a new user
@@ -23,31 +24,31 @@ contract DataController is Repository, DateTime {
     }
 
     // Function used to deposit ether to smart contract
-    function depositEtherInEscrow() public payable returns(bool success) {
-        require(escrowBalances[msg.sender] + msg.value > escrowBalances[msg.sender]);
-        escrowBalances[msg.sender] = msg.value;
+    function depositEther() public payable returns(bool success) {
+        require(balances[msg.sender] + msg.value > balances[msg.sender]);
+        balances[msg.sender] = msg.value;
         return true;
     }
 
     // Function used to get the deposited ether balance
     function getBalance() public view returns(uint) {
-        escrowBalances[msg.sender];
+        balances[msg.sender];
     }
 
     // Function used to get the apartment information by ID
-    function getApartment(bytes32 _id) public view returns(bytes32, bytes32, address, address, bytes32, uint, uint8) {
+    function getApartment(bytes32 _id) public view returns(bytes32, bytes32, address, address, bytes32, uint, uint16) {
         Apartment apartment = apartments[_id];
         return (apartment.id, apartment.name, apartment.owner, apartment.tenant, apartment.location, apartment.rentPrice, apartment.rentHikeRate);
     }
 
     // Function used to get all apartments available
-    function getApartments() public view returns(bytes32[], bytes32[], address[], bytes32[], uint[], uint8[]) {
+    function getApartments() public view returns(bytes32[], bytes32[], address[], bytes32[], uint[], uint16[]) {
         bytes32[] memory ids = new bytes32[](apartmentsArr.length);
         bytes32[] memory names = new bytes32[](apartmentsArr.length);
         address[] memory tenants = new address[](apartmentsArr.length);
         bytes32[] memory locations = new bytes32[](apartmentsArr.length);
         uint[] memory rentPrices = new uint[](apartmentsArr.length);
-        uint8[] memory rentHikeRates = new uint8[](apartmentsArr.length);
+        uint16[] memory rentHikeRates = new uint16[](apartmentsArr.length);
 
         for (uint i = 0; i < apartmentsArr.length; i++) {
             if (apartmentsArr[i].owner == msg.sender) {
@@ -95,6 +96,7 @@ contract DataController is Repository, DateTime {
         return false;
     }
 
+
     // Public functions allowed for Landlord only
 
     // Function used to get all requests of an apartment
@@ -130,7 +132,7 @@ contract DataController is Repository, DateTime {
     // Function used to add apartment by the landlord
     function addApartment(bytes32 _name, bytes32 _location, uint _rentPrice, uint8 _rentHikeRate) public returns(bytes32 id) {
         id = sha3(_location);
-        Apartment memory apartment = Apartment(id, 123456, _name, msg.sender, address(0), _location, _rentPrice, _rentHikeRate, 0);
+        Apartment memory apartment = Apartment(id, 123456, apartmentsArr.length, _name, msg.sender, address(0), _location, _rentPrice, _rentHikeRate, Date(0, 0, 0));
         apartments[id] = apartment;
         apartmentsArr.push(apartment);
         return id;
@@ -142,13 +144,28 @@ contract DataController is Repository, DateTime {
         apartments[_id].location = _location;
         apartments[_id].rentPrice = _rentPrice;
         apartments[_id].rentHikeRate = _rentHikeRate;
+
+        apartmentsArr[apartments[_id].index].name = _name;
+        apartmentsArr[apartments[_id].index].location = _location;
+        apartmentsArr[apartments[_id].index].rentPrice = _rentPrice;
+        apartmentsArr[apartments[_id].index].rentHikeRate = _rentHikeRate;
     }
 
     // Function used to approve hire request by tenant
     function approveHireRequest(bytes32 _request, bytes32 _apartment, address _potentialTenant) public onlyLandlord(_apartment) returns (bool success) {
         require(isRequestSent(_apartment, _potentialTenant));
 
+        var (month, year) = getNextMonthDate(getYear(now), getMonth(now));
+        uint8 day = getDay(now);
+
+        Date memory nextRentDate = Date(year, month, day);
+
         apartments[_apartment].tenant = _potentialTenant;
+        apartments[_apartment].nextRentDate = nextRentDate;
+
+        apartmentsArr[apartments[_apartment].index].tenant = _potentialTenant;
+        apartmentsArr[apartments[_apartment].index].nextRentDate = nextRentDate;
+
         tenantsToApartment[_potentialTenant] = _apartment;
         tenantToOwner[_potentialTenant] = msg.sender;
 
@@ -164,35 +181,41 @@ contract DataController is Repository, DateTime {
         success = true;
     }
 
+    // Function used to collect rent
+    function collectRent(bytes32 _apartment) returns (bool success) {
+        Apartment apartment = apartments[_apartment];
+        uint rentPrice = apartment.rentPrice;
+        address tenant = apartment.tenant;
+        if (toTimestamp(apartment.nextRentDate.year, apartment.nextRentDate.month, apartment.nextRentDate.day) >= now) {
+            require(balances[tenant] >= rentPrice);
+            require(balances[tenant] - rentPrice < balances[tenant]);
+            require(balances[msg.sender] + rentPrice > balances[tenant]);
+
+            balances[tenant] = balances[tenant] - rentPrice;
+            balances[msg.sender] = balances[msg.sender] + rentPrice;
+
+            var (month, year) = getNextMonthDate(getYear(now), getMonth(now));
+            uint8 day = getDay(now);
+            Date memory nextRentDate = Date(year, month, day);
+            apartments[_apartment].nextRentDate = nextRentDate;
+            apartmentsArr[apartments[_apartment].index].nextRentDate = nextRentDate;
+
+            bytes32 paymentId = sha3(_apartment, msg.sender, tenant);
+            paymentHistory[tenant] = Payment(paymentId, _apartment, msg.sender, rentPrice, now);
+
+            return true;
+        }
+        return false;
+    }
+
     // Function used to hike rent
     function hikeRent(bytes32 _apartment) public onlyLandlord(_apartment) returns (bool success) {
 
     }
 
+
     // Public functions allowed for current tenants only
 
-    // Function used to pay rent to the landlord by tenant
-    function payRent() public onlyTenant returns(uint key) {
-        Apartment apartment = apartments[tenantsToApartment[msg.sender]];
-        uint rentPrice = apartment.rentPrice;
-
-        require(escrowBalances[msg.sender] >= rentPrice);
-        require(escrowBalances[msg.sender] - rentPrice < escrowBalances[msg.sender]);
-        require(escrowBalances[owner] + rentPrice > escrowBalances[msg.sender]);
-
-        escrowBalances[msg.sender] - rentPrice;
-        escrowBalances[owner] + rentPrice;
-
-        bytes32 paymentId = sha3(apartment.id, rentPrice, now);
-        paymentHistory[msg.sender] = Payment(paymentId, apartment.id, rentPrice, now);
-
-        key = 123456;
-    }
-
-    // Function used to terminate the rent contract
-    function terminateRent(bytes32 _apartment) public onlyTenant returns (bool success) {
-
-    }
 
     // Public function allowed for potential tenants only
 

@@ -19,19 +19,27 @@ contract Repository is Ownable {
     struct Apartment {
         bytes32 id;
         uint key;
+        uint index;
         bytes32 name;
         address owner;
         address tenant;
         bytes32 location;
         uint rentPrice;
-        uint8 rentHikeRate;
-        uint rentDate;
+        uint16 rentHikeRate;
+        Date nextRentDate;
+    }
+
+    struct Date {
+        uint16 year;
+        uint16 month;
+        uint8 day;
     }
 
     // Payment data struct
     struct Payment {
         bytes32 id;
         bytes32 apartment;
+        address to;
         uint amount;
         uint date;
     }
@@ -52,7 +60,7 @@ contract Repository is Ownable {
     mapping(address => address) tenantToOwner;
 
     // Mapping used to store ether balances of all the entities
-    mapping(address => uint) internal escrowBalances;
+    mapping(address => uint) internal balances;
 
     // Apartment data stores
     Apartment[] apartmentsArr;

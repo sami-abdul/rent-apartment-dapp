@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d10c9f86-3427-40e4-ac05-fc5215971ec0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/contracts/DateTime.sol" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/DataController.sol" afterPath="$PROJECT_DIR$/contracts/DataController.sol" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/DateTime.sol" afterPath="$PROJECT_DIR$/contracts/DateTime.sol" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/Repository.sol" afterPath="$PROJECT_DIR$/contracts/Repository.sol" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,14 +19,13 @@
       <file leaf-file-name="DataController.sol" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/contracts/DataController.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="16" column="39" lean-forward="true" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+            <state relative-caret-position="124">
+              <caret line="160" column="19" lean-forward="false" selection-start-line="160" selection-start-column="19" selection-end-line="160" selection-end-column="19" />
               <folding>
                 <element signature="e#78#114#0" expanded="false" />
                 <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
-                <element signature="n#!!block;n#get#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#createUser#0;n#DataController#0" expanded="false" />
-                <element signature="n#!!block;n#depositEtherInEscrow#0;n#DataController#0" expanded="false" />
+                <element signature="n#!!block;n#depositEther#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#getApartments#0;n#DataController#0" expanded="false" />
@@ -39,11 +37,9 @@
                 <element signature="n#!!block;n#getAllHireRequests#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#addApartment#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#editApartment#0;n#DataController#0" expanded="false" />
-                <element signature="n#!!block;n#approveHireRequest#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#rejectAllHireRequests#0;n#DataController#0" expanded="false" />
+                <element signature="n#!!block;n#collectRent#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#hikeRent#0;n#DataController#0" expanded="false" />
-                <element signature="n#!!block;n#payRent#0;n#DataController#0" expanded="false" />
-                <element signature="n#!!block;n#terminateRent#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#hireApartment#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#_stringToBytes32#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#onlyLandlord#0;n#DataController#0" expanded="false" />
@@ -57,8 +53,8 @@
       <file leaf-file-name="Repository.sol" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/contracts/Repository.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="65" column="25" lean-forward="false" selection-start-line="65" selection-start-column="14" selection-end-line="65" selection-end-column="25" />
+            <state relative-caret-position="139">
+              <caret line="33" column="14" lean-forward="false" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -67,9 +63,24 @@
       <file leaf-file-name="DateTime.sol" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/contracts/DateTime.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="133" column="45" lean-forward="true" selection-start-line="133" selection-start-column="45" selection-end-line="133" selection-end-column="45" />
-              <folding />
+            <state relative-caret-position="171">
+              <caret line="160" column="99" lean-forward="true" selection-start-line="160" selection-start-column="99" selection-end-line="160" selection-end-column="99" />
+              <folding>
+                <element signature="n#!!block;n#isLeapYear#0;n#DateTime#0" expanded="false" />
+                <element signature="n#!!block;n#leapYearsBefore#0;n#DateTime#0" expanded="false" />
+                <element signature="n#!!block;n#getDaysInMonth#0;n#DateTime#0" expanded="false" />
+                <element signature="n#!!block;n#parseTimestamp#0;n#DateTime#0" expanded="false" />
+                <element signature="n#!!block;n#getYear#0;n#DateTime#0" expanded="false" />
+                <element signature="n#!!block;n#getMonth#0;n#DateTime#0" expanded="false" />
+                <element signature="n#!!block;n#getDay#0;n#DateTime#0" expanded="false" />
+                <element signature="n#!!block;n#getHour#0;n#DateTime#0" expanded="false" />
+                <element signature="n#!!block;n#getMinute#0;n#DateTime#0" expanded="false" />
+                <element signature="n#!!block;n#getSecond#0;n#DateTime#0" expanded="false" />
+                <element signature="n#!!block;n#getWeekday#0;n#DateTime#0" expanded="false" />
+                <element signature="n#!!block;n#toTimestamp#1;n#DateTime#0" expanded="false" />
+                <element signature="n#!!block;n#toTimestamp#2;n#DateTime#0" expanded="false" />
+                <element signature="n#!!block;n#toTimestamp#3;n#DateTime#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -552,7 +563,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45581394" sideWeight="0.4968504" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45581394" sideWeight="0.4968504" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17559054" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -841,30 +852,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/contracts/DateTime.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="133" column="45" lean-forward="true" selection-start-line="133" selection-start-column="45" selection-end-line="133" selection-end-column="45" />
-          <folding />
+        <state relative-caret-position="171">
+          <caret line="160" column="99" lean-forward="true" selection-start-line="160" selection-start-column="99" selection-end-line="160" selection-end-column="99" />
+          <folding>
+            <element signature="n#!!block;n#isLeapYear#0;n#DateTime#0" expanded="false" />
+            <element signature="n#!!block;n#leapYearsBefore#0;n#DateTime#0" expanded="false" />
+            <element signature="n#!!block;n#getDaysInMonth#0;n#DateTime#0" expanded="false" />
+            <element signature="n#!!block;n#parseTimestamp#0;n#DateTime#0" expanded="false" />
+            <element signature="n#!!block;n#getYear#0;n#DateTime#0" expanded="false" />
+            <element signature="n#!!block;n#getMonth#0;n#DateTime#0" expanded="false" />
+            <element signature="n#!!block;n#getDay#0;n#DateTime#0" expanded="false" />
+            <element signature="n#!!block;n#getHour#0;n#DateTime#0" expanded="false" />
+            <element signature="n#!!block;n#getMinute#0;n#DateTime#0" expanded="false" />
+            <element signature="n#!!block;n#getSecond#0;n#DateTime#0" expanded="false" />
+            <element signature="n#!!block;n#getWeekday#0;n#DateTime#0" expanded="false" />
+            <element signature="n#!!block;n#toTimestamp#1;n#DateTime#0" expanded="false" />
+            <element signature="n#!!block;n#toTimestamp#2;n#DateTime#0" expanded="false" />
+            <element signature="n#!!block;n#toTimestamp#3;n#DateTime#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/contracts/Repository.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="65" column="25" lean-forward="false" selection-start-line="65" selection-start-column="14" selection-end-line="65" selection-end-column="25" />
+        <state relative-caret-position="139">
+          <caret line="33" column="14" lean-forward="false" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/contracts/DataController.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="16" column="39" lean-forward="true" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+        <state relative-caret-position="124">
+          <caret line="160" column="19" lean-forward="false" selection-start-line="160" selection-start-column="19" selection-end-line="160" selection-end-column="19" />
           <folding>
             <element signature="e#78#114#0" expanded="false" />
             <element signature="n#!!block;n#DataController#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#get#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#createUser#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#depositEtherInEscrow#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#depositEther#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getApartments#0;n#DataController#0" expanded="false" />
@@ -876,11 +901,9 @@
             <element signature="n#!!block;n#getAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#addApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#editApartment#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#approveHireRequest#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#rejectAllHireRequests#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#collectRent#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#hikeRent#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#payRent#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#terminateRent#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#hireApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#_stringToBytes32#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyLandlord#0;n#DataController#0" expanded="false" />
