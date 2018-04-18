@@ -17,6 +17,16 @@ const divStyle = {
     marginTop:"20px"
   };
 
+  const balancesStyle ={
+    
+    float:"right"
+  };
+
+  const balanceStyle = {
+    
+    float:"right"
+  };
+
 class Tenant extends Component {
 
     constructor(props) {
@@ -53,6 +63,7 @@ class Tenant extends Component {
             dataControllerContract.deployed().then((instance) => {
                 deployedInstance = instance
                 mAccounts = accounts
+                this.getData();
             })
         })
     }
@@ -103,7 +114,7 @@ class Tenant extends Component {
     }
 
     getData(apartmentId) {
-        this.getApartment(apartmentId)
+        // this.getApartment(apartmentId)
         this.getPaymentHistory(apartmentId)
         this.getBalance()
     }
@@ -133,9 +144,9 @@ class Tenant extends Component {
     render() {
         return (
             <div>
-                
+                 <Button style={balancesStyle}  className="btn waves-effect waves-light" s={12} >Balance: {this.state.balance}</Button>
                 <Tabs className='tab-demo z-depth-1'>
-                    <Tab title="Appartments">
+                    <Tab title="Appartments" className="active">
                     <form onSubmit = {this.submit.bind(this)}>
                     
                     
@@ -210,6 +221,8 @@ class Tenant extends Component {
                                     <h4><span>Experience : </span> <span>{this.props.user.exp}</span></h4>
                                 </div>)} */}
                     </Tab>
+                    
+                    
                     {/* <Tab title="Companies Data" >
                     <div>
                         {
