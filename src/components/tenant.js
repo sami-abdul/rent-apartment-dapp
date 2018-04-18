@@ -83,19 +83,19 @@ class Tenant extends Component {
 
     hireApartment(data) {
         let gasEstimate
-        deployedInstance.hireApartment.estimateGas(data.apartment, data.owner)
-        .then((result) => {
-            gasEstimate = result * 2
-            console.log("Estimated gas to edit an apartment: " + gasEstimate)
-        })
-        .then((result) => {
+        // deployedInstance.hireApartment.estimateGas(data.apartment, data.owner)
+        // .then((result) => {
+        //     gasEstimate = result * 2
+        //     console.log("Estimated gas to edit an apartment: " + gasEstimate)
+        // })
+        // .then((result) => {
             deployedInstance.hireApartment(data.apartment, data.owner, {
                   from: this.props.user.wallet,
-                  gas: gasEstimate,
+                  gas: 1000000,
                   gasPrice: this.state.web3.eth.gasPrice
                 }
             )
-        })
+        // })
         .then(() => {
             this.getData()
         })
@@ -111,7 +111,7 @@ class Tenant extends Component {
 
     getData(apartmentId) {
         //this.getApartment(apartmentId)
-        this.getPaymentHistory(apartmentId)
+        // this.getPaymentHistory(apartmentId)
         this.getBalance()
     }
 
