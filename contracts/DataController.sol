@@ -95,11 +95,11 @@ contract DataController is Repository, DateTime {
     function getAllHireRequests() public view returns(bytes32[], address[], bytes32[]) {
         bytes32[] memory ids = new bytes32[](requestsArr.length);
         address[] memory froms = new address[](requestsArr.length);
-        address[] memory apartments = new address[](requestsArr.length);
+        bytes32[] memory apartments = new bytes32[](requestsArr.length);
 
         for (uint i = 0; i < requestsArr.length; i++) {
             if (requestsArr[i].to == msg.sender) {
-                ids[i] = requestfhsArr[i].id;
+                ids[i] = requestsArr[i].id;
                 froms[i] = requestsArr[i].from;
                 apartments[i] = requestsArr[i].apartment;
             }
