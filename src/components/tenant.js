@@ -13,19 +13,16 @@ var deployedInstance
 var mAccounts
 
 const divStyle = {
-    
     marginTop:"20px"
-  };
+};
 
   const balancesStyle ={
-    
     float:"right"
-  };
+};
 
-  const balanceStyle = {
-    
+  const balanceStyle = {  
     float:"right"
-  };
+};
 
 class Tenant extends Component {
 
@@ -104,17 +101,15 @@ class Tenant extends Component {
     }
 
     getBalance() {
-        deployedInstance.getBalance.call({ from: this.props.user.wallet })
-        .then((result) => {
-            this.setState({
-                balance: result.toNumber()
-            })
-            console.log(this.state.balance)
+        let bal = this.state.web3.fromWei(this.state.web3.eth.getBalance(this.props.user.wallet))
+        this.setState({
+            balance: bal.toNumber()
         })
+        console.log("Bal: " + this.state.balance)
     }
 
     getData(apartmentId) {
-        // this.getApartment(apartmentId)
+        this.getApartment(apartmentId)
         this.getPaymentHistory(apartmentId)
         this.getBalance()
     }
@@ -140,11 +135,11 @@ class Tenant extends Component {
             console.log(this.state.data);
         })
     }
-4
+
     render() {
         return (
             <div>
-                 <Button style={balancesStyle}  className="btn waves-effect waves-light" s={12} >Balance: {this.state.balance}</Button>
+                 <Button style={balancesStyle}  className="btn waves-effect waves-light" s={12} >Balance: {this.state.balance} ETH</Button>
                 <Tabs className='tab-demo z-depth-1'>
                     <Tab title="Appartments" className="active">
                     <form onSubmit = {this.submit.bind(this)}>

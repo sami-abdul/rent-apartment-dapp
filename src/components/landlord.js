@@ -14,9 +14,16 @@ var deployedInstance
 var mAccounts
 
 const imgStyle = {
-    
     float:"left",
     height:"170px"
+};
+
+const balancesStyle ={
+    float:"right"
+};
+
+  const balanceStyle = {  
+    float:"right"
 };
 
 class Landlord extends Component {
@@ -78,9 +85,6 @@ class Landlord extends Component {
         this.props.fetchAllProfiles();
     }
 
-    
-
-
     instantiateContract() {
         dataControllerContract = contract(DataControllerContract)
         dataControllerContract.setProvider(this.state.web3.currentProvider)
@@ -127,33 +131,11 @@ class Landlord extends Component {
     }
 
     getBalance() {
-        deployedInstance.getBalance.call({ from: this.props.user.wallet })
-        .then((result) => {
-            this.setState({
-                balance: result.toNumber()
-            })
-            console.log(this.state.balance)
+        let bal = this.state.web3.fromWei(this.state.web3.eth.getBalance(this.props.user.wallet))
+        this.setState({
+            balance: bal.toNumber()
         })
-    }
-
-    createUser() {
-        let gasEstimate
-        deployedInstance.createUser.estimateGas("email", "wallet", true)
-        .then((result) => {
-            gasEstimate = result * 2
-            console.log("Estimated gas to edit an apartment: " + gasEstimate)
-        })
-        .then((result) => {
-            deployedInstance.createUser("email", "wallet", true, {
-                  from: this.props.user.wallet,
-                  gas: gasEstimate,
-                  gasPrice: this.state.web3.eth.gasPrice
-                }
-            )
-        })
-        .then(() => {
-            this.getData()
-        })
+        console.log("Bal: " + this.state.balance)
     }
 
     addApartment(data) {
@@ -216,7 +198,7 @@ class Landlord extends Component {
     }
 
     getRequests() {
-        deployedInstance.getRequests.call({ from: this.props.user.wallet })
+        deployedInstance.getAllHireRequests.call({ from: this.props.user.wallet })
         .then((result) => {
             let count = 0
             let nestedCount = 0
@@ -266,6 +248,7 @@ class Landlord extends Component {
             <div>
                 {/* <img src={require("building.png")} alt="Buildings" align="right" /> */}
                 
+                <Button style={balancesStyle}  className="btn waves-effect waves-light" >Balance: {this.state.balance} ETH</Button>
                 <Tabs className='tab-demo z-depth-1'>
                     <Tab title="Apartments" className="active">
                         <div>
