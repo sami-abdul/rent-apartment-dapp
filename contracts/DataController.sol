@@ -14,8 +14,9 @@ contract DataController is Repository, DateTime {
         owner = msg.sender;
     }
 
-
-    // Events emitted during transactions
+    /**
+     * Events emitted during transactions
+     */
 
     // Event emitted when apartment is added
     event ApartmentAdded(bytes32 apartmentId);
@@ -25,9 +26,13 @@ contract DataController is Repository, DateTime {
     event HireRequestReceived(bytes32 requestId, bytes32 apartmentId, address to, address from);
     // Event emitted when hire request is received
     event HireRequestApproved(bytes32 requestId, bytes32 apartmentId, address tenant);
+    // Event emitted when hire request is received
+    event RentCollected(bytes32 apartment, bytes32 tenant, bytes32 owner, uint amount);
 
 
-    // Public functions open for anyone
+    /**
+     * Public functions open for anyone
+     */
 
     // Function used to get the deposited ether balance
     function getBalance() public view returns(uint) {
@@ -82,22 +87,9 @@ contract DataController is Repository, DateTime {
     }
 
 
-    // Public functions allowed for Landlord only
-
-    // Function used to get all requests of an apartment
-    function getHireRequestsOfApartment(bytes32 _apartment) public onlyLandlord(_apartment) view returns(bytes32[], address[]) {
-        Request[] requests = apartmentToRequests[_apartment];
-
-        bytes32[] memory ids = new bytes32[](requests.length);
-        address[] memory froms = new address[](requests.length);
-
-        for (uint i = 0; i < requests.length; i++) {
-            ids[i] = requests[i].id;
-            froms[i] = requests[i].from;
-        }
-
-        return (ids, froms);
-    }
+    /**
+     * Public functions allowed for landlord only
+     */
 
     // Function used to get all requests for a landlord
     function getAllHireRequests() public view returns(bytes32[], address[]) {
@@ -141,7 +133,7 @@ contract DataController is Repository, DateTime {
 
     // Function used to approve hire request by tenant
     function approveHireRequest(bytes32 _request, bytes32 _apartment, address _potentialTenant) public returns (bool success) {
-        require(isRequestSent(_apartment, _potentialTenant));
+//        require(isRequestSent(_apartment, _potentialTenant));
 
         var (month, year) = getNextMonthDate(getYear(now), getMonth(now));
         uint8 day = getDay(now);
@@ -156,6 +148,13 @@ contract DataController is Repository, DateTime {
 
         tenantsToApartment[_potentialTenant] = _apartment;
         tenantToOwner[_potentialTenant] = msg.sender;
+
+        for (uint i = 0; i < requestsArr.length; i++) {
+            if (requestsArr[i].id == _request) {
+                delete requestsArr[i];
+                break;
+            }
+        }
 
         delete hireRequests[_request];
         delete apartmentToRequests[_apartment];
@@ -189,13 +188,17 @@ contract DataController is Repository, DateTime {
             bytes32 paymentId = sha3(_apartment, msg.sender, tenant);
             paymentHistory[tenant].push(Payment(paymentId, _apartment, msg.sender, rentPrice, now));
 
+            RentCollected(_apartment, tenant, msg.sender, rentPrice);
+
             return true;
         }
         return false;
     }
 
 
-    // Public functions allowed for current tenants only
+    /**
+     * Public functions allowed for current tenants only
+     */
 
     // Function used to deposit ether to smart contract which is held in escrow
     function makePayment() public payable returns(bool success) {
@@ -243,7 +246,9 @@ contract DataController is Repository, DateTime {
         HireRequestReceived(id, _apartment, msg.sender, _to);
     }
 
-    // Utility functions
+    /**
+     * Utility functions
+     */
 
     function _stringToBytes32(string memory source) returns (bytes32 result) {
         bytes memory tempEmptyStringTest = bytes(source);
@@ -256,7 +261,9 @@ contract DataController is Repository, DateTime {
         }
     }
 
-    // Modifiers
+    /**
+     * Modifiers
+     */
 
     modifier onlyLandlord(bytes32 _apartment) {
         require(apartments[_apartment].owner == msg.sender);
