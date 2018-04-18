@@ -35,7 +35,8 @@ class Tenant extends Component {
             paymentHistory: [],
             apatmentData: ["Apartment ID", "Apartment Name", "Apartment Owner", "Apartment Tenant", "Apartment Location", "Apartment Rent Price", "Apartment Hike Rate"],
             index: 0,
-            balance: 0
+            balance: 0,
+            eventResult:null
         }
     }
 
@@ -83,24 +84,6 @@ class Tenant extends Component {
 
     hireApartment(data) {
         let gasEstimate
-<<<<<<< HEAD
-        deployedInstance.hireApartment.estimateGas(data.apartment, data.owner)
-            .then((result) => {
-                gasEstimate = result * 2
-                console.log("Estimated gas to edit an apartment: " + gasEstimate)
-            })
-            .then((result) => {
-                deployedInstance.hireApartment(data.apartment, data.owner, {
-                    from: this.props.user.wallet,
-                    gas: gasEstimate,
-                    gasPrice: this.state.web3.eth.gasPrice
-                }
-                )
-            })
-            .then(() => {
-                this.getData()
-            })
-=======
         // deployedInstance.hireApartment.estimateGas(data.apartment, data.owner)
         // .then((result) => {
         //     gasEstimate = result * 2
@@ -116,9 +99,13 @@ class Tenant extends Component {
         // })
         .then((result) => {
             console.log(result.logs[0].event)
+            console.log("before Result state",this.state.eventResult);
+            this.setState({
+                eventResult: result.logs[0].event,
+            })
+            console.log("after Result state",this.state.eventResult);
             this.getData()
         })
->>>>>>> 36d3f85571a854d927bba1ff5c8fa5195a3044bb
     }
 
     getBalance() {
@@ -170,7 +157,7 @@ class Tenant extends Component {
         return (
             <div>
                 <Button style={balancesStyle} className="btn waves-effect waves-light" s={12} >Balance: {this.state.balance} ETH</Button>
-               
+                0x055007910605ae214de6e12c806849d1e7aabd7ae019b8dced00a7226286b554
                 <Tabs className='tab-demo z-depth-1'>
                     <Tab title="Appartments" className="active">
                         <form onSubmit={this.submit.bind(this)}>
@@ -203,7 +190,11 @@ class Tenant extends Component {
                                         <br />
                                         Apartment Hike Rate: {this.state.data[6].c[0]}
                                         <br />
-                                        <Button className="btn waves-effect waves-light" onClick={() => { this.hire(this.state.data[0], this.state.data[2]).bind(this) }} >Hire Apartment</Button>
+                                        {(this.state.eventResult=="HireRequestReceived")?
+                                        (null):
+                                        (<Button className="btn waves-effect waves-light" onClick={() => { this.hire(this.state.data[0], this.state.data[2]).bind(this) }} >Hire Apartment</Button>)
+                                        }
+                                        
 
                                     </div>
                                     //  this.state.data.map((apartment, ind) => {
