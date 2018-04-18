@@ -30,8 +30,8 @@ contract('Data Controller', function (accounts) {
             instance = i;
             return instance.approveHireRequest(requestId, apartmentId, accounts[1], { from: accounts[0] });
         }).then(function (txResult) {
-            assert.equal(txResult.logs[0].event, "HireRequestReceived", "The Log-Event should be HireRequestReceived");
-            requestId = txResult.logs[0].args.requestId
+            assert.equal(txResult.logs[0].event, "HireRequestApproved", "The Log-Event should be HireRequestReceived");
+            assert.equal(requestId, txResult.logs[0].args.requestId, "The Log-Event should be HireRequestReceived");
         })
     });
 });
