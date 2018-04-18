@@ -82,9 +82,6 @@ class Landlord extends Component {
         this.props.fetchAllProfiles();
     }
 
-    
-
-
     instantiateContract() {
         dataControllerContract = contract(DataControllerContract)
         dataControllerContract.setProvider(this.state.web3.currentProvider)
@@ -137,7 +134,6 @@ class Landlord extends Component {
         })
         // console.log("Bal: " + this.state.balance)
     }
-
 
     addApartment(data) {
         let gasEstimate
