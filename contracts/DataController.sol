@@ -140,7 +140,7 @@ contract DataController is Repository, DateTime {
     }
 
     // Function used to approve hire request by tenant
-    function approveHireRequest(bytes32 _request, bytes32 _apartment, address _potentialTenant) public onlyLandlord(_apartment) returns (bool success) {
+    function approveHireRequest(bytes32 _request, bytes32 _apartment, address _potentialTenant) public returns (bool success) {
         require(isRequestSent(_apartment, _potentialTenant));
 
         var (month, year) = getNextMonthDate(getYear(now), getMonth(now));
