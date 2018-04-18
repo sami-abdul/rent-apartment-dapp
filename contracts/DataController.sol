@@ -27,7 +27,7 @@ contract DataController is Repository, DateTime {
     // Event emitted when hire request is received
     event HireRequestApproved(bytes32 requestId, bytes32 apartmentId, address tenant);
     // Event emitted when hire request is received
-    event RentCollected(bytes32 apartment, bytes32 tenant, bytes32 owner, uint amount);
+    event RentCollected(bytes32 apartment, address tenant, address owner, uint amount);
 
 
     /**

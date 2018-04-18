@@ -19,4 +19,5 @@ contract('Data Controller', function (accounts) {
             assert.isAtLeast(balanceBeforeTransaction.toNumber() - balanceAfterDeposit.toNumber(), web3.toWei(1, "ether"),  "Balances of account are the same");
         })
     });
+
 });
