@@ -15,24 +15,21 @@ contract DataController is Repository, DateTime {
     }
 
 
+    // Events emitted during transactions
+
+    // Event emitted when apartment is added
+    event ApartmentAdded(bytes32 apartmentId);
+    // Event emitted when apartment is edited
+    event ApartmentEdited(bytes32 apartmentId, bytes32 apartmentName);
+    // Event emitted when hire request is received
+    event HireRequestReceived(bytes32 requestId, bytes32 apartmentId, address to, address from);
+
+
     // Public functions open for anyone
-
-    // Function used to create a new user
-    function createUser(bytes32 _email, address _wallet, bool _isLandlord) public view returns(bool) {
-        require(isUserUnique(_email));
-        users[_email] = User(_email, _wallet, _isLandlord);
-    }
-
-    // Function used to deposit ether to smart contract
-    function depositEther() public payable returns(bool success) {
-        require(balances[msg.sender] + msg.value > balances[msg.sender]);
-        balances[msg.sender] = msg.value;
-        return true;
-    }
 
     // Function used to get the deposited ether balance
     function getBalance() public view returns(uint) {
-        balances[msg.sender];
+        return balances[msg.sender];
     }
 
     // Function used to get the apartment information by ID
@@ -56,7 +53,7 @@ contract DataController is Repository, DateTime {
                 names[i] = apartmentsArr[i].name;
                 tenants[i] = apartmentsArr[i].tenant;
                 locations[i] = apartmentsArr[i].location;
-                rentPrices[i] = apartmentsArr[i].rentPrice;
+                rentPrices[i] = apartmentsArr[i].rentPrice / 18;
                 rentHikeRates[i] = apartmentsArr[i].rentHikeRate;
             }
         }
@@ -78,14 +75,6 @@ contract DataController is Repository, DateTime {
             if (requests[i].apartment == _apartment && requests[i].from == _potentialTenant) {
                 return true;
             }
-        }
-        return false;
-    }
-
-    // Function used to check if the user email address is unique
-    function isUserUnique(bytes32 _email) returns(bool) {
-        if (users[_email].email != _email) {
-            return true;
         }
         return false;
     }
@@ -126,9 +115,10 @@ contract DataController is Repository, DateTime {
     // Function used to add apartment by the landlord
     function addApartment(bytes32 _name, bytes32 _location, uint _rentPrice, uint8 _rentHikeRate) public returns(bytes32 id) {
         id = sha3(_location);
-        Apartment memory apartment = Apartment(id, 123456, apartmentsArr.length, _name, msg.sender, address(0), _location, _rentPrice, _rentHikeRate, Date(0, 0, 0));
+        Apartment memory apartment = Apartment(id, 123456, apartmentsArr.length, _name, msg.sender, address(0), _location, _rentPrice * 18, _rentHikeRate, Date(0, 0, 0));
         apartments[id] = apartment;
         apartmentsArr.push(apartment);
+        ApartmentAdded(id);
         return id;
     }
 
@@ -143,6 +133,8 @@ contract DataController is Repository, DateTime {
         apartmentsArr[apartments[_id].index].location = _location;
         apartmentsArr[apartments[_id].index].rentPrice = _rentPrice;
         apartmentsArr[apartments[_id].index].rentHikeRate = _rentHikeRate;
+
+        ApartmentEdited(apartments[_id].id, apartments[_id].name);
     }
 
     // Function used to approve hire request by tenant
@@ -183,16 +175,19 @@ contract DataController is Repository, DateTime {
         if (toTimestamp(apartment.nextRentDate.year, apartment.nextRentDate.month, apartment.nextRentDate.day) >= now) {
             require(balances[tenant] >= rentPrice);
             require(balances[tenant] - rentPrice < balances[tenant]);
-            require(balances[msg.sender] + rentPrice > balances[tenant]);
+            require(msg.sender.balance + rentPrice > balances[tenant]);
 
-            balances[tenant] = balances[tenant] - rentPrice;
-            balances[msg.sender] = balances[msg.sender] + rentPrice;
+            balances[tenant] -= rentPrice;
+            msg.sender.transfer(rentPrice);
 
             var (month, year) = getNextMonthDate(getYear(now), getMonth(now));
             uint8 day = getDay(now);
             Date memory nextRentDate = Date(year, month, day);
+
             apartments[_apartment].nextRentDate = nextRentDate;
+            apartments[_apartment].rentPrice = rentPrice;
             apartmentsArr[apartments[_apartment].index].nextRentDate = nextRentDate;
+            apartmentsArr[apartments[_apartment].index].rentPrice = rentPrice;
 
             bytes32 paymentId = sha3(_apartment, msg.sender, tenant);
             paymentHistory[tenant].push(Payment(paymentId, _apartment, msg.sender, rentPrice, now));
@@ -205,6 +200,14 @@ contract DataController is Repository, DateTime {
 
     // Public functions allowed for current tenants only
 
+    // Function used to deposit ether to smart contract which is held in escrow
+    function makePayment() public payable returns(bool success) {
+        require(balances[msg.sender] + msg.value > balances[msg.sender]);
+        balances[msg.sender] += msg.value;
+        return true;
+    }
+
+    // Function used to get payment history of an apartment by tenant
     function getPaymentHistory(bytes32 _apartment) public onlyTenant returns(address[], uint[], uint[]) {
         Payment[] payments = paymentHistory[msg.sender];
 
@@ -223,6 +226,12 @@ contract DataController is Repository, DateTime {
         return(tos, amounts, dates);
     }
 
+    // Function used to get the apartment information by ID
+    function getHiredApartment(bytes32 _id) public onlyTenant view returns(bytes32, bytes32, address, address, bytes32, uint, uint16) {
+        Apartment apartment = apartments[_id];
+        require(apartment.tenant == msg.sender);
+        return (apartment.id, apartment.name, apartment.owner, apartment.tenant, apartment.location, apartment.rentPrice, apartment.rentHikeRate);
+    }
 
     // Public function allowed for potential tenants only
 
@@ -234,6 +243,7 @@ contract DataController is Repository, DateTime {
         apartmentToRequests[_apartment].push(request);
         requestsArr.push(request);
         success = true;
+        HireRequestReceived(id, _apartment, msg.sender, _to);
     }
 
     // Utility functions
