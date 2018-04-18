@@ -201,6 +201,7 @@ class Landlord extends Component {
     getRequests() {
         deployedInstance.getAllHireRequests.call({ from: this.props.user.wallet })
         .then((result) => {
+            console.log("Result: " + result)
             let count = 0
             let nestedCount = 0
             let arr = []
