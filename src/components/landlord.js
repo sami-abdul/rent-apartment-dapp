@@ -133,13 +133,10 @@ class Landlord extends Component {
     }
 
     getBalance() {
-        deployedInstance.getBalance.call({ from: this.props.user.wallet })
-        .then((result) => {
-            this.setState({
-                balance: result.toNumber()
-            })
-            console.log("Balance: " + this.state.balance)
+        this.setState({
+            balance: this.state.web3.fromWei(this.state.web3.eth.getBalance(this.props.user.wallet))
         })
+        console.log(this.state.balance)
     }
 
     getRequests() {
@@ -277,7 +274,7 @@ class Landlord extends Component {
         .then((result) => {
             deployedInstance.depositEther( {
                   from: this.props.user.wallet,
-                  value: data.ether,
+                  value: 10 * 18,
                   gas: gasEstimate,
                   gasPrice: this.state.web3.eth.gasPrice
                 }
@@ -354,10 +351,6 @@ class Landlord extends Component {
                     </form></Tab>
                     <Tab title="Requests" >
                       </Tab>
-                      <Tab title="Deposit Ether " ><form onSubmit = {this.submitEther.bind(this)}>
-                        <Input type="number" s={6} label="Enter amount (ETH)" ref="ether" />
-                        <Button className="btn waves-effect waves-light" type="submit" name="action" title = 'submit' style = {{display : 'block'}}>Submit</Button>
-                    </form></Tab>
                 </Tabs>
             </div>
         )

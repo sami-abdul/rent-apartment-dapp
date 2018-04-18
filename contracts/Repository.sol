@@ -60,7 +60,7 @@ contract Repository is Ownable {
    mapping(address => address) tenantToOwner;
 
     // Mapping used to store ether balances of all the entities
-    mapping(address => uint) internal balances;
+    mapping(address => uint) public balances;
 
     // Apartment data stores
     Apartment[] apartmentsArr;
