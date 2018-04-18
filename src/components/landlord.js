@@ -291,7 +291,11 @@ class Landlord extends Component {
                                             <br />
                                             <span>Rent Hike Rate: </span> <span>{partsArray[5]}</span>
                                             <br/>
-                                            <Button className="btn waves-effect waves-light"   title = 'edit' style = {{display : 'block'}} onClick = {()=>{this.editData(partsArray[0]).bind(this)}}>EDIT</Button>
+                                    {
+                                        (partsArray[2].includes("0x00"))?
+                                    (<Button className="btn waves-effect waves-light"   title = 'edit' style = {{display : 'block'}} onClick = {()=>{this.editData(partsArray[0]).bind(this)}}>EDIT</Button>)
+                                    :(<Button className="btn waves-effect waves-light"   title = 'rent' style = {{display : 'block'}} >Collect Rent</Button>)
+                                    }
                                             </p>
                                         </CollapsibleItem>
                                     </Collapsible>

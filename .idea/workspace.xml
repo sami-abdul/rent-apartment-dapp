@@ -5,8 +5,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/DataController.sol" afterPath="$PROJECT_DIR$/contracts/DataController.sol" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/Repository.sol" afterPath="$PROJECT_DIR$/contracts/Repository.sol" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/2_send_view_hire_accept_request.js" afterPath="$PROJECT_DIR$/test/2_send_view_hire_accept_request.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/3_make_payment_ether.js" afterPath="$PROJECT_DIR$/test/3_make_payment_ether.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,11 +16,16 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DataController.sol" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DataController.sol" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/contracts/DataController.sol">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="1536">
               <caret line="263" column="7" lean-forward="false" selection-start-line="263" selection-start-column="7" selection-end-line="263" selection-end-column="7" />
+=======
+            <state relative-caret-position="191">
+              <caret line="142" column="126" lean-forward="false" selection-start-line="142" selection-start-column="126" selection-end-line="142" selection-end-column="126" />
+>>>>>>> 7e833090f0428c583b9632bfdc6dca6ab5bb283f
               <folding>
                 <element signature="e#78#114#0" expanded="false" />
                 <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
@@ -48,11 +51,39 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="4_collect_rent.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/4_collect_rent.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="160">
               <caret line="10" column="56" lean-forward="true" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
+=======
+      <file leaf-file-name="Repository.sol" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/contracts/Repository.sol">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="251">
+              <caret line="59" column="4" lean-forward="false" selection-start-line="59" selection-start-column="4" selection-end-line="59" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2_send_view_hire_accept_request.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/2_send_view_hire_accept_request.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="427">
+              <caret line="30" column="102" lean-forward="false" selection-start-line="30" selection-start-column="102" selection-end-line="30" selection-end-column="102" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="1_add_edit_apartment.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/1_add_edit_apartment.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="384">
+              <caret line="24" column="7" lean-forward="false" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+>>>>>>> 7e833090f0428c583b9632bfdc6dca6ab5bb283f
               <folding />
             </state>
           </provider>
@@ -120,6 +151,7 @@
         <option value="$PROJECT_DIR$/test/3_make_payment_ether.js" />
         <option value="$PROJECT_DIR$/test/4_collect_rent.js" />
         <option value="$PROJECT_DIR$/contracts/DataController.sol" />
+        <option value="$PROJECT_DIR$/contracts/Repository.sol" />
       </list>
     </option>
   </component>
@@ -196,6 +228,27 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+<<<<<<< HEAD
+=======
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rent-apartment-dapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rent-apartment-dapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+>>>>>>> 7e833090f0428c583b9632bfdc6dca6ab5bb283f
               <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -537,7 +590,12 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41795665" sideWeight="0.49370077" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18740158" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+=======
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18425196" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+>>>>>>> 7e833090f0428c583b9632bfdc6dca6ab5bb283f
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -549,7 +607,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -964,12 +1021,20 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/test/TestSimpleStorage.sol" />
     <entry file="file://$PROJECT_DIR$/test/simplestorage.js" />
     <entry file="file://$PROJECT_DIR$/src/components/landlord.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="35" column="21" lean-forward="true" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
+=======
+    <entry file="file://$PROJECT_DIR$/test/TestSimpleStorage.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+>>>>>>> 7e833090f0428c583b9632bfdc6dca6ab5bb283f
         </state>
       </provider>
     </entry>
@@ -989,34 +1054,60 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/test/2_send_view_hire_accept_request.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
           <caret line="21" column="33" lean-forward="true" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
+=======
+    <entry file="file://$PROJECT_DIR$/test/1_add_edit_apartment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="24" column="7" lean-forward="false" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+>>>>>>> 7e833090f0428c583b9632bfdc6dca6ab5bb283f
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/test/3_make_payment_ether.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="5" column="38" lean-forward="true" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/components/landlord.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="35" column="21" lean-forward="true" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
+>>>>>>> 7e833090f0428c583b9632bfdc6dca6ab5bb283f
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/test/4_collect_rent.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="10" column="56" lean-forward="true" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
+=======
+    <entry file="file://$PROJECT_DIR$/contracts/Repository.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="59" column="4" lean-forward="false" selection-start-line="59" selection-start-column="4" selection-end-line="59" selection-end-column="4" />
+>>>>>>> 7e833090f0428c583b9632bfdc6dca6ab5bb283f
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/contracts/DataController.sol">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="1536">
           <caret line="263" column="7" lean-forward="false" selection-start-line="263" selection-start-column="7" selection-end-line="263" selection-end-column="7" />
+=======
+        <state relative-caret-position="191">
+          <caret line="142" column="126" lean-forward="false" selection-start-line="142" selection-start-column="126" selection-end-line="142" selection-end-column="126" />
+>>>>>>> 7e833090f0428c583b9632bfdc6dca6ab5bb283f
           <folding>
             <element signature="e#78#114#0" expanded="false" />
             <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
@@ -1038,6 +1129,14 @@
             <element signature="n#!!block;n#onlyPotentialTenant#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyTenant#0;n#DataController#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/2_send_view_hire_accept_request.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="30" column="102" lean-forward="false" selection-start-line="30" selection-start-column="102" selection-end-line="30" selection-end-column="102" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -5,7 +5,6 @@ contract('Data Controller', function (accounts) {
         var instance;
         var balanceBeforeTransaction = web3.eth.getBalance(accounts[0]);
         var balanceAfterDeposit;
-        var balanceAfterWithdrawal;
         var gasUsed = 0;
 
         return dataController.deployed().then(function (i) {
