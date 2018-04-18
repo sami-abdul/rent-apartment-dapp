@@ -21,14 +21,11 @@ contract DataController is Repository, DateTime {
     event ApartmentAdded(bytes32 apartmentId);
     // Event emitted when apartment is edited
     event ApartmentEdited(bytes32 apartmentId, bytes32 apartmentName);
+    // Event emitted when hire request is received
+    event HireRequestReceived(bytes32 requestId, bytes32 apartmentId, address to, address from);
+
 
     // Public functions open for anyone
-
-    // Function used to create a new user
-//    function createUser(bytes32 _email, address _wallet, bool _isLandlord) public view returns(bool) {
-//        require(isUserUnique(_email));
-//        users[_email] = User(_email, _wallet, _isLandlord);
-//    }
 
     // Function used to get the deposited ether balance
     function getBalance() public view returns(uint) {
@@ -81,14 +78,6 @@ contract DataController is Repository, DateTime {
         }
         return false;
     }
-
-    // Function used to check if the user email address is unique
-//    function isUserUnique(bytes32 _email) returns(bool) {
-//        if (users[_email].email != _email) {
-//            return true;
-//        }
-//        return false;
-//    }
 
 
     // Public functions allowed for Landlord only
@@ -254,6 +243,7 @@ contract DataController is Repository, DateTime {
         apartmentToRequests[_apartment].push(request);
         requestsArr.push(request);
         success = true;
+        HireRequestReceived(id, _apartment, msg.sender, _to);
     }
 
     // Utility functions

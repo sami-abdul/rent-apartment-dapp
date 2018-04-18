@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d10c9f86-3427-40e4-ac05-fc5215971ec0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/2_make_payment_ether.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test/collect_rent.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/1_make_payment_ether.js" afterPath="$PROJECT_DIR$/test/1_add_edit_apartment.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/2_send_view_hire_accept_request.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/3_send_view_hire_request.js" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test/2_make_payment_ether.js" afterPath="$PROJECT_DIR$/test/3_make_payment_ether.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/DataController.sol" afterPath="$PROJECT_DIR$/contracts/DataController.sol" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/landlord.js" afterPath="$PROJECT_DIR$/src/components/landlord.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/tenant.js" afterPath="$PROJECT_DIR$/src/components/tenant.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,11 +20,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DataController.sol" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DataController.sol" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/contracts/DataController.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="22" column="68" lean-forward="false" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="68" />
+            <state relative-caret-position="147">
+              <caret line="124" column="54" lean-forward="true" selection-start-line="124" selection-start-column="54" selection-end-line="124" selection-end-column="54" />
               <folding>
                 <element signature="e#78#114#0" expanded="false" />
                 <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
@@ -34,12 +35,13 @@
                 <element signature="n#!!block;n#getHireRequestsOfApartment#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#getAllHireRequests#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#addApartment#0;n#DataController#0" expanded="false" />
-                <element signature="n#!!block;n#approveHireRequest#0;n#DataController#0" expanded="false" />
+                <element signature="n#!!block;n#editApartment#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#rejectAllHireRequests#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#collectRent#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#makePayment#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#getPaymentHistory#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#getHiredApartment#0;n#DataController#0" expanded="false" />
+                <element signature="n#!!block;n#hireApartment#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#_stringToBytes32#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#onlyLandlord#0;n#DataController#0" expanded="false" />
                 <element signature="n#!!block;n#onlyPotentialTenant#0;n#DataController#0" expanded="false" />
@@ -49,11 +51,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="1_add_edit_apartment.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="2_send_view_hire_accept_request.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/2_send_view_hire_accept_request.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="523">
+              <caret line="36" column="3" lean-forward="true" selection-start-line="36" selection-start-column="3" selection-end-line="36" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="1_add_edit_apartment.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/1_add_edit_apartment.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+            <state relative-caret-position="192">
+              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -114,8 +126,11 @@
         <option value="$PROJECT_DIR$/test/1_make_payment_ether.js" />
         <option value="$PROJECT_DIR$/test/collect_rent.js" />
         <option value="$PROJECT_DIR$/test/2_send_hire_request.js" />
+        <option value="$PROJECT_DIR$/test/3_send_view_hire_request.js" />
         <option value="$PROJECT_DIR$/contracts/DataController.sol" />
+        <option value="$PROJECT_DIR$/test/2_send_view_hire_request.js" />
         <option value="$PROJECT_DIR$/test/1_add_edit_apartment.js" />
+        <option value="$PROJECT_DIR$/test/2_send_view_hire_accept_request.js" />
       </list>
     </option>
   </component>
@@ -516,7 +531,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45581394" sideWeight="0.49370077" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45581394" sideWeight="0.49370077" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22677165" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -542,34 +557,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/contracts/DataController.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1728">
-          <caret line="108" column="8" lean-forward="false" selection-start-line="108" selection-start-column="8" selection-end-line="108" selection-end-column="8" />
-          <folding>
-            <element signature="e#78#114#0" expanded="false" />
-            <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#getApartment#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#getApartments#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#isApartmentRented#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#isRequestSent#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#getHireRequestsOfApartment#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#getAllHireRequests#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#addApartment#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#approveHireRequest#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#rejectAllHireRequests#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#collectRent#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#makePayment#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#getPaymentHistory#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#getHiredApartment#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#_stringToBytes32#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#onlyLandlord#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#onlyPotentialTenant#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#onlyTenant#0;n#DataController#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/contracts/Repository.sol">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="656">
@@ -674,12 +661,13 @@
             <element signature="n#!!block;n#getHireRequestsOfApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#addApartment#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#approveHireRequest#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#editApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#rejectAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#collectRent#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#makePayment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getPaymentHistory#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getHiredApartment#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#hireApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#_stringToBytes32#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyLandlord#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyPotentialTenant#0;n#DataController#0" expanded="false" />
@@ -709,12 +697,13 @@
             <element signature="n#!!block;n#getHireRequestsOfApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#addApartment#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#approveHireRequest#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#editApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#rejectAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#collectRent#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#makePayment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getPaymentHistory#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getHiredApartment#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#hireApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#_stringToBytes32#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyLandlord#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyPotentialTenant#0;n#DataController#0" expanded="false" />
@@ -758,12 +747,13 @@
             <element signature="n#!!block;n#getHireRequestsOfApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#addApartment#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#approveHireRequest#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#editApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#rejectAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#collectRent#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#makePayment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getPaymentHistory#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getHiredApartment#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#hireApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#_stringToBytes32#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyLandlord#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyPotentialTenant#0;n#DataController#0" expanded="false" />
@@ -807,12 +797,13 @@
             <element signature="n#!!block;n#getHireRequestsOfApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#addApartment#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#approveHireRequest#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#editApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#rejectAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#collectRent#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#makePayment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getPaymentHistory#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getHiredApartment#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#hireApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#_stringToBytes32#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyLandlord#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyPotentialTenant#0;n#DataController#0" expanded="false" />
@@ -849,12 +840,13 @@
             <element signature="n#!!block;n#getHireRequestsOfApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#addApartment#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#approveHireRequest#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#editApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#rejectAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#collectRent#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#makePayment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getPaymentHistory#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getHiredApartment#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#hireApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#_stringToBytes32#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyLandlord#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyPotentialTenant#0;n#DataController#0" expanded="false" />
@@ -884,12 +876,13 @@
             <element signature="n#!!block;n#getHireRequestsOfApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#addApartment#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#approveHireRequest#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#editApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#rejectAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#collectRent#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#makePayment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getPaymentHistory#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getHiredApartment#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#hireApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#_stringToBytes32#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyLandlord#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyPotentialTenant#0;n#DataController#0" expanded="false" />
@@ -1004,15 +997,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/contracts/Repository.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="53">
-          <caret line="62" column="35" lean-forward="false" selection-start-line="62" selection-start-column="35" selection-end-line="62" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/2_make_payment_ether.js">
+    <entry file="file://$PROJECT_DIR$/test/3_make_payment_ether.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
           <caret line="3" column="61" lean-forward="false" selection-start-line="3" selection-start-column="61" selection-end-line="3" selection-end-column="61" />
@@ -1020,10 +1005,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/Repository.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="62" column="35" lean-forward="false" selection-start-line="62" selection-start-column="35" selection-end-line="62" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/1_add_edit_apartment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/2_send_view_hire_accept_request.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="36" column="3" lean-forward="true" selection-start-line="36" selection-start-column="3" selection-end-line="36" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/contracts/DataController.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="22" column="68" lean-forward="false" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="68" />
+        <state relative-caret-position="147">
+          <caret line="124" column="54" lean-forward="true" selection-start-line="124" selection-start-column="54" selection-end-line="124" selection-end-column="54" />
           <folding>
             <element signature="e#78#114#0" expanded="false" />
             <element signature="n#!!block;n#getBalance#0;n#DataController#0" expanded="false" />
@@ -1034,25 +1043,18 @@
             <element signature="n#!!block;n#getHireRequestsOfApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#addApartment#0;n#DataController#0" expanded="false" />
-            <element signature="n#!!block;n#approveHireRequest#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#editApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#rejectAllHireRequests#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#collectRent#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#makePayment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getPaymentHistory#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#getHiredApartment#0;n#DataController#0" expanded="false" />
+            <element signature="n#!!block;n#hireApartment#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#_stringToBytes32#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyLandlord#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyPotentialTenant#0;n#DataController#0" expanded="false" />
             <element signature="n#!!block;n#onlyTenant#0;n#DataController#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/1_add_edit_apartment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>

@@ -17,6 +17,16 @@ const divStyle = {
     marginTop:"20px"
   };
 
+  const balancesStyle ={
+    
+    float:"right"
+  };
+
+  const balanceStyle = {
+    
+    float:"right"
+  };
+
 class Tenant extends Component {
 
     constructor(props) {
@@ -53,6 +63,7 @@ class Tenant extends Component {
             dataControllerContract.deployed().then((instance) => {
                 deployedInstance = instance
                 mAccounts = accounts
+                this.getData();
             })
         })
     }
@@ -92,36 +103,18 @@ class Tenant extends Component {
         })
     }
 
-    depositEther(data) {
-        let gasEstimate
-        deployedInstance.depositEther.estimateGas(data.ether)
-        .then((result) => {
-            gasEstimate = result * 2
-            console.log("Estimated gas to collect rent: " + gasEstimate)
-        })
-        .then((result) => {
-            deployedInstance.depositEther(data.ether, {
-                  from: this.props.user.wallet,
-                  value: this.state.web3.eth.toWei('ether', data.ether),
-                  gas: gasEstimate,
-                  gasPrice: this.state.web3.eth.gasPrice
-                }
-            )
-        })
-        .then(() => {
-            this.getData()
-        })
-    }
-
     getBalance() {
-        this.setState({
-            balance: this.state.web3.fromWei(this.state.web3.eth.getBalance(this.props.user.wallet))
+        deployedInstance.getBalance.call({ from: this.props.user.wallet })
+        .then((result) => {
+            this.setState({
+                balance: result.toNumber()
+            })
+            console.log(this.state.balance)
         })
-        console.log(this.state.balance)
     }
 
     getData(apartmentId) {
-        this.getApartment(apartmentId)
+        // this.getApartment(apartmentId)
         this.getPaymentHistory(apartmentId)
         this.getBalance()
     }
@@ -147,13 +140,13 @@ class Tenant extends Component {
             console.log(this.state.data);
         })
     }
-
+4
     render() {
         return (
             <div>
-                
+                 <Button style={balancesStyle}  className="btn waves-effect waves-light" s={12} >Balance: {this.state.balance}</Button>
                 <Tabs className='tab-demo z-depth-1'>
-                    <Tab title="Appartments">
+                    <Tab title="Appartments" className="active">
                     <form onSubmit = {this.submit.bind(this)}>
                     
                     
@@ -228,6 +221,8 @@ class Tenant extends Component {
                                     <h4><span>Experience : </span> <span>{this.props.user.exp}</span></h4>
                                 </div>)} */}
                     </Tab>
+                    
+                    
                     {/* <Tab title="Companies Data" >
                     <div>
                         {
@@ -252,10 +247,6 @@ class Tenant extends Component {
                     </Tab> */}
 
                 </Tabs>
-                <Tab title="Deposit Ether " ><form onSubmit = {this.submitEther.bind(this)}>
-                        <Input type="number" s={6} label="Enter amount (ETH)" ref="ether" />
-                        <Button className="btn waves-effect waves-light" type="submit" name="action" title = 'submit' style = {{display : 'block'}}>Submit</Button>
-                    </form></Tab>
 
             </div>
         )
