@@ -23,6 +23,8 @@ contract DataController is Repository, DateTime {
     event ApartmentEdited(bytes32 apartmentId, bytes32 apartmentName);
     // Event emitted when hire request is received
     event HireRequestReceived(bytes32 requestId, bytes32 apartmentId, address to, address from);
+    // Event emitted when hire request is received
+    event HireRequestApproved(bytes32 requestId, bytes32 apartmentId, address to, address from);
 
 
     // Public functions open for anyone
@@ -158,13 +160,8 @@ contract DataController is Repository, DateTime {
         delete hireRequests[_request];
         delete apartmentToRequests[_apartment];
         success = true;
-    }
 
-    // Function used to reject all hire requests
-    function rejectAllHireRequests(bytes32 _request, bytes32 _apartment) public onlyLandlord(_apartment) returns (bool success) {
-        delete hireRequests[_request];
-        delete apartmentToRequests[_apartment];
-        success = true;
+        HireRequestApproved(_request, _apartment, _potentialTenant);
     }
 
     // Function used to collect rent

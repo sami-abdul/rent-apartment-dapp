@@ -14,6 +14,7 @@ var deployedInstance
 var mAccounts
 
 const imgStyle = {
+    
     float:"left",
     height:"170px"
 };
@@ -62,11 +63,7 @@ class Landlord extends Component {
                 Apartmenthike : this.refs.Apartmenthike.state.value
                 
             }
-            console.log(this.refs.address.state.value);
-            // console.log(this.refs.name.state.value.length);
             this.addApartment(AppartmentInfo)
-            // this.props.showNotification();
-            //  this.props.setCompanyProfileToFirebase(CompanyInfo, this.props.uid)
         }
     }
 
@@ -79,11 +76,14 @@ class Landlord extends Component {
             this.instantiateContract()
           })
           .catch(() => {
-            console.log('Error finding web3.')
+            // console.log('Error finding web3.')
           })
 
         this.props.fetchAllProfiles();
     }
+
+    
+
 
     instantiateContract() {
         dataControllerContract = contract(DataControllerContract)
@@ -135,8 +135,9 @@ class Landlord extends Component {
         this.setState({
             balance: bal.toNumber()
         })
-        console.log("Bal: " + this.state.balance)
+        // console.log("Bal: " + this.state.balance)
     }
+
 
     addApartment(data) {
         let gasEstimate
@@ -159,7 +160,6 @@ class Landlord extends Component {
     }
 
     editData(id){
-        console.log(id);
         let Apname= prompt("Enter Name");
         let  Apaddress=prompt("Enter Adress");
         let Apprice=parseInt(prompt("Enter Price"));
@@ -172,20 +172,21 @@ class Landlord extends Component {
             id:id
 
         }
-        console.log(editedApartment)
+        // console.log(editedApartment)
         
         this.editApartment(editedApartment);
     } 
 
     editApartment(data) {
         let gasEstimate
+        console.log(data)
         deployedInstance.editApartment.estimateGas(data.id, data.name, data.address, data.price, data.Apartmenthike)
         .then((result) => {
             gasEstimate = result * 2
-            console.log("Estimated gas to edit an apartment: " + gasEstimate)
+            // console.log("Estimated gas to edit an apartment: " + gasEstimate)
         })
         .then((result) => {
-            deployedInstance.editApartment(data.name, data.address, data.price, data.Apartmenthike, {
+            deployedInstance.editApartment(data.id, data.name, data.address, data.price, data.Apartmenthike, {
                   from: this.props.user.wallet,
                   gas: gasEstimate,
                   gasPrice: this.state.web3.eth.gasPrice
@@ -217,9 +218,9 @@ class Landlord extends Component {
             })
 
             this.setState({
-                data: arr
+                requests: arr
             })
-            console.log(this.state.data)
+            // console.log(this.state.data)
         })
     }
 
@@ -228,7 +229,7 @@ class Landlord extends Component {
         deployedInstance.approveHireRequest.estimateGas("request id", "apartment id", "tenant address")
         .then((result) => {
             gasEstimate = result * 2
-            console.log("Estimated gas to approve hire request: " + gasEstimate)
+            // console.log("Estimated gas to approve hire request: " + gasEstimate)
         })
         .then((result) => {
             deployedInstance.approveHireRequest("request id", "apartment id", "tenant address", {
@@ -247,8 +248,8 @@ class Landlord extends Component {
         return (
             <div>
                 {/* <img src={require("building.png")} alt="Buildings" align="right" /> */}
-                
                 <Button style={balancesStyle}  className="btn waves-effect waves-light" >Balance: {this.state.balance} ETH</Button>
+
                 <Tabs className='tab-demo z-depth-1'>
                     <Tab title="Apartments" className="active">
                         <div>
@@ -263,14 +264,14 @@ class Landlord extends Component {
                                         return string;
                                     }
 
-                                    console.log(apartment, "apartment");
-                                    console.log(ind, "ind");
+                                    // console.log(apartment, "apartment");
+                                    // console.log(ind, "ind");
                                     var partsArray = apartment.split(',');
-                                    console.log(partsArray);
+                                    // console.log(partsArray);
 
                                     let apartmentString = hexToString(partsArray[1]);
                                     let apartmentAddress = hexToString(partsArray[3]);
-                                    console.log(apartmentString);
+                                    // console.log(apartmentString);
                                     
                                     return (
                                     <Collapsible key={ind}>
@@ -317,7 +318,6 @@ class Landlord extends Component {
 }
 
 function mapStateToProp(state) {
-    console.log(state)
     return ({
         isLogin: state.root.isLogin,
         allUserData: state.root.allUserProfile,
