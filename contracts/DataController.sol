@@ -157,6 +157,13 @@ contract DataController is Repository, DateTime {
         tenantsToApartment[_potentialTenant] = _apartment;
         tenantToOwner[_potentialTenant] = msg.sender;
 
+        for (uint i = 0; i < requestsArr.length; i++) {
+            if (requestsArr[i].id == _request) {
+                delete requestsArr[i];
+                break;
+            }
+        }
+
         delete hireRequests[_request];
         delete apartmentToRequests[_apartment];
         success = true;
