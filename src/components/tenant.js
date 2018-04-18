@@ -96,7 +96,8 @@ class Tenant extends Component {
                 }
             )
         // })
-        .then(() => {
+        .then((result) => {
+            console.log(result.logs[0].event)
             this.getData()
         })
     }

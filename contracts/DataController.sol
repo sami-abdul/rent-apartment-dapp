@@ -99,7 +99,7 @@ contract DataController is Repository, DateTime {
 
         for (uint i = 0; i < requestsArr.length; i++) {
             if (requestsArr[i].to == msg.sender) {
-                ids[i] = requestsArr[i].id;
+                ids[i] = requestfhsArr[i].id;
                 froms[i] = requestsArr[i].from;
                 apartments[i] = requestsArr[i].apartment;
             }
