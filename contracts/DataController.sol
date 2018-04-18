@@ -27,7 +27,8 @@ contract DataController is Repository, DateTime {
     // Event emitted when hire request is received
     event HireRequestApproved(bytes32 requestId, bytes32 apartmentId, address tenant);
     // Event emitted when hire request is received
-    event RentCollected(bytes32 apartment, address tenant, address owner, uint amount);
+    event RentCollected(bytes32 apartment, address tenant, address owner, uint amount, uint todaysDate, uint nextRentDate);
+    event RentCollected2(uint date);
 
 
     /**
@@ -137,10 +138,7 @@ contract DataController is Repository, DateTime {
     function approveHireRequest(bytes32 _request, bytes32 _apartment, address _potentialTenant) public onlyLandlord(_apartment) returns (bool success) {
         require(isRequestSent(_apartment, _potentialTenant));
 
-        var (month, year) = getNextMonthDate(getYear(now), getMonth(now));
-        uint8 day = getDay(now);
-
-        Date memory nextRentDate = Date(year, month, day);
+        Date memory nextRentDate = Date(getYear(now), getMonth(now), getDay(now));
 
         apartments[_apartment].tenant = _potentialTenant;
         apartments[_apartment].nextRentDate = nextRentDate;
@@ -168,32 +166,35 @@ contract DataController is Repository, DateTime {
     // Function used to collect rent
     function collectRent(bytes32 _apartment) returns (bool success) {
         Apartment apartment = apartments[_apartment];
-        uint rentPrice = apartment.rentPrice * (apartment.rentHikeRate / 100 + 1);
+        uint rentPrice = apartment.rentPrice;
         address tenant = apartment.tenant;
-        if (toTimestamp(apartment.nextRentDate.year, apartment.nextRentDate.month, apartment.nextRentDate.day) >= now) {
-            require(balances[tenant] >= rentPrice);
-            require(balances[tenant] - rentPrice < balances[tenant]);
-            require(msg.sender.balance + rentPrice > balances[tenant]);
 
-            balances[tenant] -= rentPrice;
-            msg.sender.transfer(rentPrice);
-
-            var (month, year) = getNextMonthDate(getYear(now), getMonth(now));
-            uint8 day = getDay(now);
-            Date memory nextRentDate = Date(year, month, day);
-
-            apartments[_apartment].nextRentDate = nextRentDate;
-            apartments[_apartment].rentPrice = rentPrice;
-            apartmentsArr[apartments[_apartment].index].nextRentDate = nextRentDate;
-            apartmentsArr[apartments[_apartment].index].rentPrice = rentPrice;
-
-            bytes32 paymentId = sha3(_apartment, msg.sender, tenant);
-            paymentHistory[tenant].push(Payment(paymentId, _apartment, msg.sender, rentPrice, now));
-
-            RentCollected(_apartment, tenant, msg.sender, rentPrice);
+        if (toTimestamp(apartment.nextRentDate.year, apartment.nextRentDate.month, apartment.nextRentDate.day) <= now) {
+//            require(balances[tenant] >= rentPrice);
+            RentCollected2(balances[tenant]);
+//            require(balances[tenant] - rentPrice < balances[tenant]);
+//            require(msg.sender.balance + rentPrice > balances[tenant]);
+//
+//            balances[tenant] -= rentPrice;
+//            msg.sender.transfer(rentPrice);
+//
+//            var (month, year) = getNextMonthDate(getYear(now), getMonth(now));
+//            uint8 day = getDay(now);
+//            Date memory nextRentDate = Date(year, month, day);
+//
+//            apartments[_apartment].nextRentDate = nextRentDate;
+//            apartments[_apartment].rentPrice = apartment.rentPrice * (apartment.rentHikeRate / 100 + 1);
+//            apartmentsArr[apartments[_apartment].index].nextRentDate = nextRentDate;
+//            apartmentsArr[apartments[_apartment].index].rentPrice = apartment.rentPrice * (apartment.rentHikeRate / 100 + 1);
+//
+//            bytes32 paymentId = sha3(_apartment, msg.sender, tenant);
+//            paymentHistory[tenant].push(Payment(paymentId, _apartment, msg.sender, rentPrice, now));
+//
+//            RentCollected(_apartment, tenant, msg.sender, rentPrice, now, toTimestamp(year, month, day));
 
             return true;
         }
+        RentCollected2(0);
         return false;
     }
 

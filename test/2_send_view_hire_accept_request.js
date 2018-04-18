@@ -53,7 +53,6 @@ contract('Data Controller', function (accounts) {
             instance = i;
             return instance.getApartment(apartmentId, { from: accounts[1] });
         }).then(function (txResult) {
-            console.log(txResult)
             assert.equal(txResult[3], accounts[1], "Apartment not rented");
         })
     });
