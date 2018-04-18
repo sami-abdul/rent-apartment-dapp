@@ -220,7 +220,7 @@ class Landlord extends Component {
             this.setState({
                 requests: arr
             })
-            // console.log(this.state.data)
+             console.log(this.state.requests)
         })
     }
 

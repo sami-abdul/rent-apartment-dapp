@@ -77,6 +77,7 @@ class Tenant extends Component {
              console.log(this.refs.search.state.value);
              console.log(typeof this.refs.search.state.value);
             this.getData(this.refs.search.state.value);
+            this.getApartment(this.refs.search.state.value);
         }
     }
 
@@ -109,7 +110,7 @@ class Tenant extends Component {
     }
 
     getData(apartmentId) {
-        this.getApartment(apartmentId)
+        //this.getApartment(apartmentId)
         this.getPaymentHistory(apartmentId)
         this.getBalance()
     }
@@ -135,11 +136,20 @@ class Tenant extends Component {
             console.log(this.state.data);
         })
     }
+    hire(AppartmentID,OwnerID){
+console.log(AppartmentID,OwnerID);
+let hireData={
+    apartment:AppartmentID,
+    owner:OwnerID
+}
+this.hireApartment(hireData);
+    }
 
     render() {
         return (
             <div>
                  <Button style={balancesStyle}  className="btn waves-effect waves-light" s={12} >Balance: {this.state.balance} ETH</Button>
+                 0x055007910605ae214de6e12c806849d1e7aabd7ae019b8dced00a7226286b554
                 <Tabs className='tab-demo z-depth-1'>
                     <Tab title="Appartments" className="active">
                     <form onSubmit = {this.submit.bind(this)}>
@@ -172,7 +182,7 @@ class Tenant extends Component {
                                     <br/>
                                     Apartment Hike Rate: {this.state.data[6].c[0]}
                                     <br/>
-                                    
+                                    <Button   className="btn waves-effect waves-light" onClick = {()=>{this.hire(this.state.data[0],this.state.data[2]).bind(this)}} >Hire Apartment</Button>                    
                                     
                                     </div>
                                     //  this.state.data.map((apartment, ind) => {
