@@ -114,13 +114,10 @@ class Tenant extends Component {
     }
 
     getBalance() {
-        deployedInstance.getBalance.call({ from: this.props.user.wallet })
-        .then((result) => {
-            this.setState({
-                balance: result.toNumber()
-            })
-            console.log(this.state.balance)
+        this.setState({
+            balance: this.state.web3.fromWei(this.state.web3.eth.getBalance(this.props.user.wallet))
         })
+        console.log(this.state.balance)
     }
 
     getData(apartmentId) {

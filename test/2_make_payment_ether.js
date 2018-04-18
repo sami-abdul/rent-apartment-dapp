@@ -1,7 +1,7 @@
 var dataController = artifacts.require("./DataController.sol");
 
-contract('Exchange Basic Tests', function (accounts) {
-    it("should be possible to Deposit Ether", function () {
+contract('Data Controller', function (accounts) {
+    it("should be possible to make payment for apartment rent", function () {
         var instance;
         var balanceBeforeTransaction = web3.eth.getBalance(accounts[0]);
         var balanceAfterDeposit;

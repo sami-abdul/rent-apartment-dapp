@@ -14,6 +14,14 @@ contract DataController is Repository, DateTime {
         owner = msg.sender;
     }
 
+
+    // Events emitted during transactions
+
+    // Event emitted when apartment is added
+    event ApartmentAdded(bytes32 apartmentId);
+    // Event emitted when apartment is edited
+    event ApartmentEdited(bytes32 apartmentId, bytes32 apartmentName);
+
     // Public functions open for anyone
 
     // Function used to create a new user
@@ -121,6 +129,7 @@ contract DataController is Repository, DateTime {
         Apartment memory apartment = Apartment(id, 123456, apartmentsArr.length, _name, msg.sender, address(0), _location, _rentPrice * 18, _rentHikeRate, Date(0, 0, 0));
         apartments[id] = apartment;
         apartmentsArr.push(apartment);
+        ApartmentAdded(id);
         return id;
     }
 
@@ -135,6 +144,8 @@ contract DataController is Repository, DateTime {
         apartmentsArr[apartments[_id].index].location = _location;
         apartmentsArr[apartments[_id].index].rentPrice = _rentPrice;
         apartmentsArr[apartments[_id].index].rentHikeRate = _rentHikeRate;
+
+        ApartmentEdited(apartments[_id].id, apartments[_id].name);
     }
 
     // Function used to approve hire request by tenant
