@@ -46,7 +46,7 @@ contract DataController is Repository, DateTime {
         return (apartment.id, apartment.name, apartment.owner, apartment.tenant, apartment.location, apartment.rentPrice, apartment.rentHikeRate);
     }
 
-    // Function used to get all apartments available
+    // Function used to get all apartments of a landlord
     function getApartments() public view returns(bytes32[], bytes32[], address[], bytes32[], uint[], uint16[]) {
         bytes32[] memory ids = new bytes32[](apartmentsArr.length);
         bytes32[] memory names = new bytes32[](apartmentsArr.length);
@@ -236,7 +236,16 @@ contract DataController is Repository, DateTime {
         return (apartment.id, apartment.name, apartment.owner, apartment.tenant, apartment.location, apartment.rentPrice, apartment.rentHikeRate);
     }
 
-    // Public function allowed for potential tenants only
+    // Function used to get the current apartment occupied by tenant
+    function getCurrentApartment() public onlyTenant view returns(bytes32, bytes32, address, address, bytes32, uint, uint16) {
+        bytes32 apartmentId = tenantsToApartment[msg.sender];
+        Apartment apartment = apartments[apartmentId];
+        return (apartment.id, apartment.name, apartment.owner, apartment.tenant, apartment.location, apartment.rentPrice, apartment.rentHikeRate);
+    }
+
+    /**
+     * Public function allowed for potential tenants only
+     */
 
     // Function used to send hire request to landlord
     function hireApartment(bytes32 _apartment, address _to) public onlyPotentialTenant returns(bool success) {
@@ -265,7 +274,7 @@ contract DataController is Repository, DateTime {
     }
 
     /**
-     * Modifiers
+     * Access Modifiers
      */
 
     modifier onlyLandlord(bytes32 _apartment) {

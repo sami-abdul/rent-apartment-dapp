@@ -36,7 +36,8 @@ class Tenant extends Component {
             apatmentData: ["Apartment ID", "Apartment Name", "Apartment Owner", "Apartment Tenant", "Apartment Location", "Apartment Rent Price", "Apartment Hike Rate"],
             index: 0,
             balance: 0,
-            eventResult:null
+            currentApartment: null,
+            eventResult: null
         }
     }
 
@@ -77,7 +78,7 @@ class Tenant extends Component {
             }
             console.log(this.refs.search.state.value);
             console.log(typeof this.refs.search.state.value);
-            this.getData(this.refs.search.state.value);
+            this.getData();
             this.getApartment(this.refs.search.state.value);
         }
     }
@@ -108,6 +109,26 @@ class Tenant extends Component {
         })
     }
 
+    makePayment() {
+        let gasEstimate
+        deployedInstance.makePayment.estimateGas()
+        .then((result) => {
+            gasEstimate = result * 2
+            console.log("Estimated gas to make payment: " + gasEstimate)
+        })
+        .then((result) => {
+            deployedInstance.makePayment({
+                from: this.props.user.wallet,
+                value: this.state.currentApartment.rentPrice,
+                gas: 1000000,
+                gasPrice: this.state.web3.eth.gasPrice
+            })
+        })
+        .then((result) => {
+            this.getData()
+        })
+    }
+
     getBalance() {
         let bal = this.state.web3.fromWei(this.state.web3.eth.getBalance(this.props.user.wallet))
         this.setState({
@@ -116,10 +137,11 @@ class Tenant extends Component {
         console.log("Bal: " + this.state.balance)
     }
 
-    getData(apartmentId) {
+    getData() {
         //this.getApartment(apartmentId)
         // this.getPaymentHistory(apartmentId)
         this.getBalance()
+        this.getCurrentApartment()
     }
 
     getApartment(apartmentId) {
@@ -129,7 +151,16 @@ class Tenant extends Component {
                     data: result
                 })
                 console.log(result);
-                console.log(this.state.data);
+            })
+    }
+
+    getCurrentApartment() {
+        deployedInstance.getCurrentApartment.call({ from: this.props.user.wallet })
+            .then((result) => {
+                this.setState({
+                    currentApartment: result
+                })
+                console.log(result);
             })
     }
 
