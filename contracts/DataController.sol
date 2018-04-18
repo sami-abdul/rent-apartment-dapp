@@ -97,7 +97,7 @@ contract DataController is Repository, DateTime {
         address[] memory froms = new address[](requestsArr.length);
 
         for (uint i = 0; i < requestsArr.length; i++) {
-            if (requestsArr[i].to ==  msg.sender) {
+            if (requestsArr[i].to == msg.sender) {
                 ids[i] = requestsArr[i].id;
                 froms[i] = requestsArr[i].from;
             }
@@ -132,8 +132,8 @@ contract DataController is Repository, DateTime {
     }
 
     // Function used to approve hire request by tenant
-    function approveHireRequest(bytes32 _request, bytes32 _apartment, address _potentialTenant) public returns (bool success) {
-//        require(isRequestSent(_apartment, _potentialTenant));
+    function approveHireRequest(bytes32 _request, bytes32 _apartment, address _potentialTenant) public onlyLandlord(_apartment) returns (bool success) {
+        require(isRequestSent(_apartment, _potentialTenant));
 
         var (month, year) = getNextMonthDate(getYear(now), getMonth(now));
         uint8 day = getDay(now);
