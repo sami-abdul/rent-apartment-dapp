@@ -83,6 +83,7 @@ class Tenant extends Component {
 
     hireApartment(data) {
         let gasEstimate
+<<<<<<< HEAD
         deployedInstance.hireApartment.estimateGas(data.apartment, data.owner)
             .then((result) => {
                 gasEstimate = result * 2
@@ -99,6 +100,25 @@ class Tenant extends Component {
             .then(() => {
                 this.getData()
             })
+=======
+        // deployedInstance.hireApartment.estimateGas(data.apartment, data.owner)
+        // .then((result) => {
+        //     gasEstimate = result * 2
+        //     console.log("Estimated gas to edit an apartment: " + gasEstimate)
+        // })
+        // .then((result) => {
+            deployedInstance.hireApartment(data.apartment, data.owner, {
+                  from: this.props.user.wallet,
+                  gas: 1000000,
+                  gasPrice: this.state.web3.eth.gasPrice
+                }
+            )
+        // })
+        .then((result) => {
+            console.log(result.logs[0].event)
+            this.getData()
+        })
+>>>>>>> 36d3f85571a854d927bba1ff5c8fa5195a3044bb
     }
 
     getBalance() {
@@ -111,7 +131,7 @@ class Tenant extends Component {
 
     getData(apartmentId) {
         //this.getApartment(apartmentId)
-        this.getPaymentHistory(apartmentId)
+        // this.getPaymentHistory(apartmentId)
         this.getBalance()
     }
 
@@ -150,7 +170,7 @@ class Tenant extends Component {
         return (
             <div>
                 <Button style={balancesStyle} className="btn waves-effect waves-light" s={12} >Balance: {this.state.balance} ETH</Button>
-                0x055007910605ae214de6e12c806849d1e7aabd7ae019b8dced00a7226286b554
+               
                 <Tabs className='tab-demo z-depth-1'>
                     <Tab title="Appartments" className="active">
                         <form onSubmit={this.submit.bind(this)}>

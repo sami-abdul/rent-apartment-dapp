@@ -92,18 +92,20 @@ contract DataController is Repository, DateTime {
      */
 
     // Function used to get all requests for a landlord
-    function getAllHireRequests() public view returns(bytes32[], address[]) {
+    function getAllHireRequests() public view returns(bytes32[], address[], bytes32[]) {
         bytes32[] memory ids = new bytes32[](requestsArr.length);
         address[] memory froms = new address[](requestsArr.length);
+        address[] memory apartments = new address[](requestsArr.length);
 
         for (uint i = 0; i < requestsArr.length; i++) {
             if (requestsArr[i].to == msg.sender) {
-                ids[i] = requestsArr[i].id;
+                ids[i] = requestfhsArr[i].id;
                 froms[i] = requestsArr[i].from;
+                apartments[i] = requestsArr[i].apartment;
             }
         }
 
-        return (ids, froms);
+        return (ids, froms, apartments);
     }
 
     // Function used to add apartment by the landlord
