@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Input, Icon, Row, Tab, Tabs, Button, CollapsibleItem, Collapsible } from 'react-materialize'
 import { setUserProfileToFirebase } from '../store/actions/action';
+import img from "../images/building.png"
 
 const contract = require('truffle-contract')
 
@@ -13,6 +14,12 @@ var deployedInstance
 var mAccounts
 
 const factor = 100000000000000;
+
+const imgStyle = {
+
+    float: "left",
+    height: "170px"
+};
 
 const divStyle = {
     marginTop: "20px"
@@ -121,11 +128,11 @@ class Tenant extends Component {
             // .then((result) => {
                 deployedInstance.makePayment({
                     from: this.props.user.wallet,
-                    value: this.state.web3.toWei(this.state.currentApartment.rentPrice * factor),
+                    value: this.state.web3.toWei(this.state.currentApartment[5].c[0] / 10000),
                     gas: 1000000,
                     gasPrice: this.state.web3.eth.gasPrice
                 })
-            // })
+            // // })
             .then((result) => {
                 console.log(result)
             })
@@ -196,7 +203,7 @@ class Tenant extends Component {
                             <br />
                             <Input label="Search Appartment" ref="search" s={8} />
                             <Button style={divStyle} className="btn waves-effect waves-light" type="submit" name="action" title='Search' >Search</Button>
-
+                            <br/>
                         </form>
                         <div>
 
@@ -204,8 +211,10 @@ class Tenant extends Component {
 
                                 (this.state.data) ? (
                                     //apatmentData :["Apartment ID","Apartment Name","Apartment Owner","Apartment Tenant", "Apartment Location","Apartment Rent Price","Apartment Hike Rate"],
-                                    <div>
+                                    <p>
+                                        
                                         <br />
+                                        <img src={img} alt="Buildings" style={imgStyle} />
                                         ID: {this.state.data[0]}
                                         <br />
                                         Name: {this.state.data[1]}                                  
@@ -226,7 +235,7 @@ class Tenant extends Component {
                                         }
 
 
-                                    </div>
+                                    </p>
 
 
                                 ) : (
@@ -251,19 +260,20 @@ class Tenant extends Component {
                                     //apatmentData :["Apartment ID","Apartment Name","Apartment Owner","Apartment Tenant", "Apartment Location","Apartment Rent Price","Apartment Hike Rate"],
                                     <div>
                                         <br />
-                                        Apartment Name: {this.state.currentApartment[1]}
+                                        <img src={img} alt="Buildings" style={imgStyle} />
+                                        Name: {this.state.currentApartment[1]}
                                         <br />
-                                        Apartment ID: {this.state.currentApartment[0]}
+                                        ID: {this.state.currentApartment[0]}
                                         <br />
-                                        Apartment Owner: {this.state.currentApartment[2]}
+                                        Owner: {this.state.currentApartment[2]}
                                         <br />
-                                        Apartment Tenant: {this.state.currentApartment[3]}
+                                        Tenant Address: {this.state.currentApartment[3]}
                                         <br />
-                                        Apartment Location: {this.state.currentApartment[4]}
+                                        Location: {this.state.currentApartment[4]}
                                         <br />
-                                        Apartment Rent Price: {this.state.currentApartment[5].c[0]}
+                                        Rent: {this.state.currentApartment[5].c[0] / 10000} ETH
                                         <br />
-                                        Apartment Hike Rate: {this.state.currentApartment[6].c[0]}
+                                        Rent Hike Rate: {this.state.currentApartment[6].c[0]}%
                                         <br />
 
                                         <Button className="btn waves-effect waves-light" onClick={() => { this.makePayment() }} >Pay Rent</Button>
@@ -310,7 +320,6 @@ function mapStateToProp(state) {
         allCompanyData: state.root.allCompanyProfile,
     })
 }
-
 
 function mapDispatchToProp(dispatch) {
     return ({
