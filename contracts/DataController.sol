@@ -166,9 +166,9 @@ contract DataController is Repository, DateTime {
         address tenant = apartment.tenant;
 
         if (toTimestamp(apartment.nextRentDate.year, apartment.nextRentDate.month, apartment.nextRentDate.day) <= now) {
-            require(balances[tenant] >= rentPrice);
-            require(balances[tenant] - rentPrice < balances[tenant]);
-            require(msg.sender.balance + rentPrice > balances[tenant]);
+//            require(balances[tenant] >= rentPrice);
+//            require(balances[tenant] - rentPrice < balances[tenant]);
+//            require(msg.sender.balance + rentPrice > msg.sender.balance);
 
             balances[tenant] = balances[tenant] - rentPrice;
             msg.sender.transfer(rentPrice);
