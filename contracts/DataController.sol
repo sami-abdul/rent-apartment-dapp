@@ -192,27 +192,27 @@ contract DataController is Repository, DateTime {
     }
 
     // Function used to get rent history of an apartments
-    function getRentHistory() public view returns(address[], uint[], uint[]) {
-        address[] memory tos = new address[](payments.length);
-        uint[] memory amounts = new uint[](payments.length);
-        uint[] memory dates = new uint[](payments.length);
-
-        for (uint i = 0; i < apartmentsArr.length; i++) {
-            if (apartmentsArr[i].owner == msg.sender) {
-                Payment[] storage payments = paymentHistory[msg.sender];
-
-                for (uint i = 0; i < payments.length; i++) {
-                    if (payments[i].apartment == _apartment) {
-                        tos[i] = payments[i].to;
-                        amounts[i] = payments[i].amount;
-                        dates[i] = payments[i].date;
-                    }
-                }
-            }
-        }
-
-        return(tos, amounts, dates);
-    }
+//    function getRentHistory() public view returns(address[], uint[], uint[]) {
+//        address[] memory tos = new address[](payments.length);
+//        uint[] memory amounts = new uint[](payments.length);
+//        uint[] memory dates = new uint[](payments.length);
+//
+//        for (uint i = 0; i < apartmentsArr.length; i++) {
+//            if (apartmentsArr[i].owner == msg.sender) {
+//                Payment[] storage payments = paymentHistory[msg.sender];
+//
+//                for (uint j = 0; i < payments.length; i++) {
+//                    if (payments[i].apartment == _apartment) {
+//                        tos[i] = payments[i].to;
+//                        amounts[i] = payments[i].amount;
+//                        dates[i] = payments[i].date;
+//                    }
+//                }
+//            }
+//        }
+//
+//        return(tos, amounts, dates);
+//    }
 
 
     /**
