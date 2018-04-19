@@ -12,11 +12,6 @@ import getWeb3 from '../utils/getWeb3'
 var dataControllerContract
 var deployedInstance
 var mAccounts
-const imgStyle = {
-
-    float: "left",
-    height: "170px"
-};
 const divStyle = {
     marginTop: "20px"
 };
