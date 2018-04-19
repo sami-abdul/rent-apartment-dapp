@@ -119,13 +119,13 @@ class Tenant extends Component {
             // .then((result) => {
                 deployedInstance.makePayment({
                     from: this.props.user.wallet,
-                    value: this.state.currentApartment.rentPrice,
+                    value: this.state.web3.toWei(this.state.currentApartment.rentPrice),
                     gas: 1000000,
                     gasPrice: this.state.web3.eth.gasPrice
                 })
             // })
             .then((result) => {
-                this.getData()
+                console.log(result)
             })
     }
 
@@ -206,19 +206,19 @@ class Tenant extends Component {
                                     //apatmentData :["Apartment ID","Apartment Name","Apartment Owner","Apartment Tenant", "Apartment Location","Apartment Rent Price","Apartment Hike Rate"],
                                     <div>
                                         <br />
-                                        Apartment Name: {this.state.data[1]}
+                                        ID: {this.state.data[0]}
                                         <br />
-                                        Apartment ID: {this.state.data[0]}
+                                        Name: {this.state.data[1]}                                  
                                         <br />
-                                        Apartment Owner: {this.state.data[2]}
+                                        Owner: {this.state.data[2]}
                                         <br />
-                                        Apartment Tenant: {this.state.data[3]}
+                                        Tenant: {this.state.data[3]}
                                         <br />
-                                        Apartment Location: {this.state.data[4]}
+                                        Location: {this.state.data[4]}
                                         <br />
-                                        Apartment Rent Price: {this.state.data[5].c[0]}
+                                        Rent: {this.state.web3.fromWei(this.state.data[5].c[0], 'ether')} ETH
                                         <br />
-                                        Apartment Hike Rate: {this.state.data[6].c[0]}
+                                        Hike Rate: {this.state.data[6].c[0]}
                                         <br />
                                         {(this.state.eventResult == "HireRequestReceived") ?
                                             (null) :

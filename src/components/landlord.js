@@ -131,7 +131,7 @@ class Landlord extends Component {
         this.setState({
             balance: bal.toNumber()
         })
-         console.log("Bal: " + this.state.balance)
+        console.log("Bal: " + this.state.balance)
     }
 
     addApartment(data) {
@@ -146,10 +146,10 @@ class Landlord extends Component {
                     from: this.props.user.wallet,
                     gas: gasEstimate,
                     gasPrice: this.state.web3.eth.gasPrice
-                }
-                )
+                })
             })
-            .then(() => {
+            .then((result) => {
+                console.log("TX: " + result)
                 this.getData()
             })
     }
@@ -228,24 +228,24 @@ class Landlord extends Component {
         //         // console.log("Estimated gas to approve hire request: " + gasEstimate)
         //     })
         //     .then((result) => {
-                deployedInstance.approveHireRequest(data.requestID, data.apartmentID, data.tenantID, {
-                    from: this.props.user.wallet,
-                    gas: 1000000,
-                    gasPrice: this.state.web3.eth.gasPrice
-                }
-                )
+        deployedInstance.approveHireRequest(data.requestID, data.apartmentID, data.tenantID, {
+            from: this.props.user.wallet,
+            gas: 1000000,
+            gasPrice: this.state.web3.eth.gasPrice
+        }
+        )
             // })
             .then(() => {
                 this.getData()
             })
     }
 
-    acceptRequest(uniqueKeys,apartmetnID,tenantID){
-        console.log(uniqueKeys,apartmetnID,tenantID);
-        let acceptRequestData={
-            requestID:uniqueKeys,
-            apartmentID:apartmetnID,
-            tenantID:tenantID
+    acceptRequest(uniqueKeys, apartmetnID, tenantID) {
+        console.log(uniqueKeys, apartmetnID, tenantID);
+        let acceptRequestData = {
+            requestID: uniqueKeys,
+            apartmentID: apartmetnID,
+            tenantID: tenantID
         }
         this.approveHireRequest(acceptRequestData);
     }
@@ -270,30 +270,26 @@ class Landlord extends Component {
                                         return string;
                                     }
 
-                                    // console.log(apartment, "apartment");
-                                    // console.log(ind, "ind");
                                     var partsArray = apartment.split(',');
-                                    // console.log(partsArray);
 
                                     let apartmentString = hexToString(partsArray[1]);
                                     let apartmentAddress = hexToString(partsArray[3]);
-                                    // console.log(apartmentString);
 
                                     return (
                                         <Collapsible key={ind}>
                                             <CollapsibleItem header={apartmentString}>
                                                 <p>
                                                     <img src={img} alt="Buildings" style={imgStyle} />
-                                                    <span>Apartment Name: </span> <span>{apartmentString}</span>
-                                                    <br />
                                                     <span>ID: </span> <span>{partsArray[0]}</span>
                                                     <br />
-
-                                                    <span>Tenant Address: </span> <span>{partsArray[2]}</span>
+                                                    <span>Name: </span> <span>{apartmentString}</span>
+                                                    <br />
+                                                    <span>Address: </span> <span>{partsArray[2]}</span>
                                                     <br />
                                                     <span>Location: </span> <span>{apartmentAddress}</span>
                                                     <br />
-                                                    <span>Rent Price: </span> <span>{this.state.web3.fromWei(partsArray[4])}</span>
+                                                    <span>Rent: </span> <span>{this.state.web3.fromWei(partsArray[4], 'ether')}</span>
+                                                    {/* <span>Rent: </span> <span>{partsArray[4]}</span> */}
                                                     <br />
                                                     <span>Rent Hike Rate: </span> <span>{partsArray[5]}</span>
                                                     <br />
@@ -342,7 +338,7 @@ class Landlord extends Component {
                                                 <br />
                                                 <span>Apartment ID: </span> <span>{partsRequestArray[2]}</span>
                                                 <br />
-                                              <Button className="btn waves-effect waves-light" type="submit" name="action" title='acceptRequest' style={{ display: 'block' }} onClick={() => { this.acceptRequest(partsRequestArray[0],partsRequestArray[2],partsRequestArray[1]).bind(this) }}>Accept Request</Button>
+                                                <Button className="btn waves-effect waves-light" type="submit" name="action" title='acceptRequest' style={{ display: 'block' }} onClick={() => { this.acceptRequest(partsRequestArray[0], partsRequestArray[2], partsRequestArray[1]).bind(this) }}>Accept Request</Button>
 
 
 
