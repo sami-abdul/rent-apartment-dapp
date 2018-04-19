@@ -144,8 +144,11 @@ class Tenant extends Component {
                 this.setState({
                     currentApartment: result
                 })
+                console.log(this.state.currentApartment);
+                console.log(result);
                 this.getPaymentHistory(this.state.currentApartment[0])
             })
+            console.log(this.state.currentApartment);
     }
 
     getPaymentHistory(apartmentId) {
@@ -241,7 +244,7 @@ class Tenant extends Component {
 
                     </Tab>
 
-                    <Tab title="Current Apartment" className="active">
+                    <Tab title="Current Apartment" >
                         <div>
                             {
                                 (this.state.currentApartment) ? (
@@ -270,19 +273,6 @@ class Tenant extends Component {
 {/* // {this.getPaymentHistory(this.state.currentApartment[0])} */}
 
                                     </div>
-<<<<<<< HEAD
-                                    //  this.state.data.map((apartment, ind) => {
-                                    //  console.log(apartment);
-                                    //      <p key={ind}>
-
-                                    // <div>{apartment}</div>
-                                    // <br/>      
-
-                                    // </p>
-                                    //  })
-                                    
-=======
->>>>>>> 5e4ad8d155f7f90abb61cd7def383464bec9ab9f
 
                                 ) : (
                                         null
@@ -329,7 +319,7 @@ class Tenant extends Component {
                             </div>
 
                             ):(null)}
-                            }
+                            
                             </div>
                     </Tab>
 

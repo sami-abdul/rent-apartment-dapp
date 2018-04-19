@@ -282,7 +282,7 @@ class Landlord extends Component {
                 <Button style={balancesStyle} className="btn waves-effect waves-light" >Balance: {this.state.balance} ETH</Button>
 
                 <Tabs className='tab-demo z-depth-1'>
-                    <Tab title="Apartments" className="active">
+                    <Tab title="Apartments" class="active" href="#test3">
                         <div>
                             {
 
