@@ -132,16 +132,40 @@ class Landlord extends Component {
                 this.setState({
                     data: arr
                 })
-                console.log(this.state.data)
             })
     }
+
+    getRequests() {
+            deployedInstance.getAllHireRequests.call({ from: this.props.user.wallet })
+                .then((result) => {
+                    //console.log("Result: " + result)
+                    let count = 0
+                    let nestedCount = 0
+                    let arr = []
+                    result.map((items) => {
+                        count++
+                        items.map((item) => {
+                            if (count == 1) {
+                                arr[nestedCount] = item
+                            } else {
+                                arr[nestedCount] += "," + item
+                            }
+                            nestedCount++
+                        })
+                        nestedCount = 0
+                    })
+
+                    this.setState({
+                        requests: arr
+                    })
+                })
+        }
 
     getBalance() {
         let bal = this.state.web3.fromWei(this.state.web3.eth.getBalance(this.props.user.wallet))
         this.setState({
             balance: bal.toNumber()
         })
-        console.log("Bal: " + this.state.balance)
     }
 
     addApartment(data) {
@@ -199,33 +223,6 @@ class Landlord extends Component {
             })
             .then(() => {
                 this.getData()
-            })
-    }
-
-    getRequests() {
-        deployedInstance.getAllHireRequests.call({ from: this.props.user.wallet })
-            .then((result) => {
-                //console.log("Result: " + result)
-                let count = 0
-                let nestedCount = 0
-                let arr = []
-                result.map((items) => {
-                    count++
-                    items.map((item) => {
-                        if (count == 1) {
-                            arr[nestedCount] = item
-                        } else {
-                            arr[nestedCount] += "," + item
-                        }
-                        nestedCount++
-                    })
-                    nestedCount = 0
-                })
-
-                this.setState({
-                    requests: arr
-                })
-                console.log(this.state.requests)
             })
     }
 

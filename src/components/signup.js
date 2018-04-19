@@ -131,7 +131,7 @@ class Signup extends Component {
                             </Input>
                         </Row>
                         
-                        <Button className="btn waves-effect waves-light" type="submit" name="action" title='signup' style={{ display: 'block' }}>Signup</Button>
+                        <Button className="btn waves-effect waves-light" type="submit" name="action" title='Sign Up' style={{ display: 'block' }}>Signup</Button>
                         <Link to='/'>Already have an account?</Link>
                         <div><p style={{ color: "red" }}>{this.props.errorMsg}</p></div>
                     </form>

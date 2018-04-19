@@ -81,66 +81,42 @@ class Tenant extends Component {
             alert("TextBox is Empty");
         }
         else {
-            let appartment = {
-                appart: this.refs.search.state.value,
-            }
-            console.log(this.refs.search.state.value);
-            console.log(typeof this.refs.search.state.value);
-            this.getData();
             this.getApartment(this.refs.search.state.value);
         }
     }
 
     hireApartment(data) {
-        let gasEstimate
-        // deployedInstance.hireApartment.estimateGas(data.apartment, data.owner)
-        // .then((result) => {
-        //     gasEstimate = result * 2
-        //     console.log("Estimated gas to edit an apartment: " + gasEstimate)
-        // })
-        // .then((result) => {
         deployedInstance.hireApartment(data.apartment, data.owner, {
             from: this.props.user.wallet,
             gas: 1000000,
             gasPrice: this.state.web3.eth.gasPrice
-        }
-        )
-            // })
-            .then((result) => {
-                console.log(result.logs[0].event)
-                console.log("before Result state", this.state.eventResult);
-                this.setState({
-                    eventResult: result.logs[0].event,
-                })
-                console.log("after Result state", this.state.eventResult);
-                this.getData()
+        })
+        .then((result) => {
+            console.log(result.logs[0].event)
+            console.log("before Result state", this.state.eventResult);
+            this.setState({
+                eventResult: result.logs[0].event,
             })
+            console.log("after Result state", this.state.eventResult);
+            this.getData()
+        })
     }
 
     makePayment() {
-        // let gasEstimate
-        // deployedInstance.makePayment.estimateGas()
-        //     .then((result) => {
-        //         gasEstimate = result * 2
-        //         console.log("Estimated gas to make payment: " + gasEstimate)
-        //     })
-            // .then((result) => {
-                deployedInstance.makePayment({
-                    from: this.props.user.wallet,
-                    value: this.state.web3.toWei(this.state.currentApartment[5].c[0] / 10000),
-                    gas: 1000000,
-                    gasPrice: this.state.web3.eth.gasPrice
-                })
-            // // })
-            .then((result) => {
-                this.getData()
-            })
+        deployedInstance.makePayment({
+            from: this.props.user.wallet,
+            value: this.state.web3.toWei(this.state.currentApartment[5].c[0] / 10000),
+            gas: 1000000,
+            gasPrice: this.state.web3.eth.gasPrice
+        })
+        .then((result) => {
+            this.getData()
+        })
     }
 
     getData() {
         this.getBalance()
         this.getCurrentApartment()
-       // this.getPaymentHistory(this.state.currentApartment[0])
     }
 
     getBalance() {
@@ -148,17 +124,18 @@ class Tenant extends Component {
         this.setState({
             balance: bal.toNumber()
         })
-        console.log("Bal: " + this.state.balance)
     }
 
     getApartment(apartmentId) {
-        deployedInstance.getApartment.call(apartmentId, { from: this.props.user.wallet })
-            .then((result) => {
-                this.setState({
-                    data: result
+//        if (apartmentId !== undefined) {
+            deployedInstance.getApartment.call(apartmentId, { from: this.props.user.wallet })
+                .then((result) => {
+                    this.setState({
+                        data: result
+                    })
+                    console.log(result);
                 })
-                console.log(result);
-            })
+//        }
     }
 
     getCurrentApartment() {
@@ -167,23 +144,35 @@ class Tenant extends Component {
                 this.setState({
                     currentApartment: result
                 })
-                console.log(result);
+                this.getPaymentHistory(this.state.currentApartment[0])
             })
-    }
-
-    getPaymentHistoryHandler(){
-
     }
 
     getPaymentHistory(apartmentId) {
-        deployedInstance.getPaymentHistory.call(apartmentId, { from: this.props.user.wallet })
-            .then((result) => {
-                this.setState({
-                    paymentHistory: result
+        if (apartmentId !== undefined) {
+            deployedInstance.getPaymentHistory.call(apartmentId, { from: this.props.user.wallet })
+                .then((result) => {
+                    let count = 0
+                    let nestedCount = 0
+                    let arr = []
+                    result.map((items) => {
+                        count++
+                        items.map((item) => {
+                            if (count == 1) {
+                                arr[nestedCount] = item
+                            } else {
+                                arr[nestedCount] += "," + item
+                            }
+                            nestedCount++
+                        })
+                        nestedCount = 0
+                    })
+                    this.setState({
+                        paymentHistory: result
+                    })
+                    console.log("Payment: " + this.state.paymentHistory);
                 })
-                console.log(result);
-                console.log(this.state.paymentHistory);
-            })
+        }
     }
 
     hire(AppartmentID, OwnerID) {
@@ -252,14 +241,9 @@ class Tenant extends Component {
 
                     </Tab>
 
-
-
-
                     <Tab title="Current Apartment" className="active">
                         <div>
-
                             {
-
                                 (this.state.currentApartment) ? (
                                     //apatmentData :["Apartment ID","Apartment Name","Apartment Owner","Apartment Tenant", "Apartment Location","Apartment Rent Price","Apartment Hike Rate"],
                                     <div>
@@ -286,6 +270,7 @@ class Tenant extends Component {
 {/* // {this.getPaymentHistory(this.state.currentApartment[0])} */}
 
                                     </div>
+<<<<<<< HEAD
                                     //  this.state.data.map((apartment, ind) => {
                                     //  console.log(apartment);
                                     //      <p key={ind}>
@@ -296,6 +281,8 @@ class Tenant extends Component {
                                     // </p>
                                     //  })
                                     
+=======
+>>>>>>> 5e4ad8d155f7f90abb61cd7def383464bec9ab9f
 
                                 ) : (
                                         null
@@ -313,30 +300,26 @@ class Tenant extends Component {
                             
 
                             
-                            {/* {(this.state.currentApartment)?(
+                            {
+                             (this.state.currentApartment)?(
                                 <div>
                                 {
-    
                                     this.state.currentApartment.map((apartment, ind) => {
-                                        
-    
+
                                         var partsArrayHistory = apartment.split(',');
-    
-                                        
-    
+
                                         return (
                                             <Collapsible key={ind}  >
                                                 <CollapsibleItem header={partsArrayHistory[2]} >
                                                     <p>
-                                                        
+
                                                         <span>To: </span> <span>{partsArrayHistory[0]}</span>
                                                         <br />
                                                         <span>Amount: </span> <span>{partsArrayHistory[1]}</span>
                                                         <br />
                                                         <span>Date: </span> <span>{partsArrayHistory[2]}</span>
                                                         <br />
-                                                        
-                                                        
+
                                                     </p>
                                                 </CollapsibleItem>
                                             </Collapsible>
@@ -345,7 +328,8 @@ class Tenant extends Component {
                                 }
                             </div>
 
-                            ):(null)} */}
+                            ):(null)}
+                            }
                             </div>
                     </Tab>
 
@@ -358,7 +342,7 @@ class Tenant extends Component {
 }
 
 function mapStateToProp(state) {
-    console.log(state)
+//    console.log(state)
     return ({
         isLogin: state.root.isLogin,
         user: state.root.user,
