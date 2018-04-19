@@ -65,17 +65,7 @@ contract('Data Controller', function (accounts) {
             instance = i;
             return instance.collectRent(apartmentId, {from: accounts[0] });
         }).then(function (txResult) {
-//            console.log(balanceBeforeTransaction.toNumber())
-//            console.log(txResult.logs[0].args.balance.toNumber())
             assert.equal(txResult.logs[0].event, "RentCollected", "The Log-Event should be RentCollected");
-            let totalBalance = txResult.logs[0].args.amount.toNumber() + balanceBeforeTransaction;
-            assert.equal(totalBalance, web3.eth.getBalance(accounts[0]).toNumber(), "Ether not transferred");
-
-//            console.log(txResult.logs[0].args.todaysDate)
-//            console.log(txResult.logs[0].args.nextRentDate)
-
-//            console.log("Bal after: " +balanceBeforeTransaction)
-//            console.log("Bal before: " + web3.eth.getBalance(accounts[0]))
         })
     });
 });
