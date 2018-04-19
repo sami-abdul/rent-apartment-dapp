@@ -136,13 +136,13 @@ class Landlord extends Component {
 
     addApartment(data) {
         let gasEstimate
-        deployedInstance.addApartment.estimateGas(data.name, data.address, data.price, data.Apartmenthike)
+        deployedInstance.addApartment.estimateGas(data.name, data.address, web3.toWei(data.price, 'ether'), data.Apartmenthike)
             .then((result) => {
                 gasEstimate = result * 2
                 console.log("Estimated gas to add an apartment: " + gasEstimate)
             })
             .then((result) => {
-                deployedInstance.addApartment(data.name, data.address, data.price, data.Apartmenthike, {
+                deployedInstance.addApartment(data.name, data.address, web3.toWei(data.price, 'ether'), data.Apartmenthike, {
                     from: this.props.user.wallet,
                     gas: gasEstimate,
                     gasPrice: this.state.web3.eth.gasPrice

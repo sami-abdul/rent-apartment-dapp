@@ -8,7 +8,7 @@ contract('Data Controller', function (accounts) {
         var instance;
         return dataController.deployed().then(function (i) {
             instance = i;
-            return instance.addApartment("name", "location", 1, 5, { from: accounts[0] });
+            return instance.addApartment("name", "location", web3.toWei(5, 'ether'), 5, { from: accounts[0] });
         }).then(function (txResult) {
             assert.equal(txResult.logs[0].event, "ApartmentAdded", "The Log-Event should be ApartmentAdded");
             apartmentId = txResult.logs[0].args.apartmentId
@@ -39,19 +39,19 @@ contract('Data Controller', function (accounts) {
 
     it("", function () {
             var instance;
-            var balanceBeforeTransaction = web3.eth.getBalance(accounts[0]);
+            var balanceBeforeTransaction = web3.eth.getBalance(accounts[1]);
             var balanceAfterDeposit;
             var gasUsed = 0;
 
             return dataController.deployed().then(function (i) {
                 instance = i;
-                return instance.makePayment({from: accounts[0], value: web3.toWei(10, "ether")});
+                return instance.makePayment({from: accounts[1], value: web3.toWei(10, "ether")});
             }).then(function (txHash) {
                 gasUsed += txHash.receipt.cumulativeGasUsed * web3.eth.getTransaction(txHash.receipt.transactionHash).gasPrice.toNumber(); //here we have a problem
-                balanceAfterDeposit = web3.eth.getBalance(accounts[0]);
-                return instance.getBalance.call();
+                balanceAfterDeposit = web3.eth.getBalance(accounts[1]);
+                return instance.getBalance.call({ from: accounts[1] });
             }).then(function (balanceInWei) {
-                assert.equal(balanceInWei.toNumber(), web3.toWei(10, "ether"), "There is ten ether available");
+                assert.equal(balanceInWei.toNumber(), web3.toWei(10, "ether"), "Ether not deposited");
                 assert.isAtLeast(balanceBeforeTransaction.toNumber() - balanceAfterDeposit.toNumber(), web3.toWei(10, "ether"),  "Balances of account are the same");
             })
         });
@@ -65,14 +65,17 @@ contract('Data Controller', function (accounts) {
             instance = i;
             return instance.collectRent(apartmentId, {from: accounts[0] });
         }).then(function (txResult) {
-            console.log(txResult.logs[0])
-//            assert.equal(txResult.logs[0].event, "RentCollected", "The Log-Event should be RentCollected");
+//            console.log(balanceBeforeTransaction.toNumber())
+//            console.log(txResult.logs[0].args.balance.toNumber())
+            assert.equal(txResult.logs[0].event, "RentCollected", "The Log-Event should be RentCollected");
+            let totalBalance = txResult.logs[0].args.amount.toNumber() + balanceBeforeTransaction;
+            assert.equal(totalBalance, web3.eth.getBalance(accounts[0]).toNumber(), "Ether not transferred");
 
 //            console.log(txResult.logs[0].args.todaysDate)
 //            console.log(txResult.logs[0].args.nextRentDate)
 
-            console.log("Bal after: " +balanceBeforeTransaction)
-            console.log("Bal before: " + web3.eth.getBalance(accounts[0]))
+//            console.log("Bal after: " +balanceBeforeTransaction)
+//            console.log("Bal before: " + web3.eth.getBalance(accounts[0]))
         })
     });
 });

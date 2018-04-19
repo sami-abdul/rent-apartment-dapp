@@ -9,11 +9,6 @@ Data controller smart contract
 
 contract DataController is Repository, DateTime {
 
-    // Data controller constructor
-    function DataController() public {
-        owner = msg.sender;
-    }
-
     /**
      * Events emitted during transactions
      */
@@ -27,8 +22,8 @@ contract DataController is Repository, DateTime {
     // Event emitted when hire request is received
     event HireRequestApproved(bytes32 requestId, bytes32 apartmentId, address tenant);
     // Event emitted when hire request is received
-    event RentCollected(bytes32 apartment, address tenant, address owner, uint amount, uint todaysDate, uint nextRentDate);
-    event RentCollected2(uint date);
+    event RentCollected(bytes32 apartment, address tenant, address owner, uint amount);
+    event RentCollected2(uint balance);
 
 
     /**
@@ -112,7 +107,7 @@ contract DataController is Repository, DateTime {
     // Function used to add apartment by the landlord
     function addApartment(bytes32 _name, bytes32 _location, uint _rentPrice, uint8 _rentHikeRate) public returns(bytes32 id) {
         id = sha3(_location);
-        Apartment memory apartment = Apartment(id, 123456, apartmentsArr.length, _name, msg.sender, address(0), _location, _rentPrice * 18, _rentHikeRate, Date(0, 0, 0));
+        Apartment memory apartment = Apartment(id, 123456, apartmentsArr.length, _name, msg.sender, address(0), _location, _rentPrice, _rentHikeRate, Date(0, 0, 0));
         apartments[id] = apartment;
         apartmentsArr.push(apartment);
         ApartmentAdded(id);
@@ -170,31 +165,29 @@ contract DataController is Repository, DateTime {
         address tenant = apartment.tenant;
 
         if (toTimestamp(apartment.nextRentDate.year, apartment.nextRentDate.month, apartment.nextRentDate.day) <= now) {
-//            require(balances[tenant] >= rentPrice);
-            RentCollected2(balances[tenant]);
-//            require(balances[tenant] - rentPrice < balances[tenant]);
-//            require(msg.sender.balance + rentPrice > balances[tenant]);
-//
-//            balances[tenant] -= rentPrice;
-//            msg.sender.transfer(rentPrice);
-//
-//            var (month, year) = getNextMonthDate(getYear(now), getMonth(now));
-//            uint8 day = getDay(now);
-//            Date memory nextRentDate = Date(year, month, day);
-//
-//            apartments[_apartment].nextRentDate = nextRentDate;
-//            apartments[_apartment].rentPrice = apartment.rentPrice * (apartment.rentHikeRate / 100 + 1);
-//            apartmentsArr[apartments[_apartment].index].nextRentDate = nextRentDate;
-//            apartmentsArr[apartments[_apartment].index].rentPrice = apartment.rentPrice * (apartment.rentHikeRate / 100 + 1);
-//
-//            bytes32 paymentId = sha3(_apartment, msg.sender, tenant);
-//            paymentHistory[tenant].push(Payment(paymentId, _apartment, msg.sender, rentPrice, now));
-//
-//            RentCollected(_apartment, tenant, msg.sender, rentPrice, now, toTimestamp(year, month, day));
+            require(balances[tenant] >= rentPrice);
+            require(balances[tenant] - rentPrice < balances[tenant]);
+            require(msg.sender.balance + rentPrice > balances[tenant]);
+
+            balances[tenant] = balances[tenant] - rentPrice;
+            msg.sender.transfer(rentPrice);
+
+            var (month, year) = getNextMonthDate(getYear(now), getMonth(now));
+            uint8 day = getDay(now);
+            Date memory nextRentDate = Date(year, month, day);
+
+            apartments[_apartment].nextRentDate = nextRentDate;
+            apartments[_apartment].rentPrice = apartment.rentPrice * (apartment.rentHikeRate / 100 + 1);
+            apartmentsArr[apartments[_apartment].index].nextRentDate = nextRentDate;
+            apartmentsArr[apartments[_apartment].index].rentPrice = apartment.rentPrice * (apartment.rentHikeRate / 100 + 1);
+
+            bytes32 paymentId = sha3(_apartment, msg.sender, tenant);
+            paymentHistory[tenant].push(Payment(paymentId, _apartment, msg.sender, rentPrice, now));
+
+            RentCollected(_apartment, tenant, msg.sender, rentPrice);
 
             return true;
         }
-        RentCollected2(0);
         return false;
     }
 

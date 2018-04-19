@@ -1,12 +1,10 @@
 pragma solidity ^0.4.2;
 
-import "./Ownable.sol";
-
 /*
 Repository smart contract
 */
 
-contract Repository is Ownable {
+contract Repository {
 
     // Apartment data struct
     struct Apartment {
