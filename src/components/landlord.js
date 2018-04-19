@@ -131,7 +131,7 @@ class Landlord extends Component {
         this.setState({
             balance: bal.toNumber()
         })
-        // console.log("Bal: " + this.state.balance)
+         console.log("Bal: " + this.state.balance)
     }
 
     addApartment(data) {
@@ -221,24 +221,25 @@ class Landlord extends Component {
     }
 
     approveHireRequest(data) {
-        let gasEstimate
-        deployedInstance.approveHireRequest.estimateGas(data.requestID, data.apartmentID, data.tenantID)
-            .then((result) => {
-                gasEstimate = result * 2
-                // console.log("Estimated gas to approve hire request: " + gasEstimate)
-            })
-            .then((result) => {
+        // let gasEstimate
+        // deployedInstance.approveHireRequest.estimateGas(data.requestID, data.apartmentID, data.tenantID)
+        //     .then((result) => {
+        //         gasEstimate = result * 2
+        //         // console.log("Estimated gas to approve hire request: " + gasEstimate)
+        //     })
+        //     .then((result) => {
                 deployedInstance.approveHireRequest(data.requestID, data.apartmentID, data.tenantID, {
                     from: this.props.user.wallet,
-                    gas: gasEstimate,
+                    gas: 1000000,
                     gasPrice: this.state.web3.eth.gasPrice
                 }
                 )
-            })
+            // })
             .then(() => {
                 this.getData()
             })
     }
+
     acceptRequest(uniqueKeys,apartmetnID,tenantID){
         console.log(uniqueKeys,apartmetnID,tenantID);
         let acceptRequestData={
