@@ -40,7 +40,7 @@ class Tenant extends Component {
         this.state = {
             web3: null,
             data: null,
-            paymentHistory: [],
+            paymentHistory: null,
             apatmentData: ["Apartment ID", "Apartment Name", "Apartment Owner", "Apartment Tenant", "Apartment Location", "Apartment Rent Price", "Apartment Hike Rate"],
             index: 0,
             balance: 0,
@@ -140,7 +140,7 @@ class Tenant extends Component {
     getData() {
         this.getBalance()
         this.getCurrentApartment()
-        this.getPaymentHistory(this.state.currentApartment[0])
+       // this.getPaymentHistory(this.state.currentApartment[0])
     }
 
     getBalance() {
@@ -169,6 +169,10 @@ class Tenant extends Component {
                 })
                 console.log(result);
             })
+    }
+
+    getPaymentHistoryHandler(){
+
     }
 
     getPaymentHistory(apartmentId) {
@@ -300,8 +304,14 @@ class Tenant extends Component {
 
                     </Tab>
 
-                    <Tab title="Payment History" >
-                            {(this.state.currentApartment)?(
+                    <Tab title="Payment History"  >
+                            <div>
+                            {/* <Button className="btn waves-effect waves-light" onClick={() => { this.getPaymentHistory(this.state.currentApartment[0]) }}></Button> */}
+                                
+                            
+
+                            
+                            {/* {(this.state.currentApartment)?(
                                 <div>
                                 {
     
@@ -333,7 +343,8 @@ class Tenant extends Component {
                                 }
                             </div>
 
-                            ):(null)}
+                            ):(null)} */}
+                            </div>
                     </Tab>
 
                 </Tabs>
