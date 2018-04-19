@@ -12,6 +12,8 @@ var dataControllerContract
 var deployedInstance
 var mAccounts
 
+const factor = 100000000000000;
+
 const divStyle = {
     marginTop: "20px"
 };
@@ -119,7 +121,7 @@ class Tenant extends Component {
             // .then((result) => {
                 deployedInstance.makePayment({
                     from: this.props.user.wallet,
-                    value: this.state.web3.toWei(this.state.currentApartment.rentPrice),
+                    value: this.state.web3.toWei(this.state.currentApartment.rentPrice * factor),
                     gas: 1000000,
                     gasPrice: this.state.web3.eth.gasPrice
                 })
@@ -129,19 +131,17 @@ class Tenant extends Component {
             })
     }
 
+    getData() {
+        this.getBalance()
+        this.getCurrentApartment()
+    }
+
     getBalance() {
         let bal = this.state.web3.fromWei(this.state.web3.eth.getBalance(this.props.user.wallet))
         this.setState({
             balance: bal.toNumber()
         })
         console.log("Bal: " + this.state.balance)
-    }
-
-    getData() {
-        //this.getApartment(apartmentId)
-        // this.getPaymentHistory(apartmentId)
-        this.getBalance()
-        this.getCurrentApartment()
     }
 
     getApartment(apartmentId) {
@@ -212,13 +212,13 @@ class Tenant extends Component {
                                         <br />
                                         Owner: {this.state.data[2]}
                                         <br />
-                                        Tenant Address: {this.state.data[3]}
+                                        Tenant: {this.state.data[3]}
                                         <br />
                                         Location: {this.state.data[4]}
                                         <br />
-                                        Rent: {this.state.web3.fromWei(this.state.data[5].c[0], 'ether')} ETH
+                                        Rent: {this.state.web3.fromWei(this.state.data[5].c[0] * factor, 'ether')} ETH
                                         <br />
-                                        Rent Hike Rate: {this.state.data[6].c[0]} %
+                                        Hike Rate: {this.state.data[6].c[0]}
                                         <br />
                                         {(this.state.eventResult == "HireRequestReceived") ?
                                             (null) :
