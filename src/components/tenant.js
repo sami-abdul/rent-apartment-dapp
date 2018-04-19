@@ -212,13 +212,13 @@ class Tenant extends Component {
                                         <br />
                                         Owner: {this.state.data[2]}
                                         <br />
-                                        Tenant: {this.state.data[3]}
+                                        Tenant Address: {this.state.data[3]}
                                         <br />
                                         Location: {this.state.data[4]}
                                         <br />
                                         Rent: {this.state.web3.fromWei(this.state.data[5].c[0], 'ether')} ETH
                                         <br />
-                                        Hike Rate: {this.state.data[6].c[0]}
+                                        Rent Hike Rate: {this.state.data[6].c[0]} %
                                         <br />
                                         {(this.state.eventResult == "HireRequestReceived") ?
                                             (null) :
