@@ -23,6 +23,8 @@ contract DataController is Repository, DateTime {
     event HireRequestApproved(bytes32 requestId, bytes32 apartmentId, address tenant);
     // Event emitted when hire request is received
     event RentCollected(bytes32 apartment, address tenant, address owner, uint amount);
+    // Event emitted when hire rent is paid
+    event RentPaid(address tenant, uint amount);
 
     /**
      * Public functions open for anyone
@@ -104,7 +106,7 @@ contract DataController is Repository, DateTime {
 
     // Function used to add apartment by the landlord
     function addApartment(bytes32 _name, bytes32 _location, uint _rentPrice, uint8 _rentHikeRate) public returns(bytes32 id) {
-        id = keccak256(_location);
+        id = keccak256(_name, _location, _rentPrice, _rentHikeRate);
         Apartment memory apartment = Apartment(id, 123456, apartmentsArr.length, _name, msg.sender, address(0), _location, _rentPrice, _rentHikeRate, Date(0, 0, 0));
         apartments[id] = apartment;
         apartmentsArr.push(apartment);
@@ -180,7 +182,7 @@ contract DataController is Repository, DateTime {
             apartmentsArr[apartments[_apartment].index].nextRentDate = nextRentDate;
             apartmentsArr[apartments[_apartment].index].rentPrice = apartment.rentPrice * (apartment.rentHikeRate / 100 + 1);
 
-            bytes32 paymentId = keccak256(_apartment, msg.sender, tenant);
+            bytes32 paymentId = keccak256(_apartment, msg.sender, tenant, rentPrice);
             paymentHistory[tenant].push(Payment(paymentId, _apartment, msg.sender, rentPrice, now));
 
             RentCollected(_apartment, tenant, msg.sender, rentPrice);
@@ -197,8 +199,9 @@ contract DataController is Repository, DateTime {
 
     // Function used to deposit ether to smart contract which is held in escrow
     function makePayment() public payable returns(bool success) {
-        require(balances[msg.sender] + msg.value > balances[msg.sender]);
-        balances[msg.sender] += msg.value;
+        RentPaid(msg.sender, msg.value);
+//        require(balances[msg.sender] + msg.value > balances[msg.sender]);
+//        balances[msg.sender] += msg.value;
         return true;
     }
 
