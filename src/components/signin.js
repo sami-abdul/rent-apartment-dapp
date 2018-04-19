@@ -91,7 +91,7 @@ class Signin extends Component {
                         <br />
                         <Input s= {12} type='password' name='password' value={this.state.password} title = 'type email here' onChange={this._onChangePassword} label='Password' validate/>
                         <br />
-                        <Button className="btn waves-effect waves-light" type="submit" name="action" title = 'signin' style = {{display : 'block'}}>Signin</Button>
+                        <Button className="btn waves-effect waves-light" type="submit" name="action" title = 'Sign In' style = {{display : 'block'}}>Signin</Button>
                         <Link to='/signup'>Create Account</Link>
                     <div><p style = {{color : "red"}}>{this.props.errorMsg}</p></div>
                     </form>

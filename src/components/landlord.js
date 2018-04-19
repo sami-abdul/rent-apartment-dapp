@@ -166,7 +166,6 @@ class Landlord extends Component {
         this.setState({
             balance: bal.toNumber()
         })
-//        console.log("Bal: " + this.state.balance)
     }
 
     addApartment(data) {
