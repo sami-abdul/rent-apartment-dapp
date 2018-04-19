@@ -1,3 +1,7 @@
+/**
+* Unit tests for adding and editing of apartment by landlord
+*/
+
 var dataController = artifacts.require("./DataController.sol");
 
 contract('Data Controller', function (accounts) {

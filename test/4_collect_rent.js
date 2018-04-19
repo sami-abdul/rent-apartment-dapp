@@ -1,3 +1,7 @@
+/**
+* Unit tests for collection of rent by landlord
+*/
+
 var dataController = artifacts.require("./DataController.sol");
 
 contract('Data Controller', function (accounts) {

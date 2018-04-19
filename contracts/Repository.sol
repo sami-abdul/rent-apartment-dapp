@@ -1,7 +1,7 @@
 pragma solidity ^0.4.2;
 
 /*
-Repository smart contract
+* Repository smart contract
 */
 
 contract Repository {
@@ -20,6 +20,7 @@ contract Repository {
         Date nextRentDate;
     }
 
+    // Date data struct
     struct Date {
         uint16 year;
         uint16 month;

@@ -1,10 +1,11 @@
 pragma solidity ^0.4.2;
 
+/**
+* Date and Time utilities for smart contracts
+*/
+
 contract DateTime {
-    /*
-     *  Date and Time utilities for Ethereum contracts
-     *
-     */
+
     struct _DateTime {
         uint16 year;
         uint16 month;

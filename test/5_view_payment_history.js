@@ -1,3 +1,7 @@
+/**
+* Unit tests for viewing of payment history by tenant
+*/
+
 var dataController = artifacts.require("./DataController.sol");
 
 contract('Data Controller', function (accounts) {

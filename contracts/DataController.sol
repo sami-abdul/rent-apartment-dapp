@@ -4,7 +4,7 @@ import "./Repository.sol";
 import "./DateTime.sol";
 
 /*
-Data controller smart contract
+* Data controller smart contract
 */
 
 contract DataController is Repository, DateTime {

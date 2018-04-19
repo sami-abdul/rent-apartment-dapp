@@ -1,3 +1,7 @@
+/**
+* Unit tests for sending hire request by tenant and viewing and accepting by landlord
+*/
+
 var dataController = artifacts.require("./DataController.sol");
 
 contract('Data Controller', function (accounts) {

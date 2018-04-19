@@ -1,3 +1,7 @@
+/**
+* Unit tests for making rent payment in ether by tenant
+*/
+
 var dataController = artifacts.require("./DataController.sol");
 
 contract('Data Controller', function (accounts) {
