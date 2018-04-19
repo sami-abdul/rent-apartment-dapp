@@ -91,42 +91,42 @@ class Tenant extends Component {
         //     console.log("Estimated gas to edit an apartment: " + gasEstimate)
         // })
         // .then((result) => {
-            deployedInstance.hireApartment(data.apartment, data.owner, {
-                  from: this.props.user.wallet,
-                  gas: 1000000,
-                  gasPrice: this.state.web3.eth.gasPrice
-                }
-            )
-        // })
-        .then((result) => {
-            console.log(result.logs[0].event)
-            console.log("before Result state",this.state.eventResult);
-            this.setState({
-                eventResult: result.logs[0].event,
+        deployedInstance.hireApartment(data.apartment, data.owner, {
+            from: this.props.user.wallet,
+            gas: 1000000,
+            gasPrice: this.state.web3.eth.gasPrice
+        }
+        )
+            // })
+            .then((result) => {
+                console.log(result.logs[0].event)
+                console.log("before Result state", this.state.eventResult);
+                this.setState({
+                    eventResult: result.logs[0].event,
+                })
+                console.log("after Result state", this.state.eventResult);
+                this.getData()
             })
-            console.log("after Result state",this.state.eventResult);
-            this.getData()
-        })
     }
 
     makePayment() {
-        let gasEstimate
-        deployedInstance.makePayment.estimateGas()
-        .then((result) => {
-            gasEstimate = result * 2
-            console.log("Estimated gas to make payment: " + gasEstimate)
-        })
-        .then((result) => {
-            deployedInstance.makePayment({
-                from: this.props.user.wallet,
-                value: this.state.currentApartment.rentPrice,
-                gas: 1000000,
-                gasPrice: this.state.web3.eth.gasPrice
+        // let gasEstimate
+        // deployedInstance.makePayment.estimateGas()
+        //     .then((result) => {
+        //         gasEstimate = result * 2
+        //         console.log("Estimated gas to make payment: " + gasEstimate)
+        //     })
+            // .then((result) => {
+                deployedInstance.makePayment({
+                    from: this.props.user.wallet,
+                    value: this.state.currentApartment.rentPrice,
+                    gas: 1000000,
+                    gasPrice: this.state.web3.eth.gasPrice
+                })
+            // })
+            .then((result) => {
+                this.getData()
             })
-        })
-        .then((result) => {
-            this.getData()
-        })
     }
 
     getBalance() {
@@ -220,11 +220,55 @@ class Tenant extends Component {
                                         <br />
                                         Apartment Hike Rate: {this.state.data[6].c[0]}
                                         <br />
-                                        {(this.state.eventResult=="HireRequestReceived")?
-                                        (null):
-                                        (<Button className="btn waves-effect waves-light" onClick={() => { this.hire(this.state.data[0], this.state.data[2]).bind(this) }} >Hire Apartment</Button>)
+                                        {(this.state.eventResult == "HireRequestReceived") ?
+                                            (null) :
+                                            (<Button className="btn waves-effect waves-light" onClick={() => { this.hire(this.state.data[0], this.state.data[2]).bind(this) }} >Hire Apartment</Button>)
                                         }
-                                        
+
+
+                                    </div>
+
+
+                                ) : (
+                                        null
+                                    )
+
+                            }
+                        </div>
+
+
+                    </Tab>
+
+
+
+
+                    <Tab title="Current Apartment" className="active">
+                        <div>
+
+                            {
+
+                                (this.state.currentApartment) ? (
+                                    //apatmentData :["Apartment ID","Apartment Name","Apartment Owner","Apartment Tenant", "Apartment Location","Apartment Rent Price","Apartment Hike Rate"],
+                                    <div>
+                                        <br />
+                                        Apartment Name: {this.state.currentApartment[1]}
+                                        <br />
+                                        Apartment ID: {this.state.currentApartment[0]}
+                                        <br />
+                                        Apartment Owner: {this.state.currentApartment[2]}
+                                        <br />
+                                        Apartment Tenant: {this.state.currentApartment[3]}
+                                        <br />
+                                        Apartment Location: {this.state.currentApartment[4]}
+                                        <br />
+                                        Apartment Rent Price: {this.state.currentApartment[5].c[0]}
+                                        <br />
+                                        Apartment Hike Rate: {this.state.currentApartment[6].c[0]}
+                                        <br />
+
+                                        <Button className="btn waves-effect waves-light" onClick={() => { this.makePayment() }} >Pay Rent</Button>
+
+
 
                                     </div>
                                     //  this.state.data.map((apartment, ind) => {
@@ -244,63 +288,13 @@ class Tenant extends Component {
                             }
                         </div>
 
-                        {/* {(this.props.user.firstTime) ? (
-                            <form onSubmit={this.submit.bind(this)}>
-                                <Input s={6} label="First Name" defaultValue={this.props.user.firstName} disabled />
-                                <Input s={6} label="Last Name" defaultValue={this.props.user.lastName} disabled />
-                                <Input label="Field" ref="field" s={6} />
-                                <Input s={6} label="CGPA" ref="cgpa" />
-                                <Input type="number" s={6} label="Number" ref="number" />
-                                <Input s={6} label="Experience" ref="experience" />
-                                <Button className="btn waves-effect waves-light" type="submit" name="action" title='submit' style={{ display: 'block' }}>Submit</Button>
-
-                            </form>) :
-                            (
-                                <div>
-                                    <h4><span>Full Name : </span></h4> <h4><span>{this.props.user.firstName + ' '}{this.props.user.lastName}</span></h4>
-                                    <br />
-
-
-                                    <h4><span>Field : </span> <span>{this.props.user.field}</span></h4>
-                                    <br />
-                                    <h4><span>Contact Number : </span> <span>{this.props.user.number}</span></h4>
-                                    <br />
-                                    <h4><span>Experience : </span> <span>{this.props.user.exp}</span></h4>
-                                </div>)} */}
-                    </Tab>
-
-
-                    {/* <Tab title="Companies Data" >
-                    <div>
-                        {
-                            this.props.allCompanyData.map((user, ind) => {
-                                return (<Collapsible popout key={ind}>
-                                    <CollapsibleItem header={user.firstName}>
-                                        <span>Full Name : </span> <span>{user.firstName + ' '}{user.lastName}</span>
-                                        <br />
-
-
-                                        <span>Field : </span> <span>{user.field}</span>
-                                        <br />
-                                        <span>Contact Number : </span> <span>{user.number}</span>
-                                        <br />
-                                        <span>Experience : </span> <span>{user.exp}</span>
-
-                                    </CollapsibleItem>
-                                </Collapsible>)
-                            })
-                        }
-                    </div>
-                    </Tab> */}
-                    
-                    <Tab title="Current Apartment" className="active">
                     </Tab>
 
                     <Tab title="Payment History" className="active">
                     </Tab>
 
                 </Tabs>
-                
+
 
             </div>
         )

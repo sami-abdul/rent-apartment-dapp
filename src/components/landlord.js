@@ -293,7 +293,7 @@ class Landlord extends Component {
                                                     <br />
                                                     <span>Location: </span> <span>{apartmentAddress}</span>
                                                     <br />
-                                                    <span>Rent Price: </span> <span>{partsArray[4]}</span>
+                                                    <span>Rent Price: </span> <span>{this.state.web3.fromWei(partsArray[4])}</span>
                                                     <br />
                                                     <span>Rent Hike Rate: </span> <span>{partsArray[5]}</span>
                                                     <br />
