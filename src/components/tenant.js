@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Input, Icon, Row, Tab, Tabs, Button, CollapsibleItem, Collapsible } from 'react-materialize'
 import { setUserProfileToFirebase } from '../store/actions/action';
+import img from "../images/building.png"
 
 const contract = require('truffle-contract')
 
@@ -11,7 +12,11 @@ import getWeb3 from '../utils/getWeb3'
 var dataControllerContract
 var deployedInstance
 var mAccounts
+const imgStyle = {
 
+    float: "left",
+    height: "170px"
+};
 const divStyle = {
     marginTop: "20px"
 };
@@ -196,7 +201,7 @@ class Tenant extends Component {
                             <br />
                             <Input label="Search Appartment" ref="search" s={8} />
                             <Button style={divStyle} className="btn waves-effect waves-light" type="submit" name="action" title='Search' >Search</Button>
-
+                            <br/>
                         </form>
                         <div>
 
@@ -204,8 +209,10 @@ class Tenant extends Component {
 
                                 (this.state.data) ? (
                                     //apatmentData :["Apartment ID","Apartment Name","Apartment Owner","Apartment Tenant", "Apartment Location","Apartment Rent Price","Apartment Hike Rate"],
-                                    <div>
+                                    <p>
+                                        
                                         <br />
+                                        <img src={img} alt="Buildings" style={imgStyle} />
                                         ID: {this.state.data[0]}
                                         <br />
                                         Name: {this.state.data[1]}                                  
@@ -226,7 +233,7 @@ class Tenant extends Component {
                                         }
 
 
-                                    </div>
+                                    </p>
 
 
                                 ) : (
@@ -251,6 +258,7 @@ class Tenant extends Component {
                                     //apatmentData :["Apartment ID","Apartment Name","Apartment Owner","Apartment Tenant", "Apartment Location","Apartment Rent Price","Apartment Hike Rate"],
                                     <div>
                                         <br />
+                                        <img src={img} alt="Buildings" style={imgStyle} />
                                         Apartment Name: {this.state.currentApartment[1]}
                                         <br />
                                         Apartment ID: {this.state.currentApartment[0]}

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Input, Icon, Row, Tab, Tabs, Button, CollapsibleItem, Collapsible } from 'react-materialize'
 import { fetchAllProfiles } from '../store/actions/action';
 import img from "../images/building.png"
+import img1 from "../images/requestImg.png"
 
 const contract = require('truffle-contract')
 
@@ -17,6 +18,11 @@ const imgStyle = {
 
     float: "left",
     height: "170px"
+};
+
+const imgStyle1={
+    height: "100px",
+    float:"left"
 };
 
 const balancesStyle = {
@@ -293,6 +299,7 @@ class Landlord extends Component {
                                                     <br />
                                                     <span>Rent Hike Rate: </span> <span>{partsArray[5]}</span>
                                                     <br />
+                                                    
                                                     {
                                                         (partsArray[2].includes("0x00")) ?
                                                             (<Button className="btn waves-effect waves-light" title='edit' style={{ display: 'block' }} onClick={() => { this.editData(partsArray[0]).bind(this) }}>EDIT</Button>)
@@ -333,7 +340,7 @@ class Landlord extends Component {
                                     <Collapsible key={ind}>
                                         <CollapsibleItem header={partsRequestArray[0]}>
                                             <p>
-                                                {/* <img src={img} alt="Buildings" style={imgStyle} />       */}
+                                                <img src={img1} alt="Buildings" style={imgStyle1} />      
                                                 <span>From: </span> <span>{partsRequestArray[1]}</span>
                                                 <br />
                                                 <span>Apartment ID: </span> <span>{partsRequestArray[2]}</span>
