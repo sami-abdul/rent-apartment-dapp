@@ -279,10 +279,11 @@ class Tenant extends Component {
                                         <br />
                                         Rent Hike Rate: {this.state.currentApartment[6].c[0]}%
                                         <br />
-
+                                        
+                                    
                                         <Button className="btn waves-effect waves-light" onClick={() => { this.makePayment() }} >Pay Rent</Button>
 
-
+{/* // {this.getPaymentHistory(this.state.currentApartment[0])} */}
 
                                     </div>
                                     //  this.state.data.map((apartment, ind) => {
@@ -294,6 +295,7 @@ class Tenant extends Component {
 
                                     // </p>
                                     //  })
+                                    
 
                                 ) : (
                                         null

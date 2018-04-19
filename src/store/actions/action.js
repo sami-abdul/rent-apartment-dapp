@@ -40,11 +40,35 @@ export function signinAction(user) {
 }
 
 export function signupAction(user) {
+
+    
     return dispatch => {
         dispatch({ type: "ERROR_MESSAGE", payload: '' })
         dispatch({ type: "SHOW_PROGRESS_BAR", payload: true })
         dispatch({ type: 'USER_NAME', payload: user.firstName })
-        firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+        
+        firebase.database().ref('/').child('key/').once('value', (snapshot)=>{
+            console.log(snapshot.val());
+        }).then((snapshot)=>{
+            var data = snapshot.val();
+            let keysArray = [];
+            // Loop to make objects into array
+            for (var key in data){
+                console.log(data[key])
+                keysArray.push(data[key])
+            }
+            console.log(keysArray)
+            let isKeyExists = true;
+            //Now checking keys
+            for(let i=0; i<keysArray.length; i++){
+                if(keysArray[i] == user.wallet){
+                    isKeyExists = false;
+                }
+            }
+
+        if(isKeyExists){
+
+            firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
             .then((createdUser) => {
                 console.log('signed up successfully', createdUser.uid);
                 console.log('type', user.type);
@@ -53,6 +77,7 @@ export function signupAction(user) {
                 user.wallet = user.wallet;
                 firebase.database().ref('users/' + user.uid + '/').set(user)
                     .then(() => {
+                        firebase.database().ref('key/').push(user.wallet);
                         dispatch({ type: 'USER', payload: user})
                         dispatch({ type: 'CURRENT_USER_UID', payload: createdUser.uid })
                         dispatch({ type: "IS_LOGIN", payload: true })
@@ -73,6 +98,11 @@ export function signupAction(user) {
                 console.log(err)
             })
     }
+        else{
+            alert('key exists')
+        }
+    })
+}
 }
 
 // logout fn
