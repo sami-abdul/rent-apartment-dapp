@@ -24,7 +24,7 @@ contract DateTime {
 
     uint16 constant ORIGIN_YEAR = 1970;
 
-    function getNextMonthDate(uint16 year, uint16 month) returns (uint16, uint16) {
+    function getNextMonthDate(uint16 year, uint16 month) public pure returns (uint16, uint16) {
         if (month == 12) {
             return (year + 1, 1);
         } else {

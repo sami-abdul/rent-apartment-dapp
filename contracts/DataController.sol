@@ -23,8 +23,6 @@ contract DataController is Repository, DateTime {
     event HireRequestApproved(bytes32 requestId, bytes32 apartmentId, address tenant);
     // Event emitted when hire request is received
     event RentCollected(bytes32 apartment, address tenant, address owner, uint amount);
-    event RentCollected2(uint balance);
-
 
     /**
      * Public functions open for anyone
@@ -37,7 +35,7 @@ contract DataController is Repository, DateTime {
 
     // Function used to get the apartment information by ID
     function getApartment(bytes32 _id) public view returns(bytes32, bytes32, address, address, bytes32, uint, uint16) {
-        Apartment apartment = apartments[_id];
+        Apartment storage apartment = apartments[_id];
         return (apartment.id, apartment.name, apartment.owner, apartment.tenant, apartment.location, apartment.rentPrice, apartment.rentHikeRate);
     }
 
@@ -73,7 +71,7 @@ contract DataController is Repository, DateTime {
 
     // Function used to check if the request was sent
     function isRequestSent(bytes32 _apartment, address _potentialTenant) public view returns(bool) {
-        Request[] requests = apartmentToRequests[_apartment];
+        Request[] storage requests = apartmentToRequests[_apartment];
         for (uint i = 0; i < requests.length; i++) {
             if (requests[i].apartment == _apartment && requests[i].from == _potentialTenant) {
                 return true;
@@ -106,7 +104,7 @@ contract DataController is Repository, DateTime {
 
     // Function used to add apartment by the landlord
     function addApartment(bytes32 _name, bytes32 _location, uint _rentPrice, uint8 _rentHikeRate) public returns(bytes32 id) {
-        id = sha3(_location);
+        id = keccak256(_location);
         Apartment memory apartment = Apartment(id, 123456, apartmentsArr.length, _name, msg.sender, address(0), _location, _rentPrice, _rentHikeRate, Date(0, 0, 0));
         apartments[id] = apartment;
         apartmentsArr.push(apartment);
@@ -127,6 +125,7 @@ contract DataController is Repository, DateTime {
         apartmentsArr[apartments[_id].index].rentHikeRate = _rentHikeRate;
 
         ApartmentEdited(apartments[_id].id, apartments[_id].name);
+        success = true;
     }
 
     // Function used to approve hire request by tenant
@@ -159,8 +158,8 @@ contract DataController is Repository, DateTime {
     }
 
     // Function used to collect rent
-    function collectRent(bytes32 _apartment) returns (bool success) {
-        Apartment apartment = apartments[_apartment];
+    function collectRent(bytes32 _apartment) public returns (bool success) {
+        Apartment storage apartment = apartments[_apartment];
         uint rentPrice = apartment.rentPrice;
         address tenant = apartment.tenant;
 
@@ -181,7 +180,7 @@ contract DataController is Repository, DateTime {
             apartmentsArr[apartments[_apartment].index].nextRentDate = nextRentDate;
             apartmentsArr[apartments[_apartment].index].rentPrice = apartment.rentPrice * (apartment.rentHikeRate / 100 + 1);
 
-            bytes32 paymentId = sha3(_apartment, msg.sender, tenant);
+            bytes32 paymentId = keccak256(_apartment, msg.sender, tenant);
             paymentHistory[tenant].push(Payment(paymentId, _apartment, msg.sender, rentPrice, now));
 
             RentCollected(_apartment, tenant, msg.sender, rentPrice);
@@ -204,8 +203,8 @@ contract DataController is Repository, DateTime {
     }
 
     // Function used to get payment history of an apartment by tenant
-    function getPaymentHistory(bytes32 _apartment) public onlyTenant returns(address[], uint[], uint[]) {
-        Payment[] payments = paymentHistory[msg.sender];
+    function getPaymentHistory(bytes32 _apartment) public onlyTenant view returns(address[], uint[], uint[]) {
+        Payment[] storage payments = paymentHistory[msg.sender];
 
         address[] memory tos = new address[](payments.length);
         uint[] memory amounts = new uint[](payments.length);
@@ -224,7 +223,7 @@ contract DataController is Repository, DateTime {
 
     // Function used to get the apartment information by ID
     function getHiredApartment(bytes32 _id) public onlyTenant view returns(bytes32, bytes32, address, address, bytes32, uint, uint16) {
-        Apartment apartment = apartments[_id];
+        Apartment storage apartment = apartments[_id];
         require(apartment.tenant == msg.sender);
         return (apartment.id, apartment.name, apartment.owner, apartment.tenant, apartment.location, apartment.rentPrice, apartment.rentHikeRate);
     }
@@ -232,7 +231,7 @@ contract DataController is Repository, DateTime {
     // Function used to get the current apartment occupied by tenant
     function getCurrentApartment() public onlyTenant view returns(bytes32, bytes32, address, address, bytes32, uint, uint16) {
         bytes32 apartmentId = tenantsToApartment[msg.sender];
-        Apartment apartment = apartments[apartmentId];
+        Apartment storage apartment = apartments[apartmentId];
         return (apartment.id, apartment.name, apartment.owner, apartment.tenant, apartment.location, apartment.rentPrice, apartment.rentHikeRate);
     }
 
@@ -242,7 +241,7 @@ contract DataController is Repository, DateTime {
 
     // Function used to send hire request to landlord
     function hireApartment(bytes32 _apartment, address _to) public onlyPotentialTenant returns(bool success) {
-        bytes32 id = sha3(_apartment, _to, msg.sender);
+        bytes32 id = keccak256(_apartment, _to, msg.sender);
         Request memory request = Request(id, _apartment, _to, msg.sender);
         hireRequests[id] = request;
         apartmentToRequests[_apartment].push(request);
@@ -255,7 +254,7 @@ contract DataController is Repository, DateTime {
      * Utility functions
      */
 
-    function _stringToBytes32(string memory source) returns (bytes32 result) {
+    function _stringToBytes32(string memory source) private pure returns (bytes32 result) {
         bytes memory tempEmptyStringTest = bytes(source);
         if (tempEmptyStringTest.length == 0) {
             return 0x0;
