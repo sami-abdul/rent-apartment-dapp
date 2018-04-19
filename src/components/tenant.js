@@ -12,18 +12,14 @@ import getWeb3 from '../utils/getWeb3'
 var dataControllerContract
 var deployedInstance
 var mAccounts
-<<<<<<< HEAD
-=======
 
 const factor = 100000000000000;
 
 const imgStyle = {
-
     float: "left",
     height: "170px"
 };
 
->>>>>>> 408b6f8181246877fa1aa0d5b7a3503bd28ca4b7
 const divStyle = {
     marginTop: "20px"
 };

@@ -245,7 +245,7 @@ class Landlord extends Component {
             })
     }
 
-    collectRent(data) {
+    collectRent(apartmentID) {
         // let gasEstimate
         // deployedInstance.approveHireRequest.estimateGas(data.requestID, data.apartmentID, data.tenantID)
         //     .then((result) => {
@@ -253,7 +253,7 @@ class Landlord extends Component {
         //         // console.log("Estimated gas to approve hire request: " + gasEstimate)
         //     })
         //     .then((result) => {
-        deployedInstance.collectRent(data.apartmentID, {
+        deployedInstance.collectRent(apartmentID, {
             from: this.props.user.wallet,
             gas: 1000000,
             gasPrice: this.state.web3.eth.gasPrice
@@ -321,7 +321,7 @@ class Landlord extends Component {
                                                     {
                                                         (partsArray[2].includes("0x00")) ?
                                                             (<Button className="btn waves-effect waves-light" title='edit' style={{ display: 'block' }} onClick={() => { this.editData(partsArray[0]).bind(this) }}>EDIT</Button>)
-                                                            : (<Button className="btn waves-effect waves-light" title='rent' style={{ display: 'block' }} >Collect Rent</Button>)
+                                                            : (<Button className="btn waves-effect waves-light" title='rent' style={{ display: 'block' }} onClick={() => { this.collectRent(partsArray[0]) }}>Collect Rent</Button>)
                                                     }
                                                 </p>
                                             </CollapsibleItem>
