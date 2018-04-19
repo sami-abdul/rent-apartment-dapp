@@ -155,7 +155,6 @@ class Landlord extends Component {
                 })
             })
             .then((result) => {
-                console.log("TX: " + result)
                 this.getData()
             })
     }
@@ -290,14 +289,14 @@ class Landlord extends Component {
                                                     <br />
                                                     <span>Name: </span> <span>{apartmentString}</span>
                                                     <br />
-                                                    <span>Address: </span> <span>{partsArray[2]}</span>
+                                                    <span>Tenant Address: </span> <span>{partsArray[2]}</span>
                                                     <br />
                                                     <span>Location: </span> <span>{apartmentAddress}</span>
                                                     <br />
-                                                    <span>Rent: </span> <span>{this.state.web3.fromWei(partsArray[4], 'ether')}</span>
+                                                    <span>Rent: </span> <span>{this.state.web3.fromWei(partsArray[4], 'ether')} ETH</span>
                                                     {/* <span>Rent: </span> <span>{partsArray[4]}</span> */}
                                                     <br />
-                                                    <span>Rent Hike Rate: </span> <span>{partsArray[5]}</span>
+                                                    <span>Rent Hike Rate: </span> <span>{partsArray[5]}%</span>
                                                     <br />
                                                     
                                                     {
@@ -328,13 +327,9 @@ class Landlord extends Component {
 
                             this.state.requests.map((apartmentRequests, ind) => {
 
-
-                                // console.log(apartment, "apartment");
-                                // console.log(ind, "ind");
                                 var partsRequestArray = apartmentRequests.split(',');
-                                // console.log(partsArray);
 
-
+                                if (!partsRequestArray[0].includes("0x0000000")) {
 
                                 return (
                                     <Collapsible key={ind}>
@@ -346,14 +341,11 @@ class Landlord extends Component {
                                                 <span>Apartment ID: </span> <span>{partsRequestArray[2]}</span>
                                                 <br />
                                                 <Button className="btn waves-effect waves-light" type="submit" name="action" title='acceptRequest' style={{ display: 'block' }} onClick={() => { this.acceptRequest(partsRequestArray[0], partsRequestArray[2], partsRequestArray[1]).bind(this) }}>Accept Request</Button>
-
-
-
-
                                             </p>
                                         </CollapsibleItem>
                                     </Collapsible>
                                 )
+                            }
                             })
                         }
                     </Tab>

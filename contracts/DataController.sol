@@ -56,7 +56,7 @@ contract DataController is Repository, DateTime {
                 names[i] = apartmentsArr[i].name;
                 tenants[i] = apartmentsArr[i].tenant;
                 locations[i] = apartmentsArr[i].location;
-                rentPrices[i] = apartmentsArr[i].rentPrice / 18;
+                rentPrices[i] = apartmentsArr[i].rentPrice;
                 rentHikeRates[i] = apartmentsArr[i].rentHikeRate;
             }
         }
