@@ -140,6 +140,7 @@ class Tenant extends Component {
     getData() {
         this.getBalance()
         this.getCurrentApartment()
+        this.getPaymentHistory(this.state.currentApartment[0])
     }
 
     getBalance() {
@@ -177,7 +178,7 @@ class Tenant extends Component {
                     paymentHistory: result
                 })
                 console.log(result);
-                console.log(this.state.data);
+                console.log(this.state.paymentHistory);
             })
     }
 
@@ -299,7 +300,40 @@ class Tenant extends Component {
 
                     </Tab>
 
-                    <Tab title="Payment History" className="active">
+                    <Tab title="Payment History" >
+                            {(this.state.currentApartment)?(
+                                <div>
+                                {
+    
+                                    this.state.currentApartment.map((apartment, ind) => {
+                                        
+    
+                                        var partsArrayHistory = apartment.split(',');
+    
+                                        
+    
+                                        return (
+                                            <Collapsible key={ind}  >
+                                                <CollapsibleItem header={partsArrayHistory[2]} >
+                                                    <p>
+                                                        
+                                                        <span>To: </span> <span>{partsArrayHistory[0]}</span>
+                                                        <br />
+                                                        <span>Amount: </span> <span>{partsArrayHistory[1]}</span>
+                                                        <br />
+                                                        <span>Date: </span> <span>{partsArrayHistory[2]}</span>
+                                                        <br />
+                                                        
+                                                        
+                                                    </p>
+                                                </CollapsibleItem>
+                                            </Collapsible>
+                                        )
+                                    })
+                                }
+                            </div>
+
+                            ):(null)}
                     </Tab>
 
                 </Tabs>

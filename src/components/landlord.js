@@ -305,7 +305,7 @@ class Landlord extends Component {
 
                                     return (
                                         <Collapsible key={ind}  >
-                                            <CollapsibleItem header={apartmentString} style={backcolorR}>
+                                            <CollapsibleItem header={apartmentString} >
                                                 <p>
                                                     <img src={img} alt="Buildings" style={imgStyle} />
                                                     <span>ID: </span> <span>{partsArray[0]}</span>
