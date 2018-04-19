@@ -140,7 +140,7 @@ class Tenant extends Component {
     getData() {
         this.getBalance()
         this.getCurrentApartment()
-       // this.getPaymentHistory(this.state.currentApartment[0])
+        this.getPaymentHistory(this.state.currentApartment[0])
     }
 
     getBalance() {
@@ -148,17 +148,19 @@ class Tenant extends Component {
         this.setState({
             balance: bal.toNumber()
         })
-        console.log("Bal: " + this.state.balance)
+//        console.log("Bal: " + this.state.balance)
     }
 
     getApartment(apartmentId) {
-        deployedInstance.getApartment.call(apartmentId, { from: this.props.user.wallet })
-            .then((result) => {
-                this.setState({
-                    data: result
+        if (apartmentId !== undefined) {
+            deployedInstance.getApartment.call(apartmentId, { from: this.props.user.wallet })
+                .then((result) => {
+                    this.setState({
+                        data: result
+                    })
+                    console.log(result);
                 })
-                console.log(result);
-            })
+        }
     }
 
     getCurrentApartment() {
@@ -169,10 +171,6 @@ class Tenant extends Component {
                 })
                 console.log(result);
             })
-    }
-
-    getPaymentHistoryHandler(){
-
     }
 
     getPaymentHistory(apartmentId) {
@@ -356,7 +354,7 @@ class Tenant extends Component {
 }
 
 function mapStateToProp(state) {
-    console.log(state)
+//    console.log(state)
     return ({
         isLogin: state.root.isLogin,
         user: state.root.user,

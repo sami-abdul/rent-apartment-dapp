@@ -3,16 +3,13 @@ import history from '../../history';
 
 
 export function signinAction(user) {
-    console.log(user)
     return dispatch => {
         dispatch({ type: "ERROR_MESSAGE", payload: '' })
         dispatch({ type: "SHOW_PROGRESS_BAR", payload: true })
         firebase.auth().signInWithEmailAndPassword(user.email, user.password)
             .then((signedinUser) => {
                 let type;
-                console.log(signedinUser)
                 firebase.database().ref('users/' + signedinUser.uid).once('value', (snapshot) => {
-                    console.log(snapshot.val())
                     type = snapshot.val().type;
                     dispatch({ type: 'USER', payload: snapshot.val()})
                     dispatch({ type: 'TYPE', payload : snapshot.val().type })
@@ -46,8 +43,8 @@ export function signupAction(user) {
         dispatch({ type: 'USER_NAME', payload: user.firstName })
         firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
             .then((createdUser) => {
-                console.log('signed up successfully', createdUser.uid);
-                console.log('type', user.type);
+//                console.log('signed up successfully', createdUser.uid);
+//                console.log('type', user.type);
                 delete user.password;
                 user.uid=createdUser.uid;
                 user.wallet = user.wallet;
@@ -149,12 +146,10 @@ export function setLandlordProfileToFirebase(ad, uid) {
 export function fetchAllProfiles() {
     return dispatch => {
         firebase.database().ref('userProfile').once('value', (snapshot) => {
-            console.log(snapshot.val())
             let allUsersProfile = [];
             for (var key in snapshot.val()) {
                 allUsersProfile.push(snapshot.val()[key]);
             }
-            console.log(allUsersProfile)
             dispatch({ type: 'ALL_USERS_PROFILE', payload: allUsersProfile })
         })
     }

@@ -12,7 +12,9 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case 'USER':
-            { console.log(action.payload) }
+            {
+//                console.log(action.payload)
+            }
             return ({
                 ...state,
                 user: action.payload
@@ -38,7 +40,9 @@ export default (state = INITIAL_STATE, action) => {
                 errorMessage: action.payload
             })
         case 'TYPE':
-            { console.log(action.payload) }
+            {
+//                console.log(action.payload)
+            }
             return ({
               ...state,
                 type: action.payload
