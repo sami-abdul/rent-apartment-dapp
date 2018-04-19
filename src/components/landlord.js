@@ -32,6 +32,10 @@ const balancesStyle = {
 const balanceStyle = {
     float: "right"
 };
+const backcolorR={
+    // background:"red"
+    color:"red"
+}
 
 class Landlord extends Component {
 
@@ -300,8 +304,8 @@ class Landlord extends Component {
                                     let apartmentAddress = hexToString(partsArray[3]);
 
                                     return (
-                                        <Collapsible key={ind}>
-                                            <CollapsibleItem header={apartmentString} className="red">
+                                        <Collapsible key={ind}  >
+                                            <CollapsibleItem header={apartmentString} style={backcolorR}>
                                                 <p>
                                                     <img src={img} alt="Buildings" style={imgStyle} />
                                                     <span>ID: </span> <span>{partsArray[0]}</span>
