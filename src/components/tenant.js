@@ -133,7 +133,7 @@ class Tenant extends Component {
                 })
             // // })
             .then((result) => {
-                console.log(result)
+                this.getData()
             })
     }
 
