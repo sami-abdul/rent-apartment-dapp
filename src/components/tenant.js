@@ -13,6 +13,8 @@ var dataControllerContract
 var deployedInstance
 var mAccounts
 
+var currentApartment = []
+
 const factor = 100000000000000;
 
 const imgStyle = {
@@ -127,28 +129,24 @@ class Tenant extends Component {
     }
 
     getApartment(apartmentId) {
-//        if (apartmentId !== undefined) {
+        if (apartmentId !== undefined) {
             deployedInstance.getApartment.call(apartmentId, { from: this.props.user.wallet })
-                .then((result) => {
-                    this.setState({
-                        data: result
-                    })
-                    console.log(result);
+            .then((result) => {
+                this.setState({
+                    data: result
                 })
-//        }
+                console.log(result);
+            })
+        }
     }
 
     getCurrentApartment() {
         deployedInstance.getCurrentApartment.call({ from: this.props.user.wallet })
             .then((result) => {
-                this.setState({
-                    currentApartment: result
-                })
-                console.log(this.state.currentApartment);
-                console.log(result);
-                this.getPaymentHistory(this.state.currentApartment[0])
+                currentApartment = result
+                console.log(currentApartment);
+                this.getPaymentHistory(currentApartment[0])
             })
-            console.log(this.state.currentApartment);
     }
 
     getPaymentHistory(apartmentId) {
@@ -170,10 +168,11 @@ class Tenant extends Component {
                         })
                         nestedCount = 0
                     })
+                    console.log("Payment: " + arr);
                     this.setState({
-                        paymentHistory: result
+                        currentApartment: currentApartment,
+                        paymentHistory: arr
                     })
-                    console.log("Payment: " + this.state.paymentHistory);
                 })
         }
     }
@@ -195,16 +194,13 @@ class Tenant extends Component {
                     <Tab title="Search Apartment" className="active">
                         <form onSubmit={this.submit.bind(this)}>
 
-
                             <br />
                             <Input label="Search Appartment" ref="search" s={8} />
                             <Button style={divStyle} className="btn waves-effect waves-light" type="submit" name="action" title='Search' >Search</Button>
                             <br/>
                         </form>
                         <div>
-
                             {
-
                                 (this.state.data) ? (
                                     //apatmentData :["Apartment ID","Apartment Name","Apartment Owner","Apartment Tenant", "Apartment Location","Apartment Rent Price","Apartment Hike Rate"],
                                     <p>
@@ -230,14 +226,11 @@ class Tenant extends Component {
                                             (<Button className="btn waves-effect waves-light" onClick={() => { this.hire(this.state.data[0], this.state.data[2]).bind(this) }} >Hire Apartment</Button>)
                                         }
 
-
                                     </p>
-
 
                                 ) : (
                                         null
                                     )
-
                             }
                         </div>
 
@@ -286,15 +279,12 @@ class Tenant extends Component {
                     <Tab title="Payment History"  >
                             <div>
                             {/* <Button className="btn waves-effect waves-light" onClick={() => { this.getPaymentHistory(this.state.currentApartment[0]) }}></Button> */}
-                                
-                            
 
-                            
                             {
-                             (this.state.currentApartment)?(
+                             (this.state.paymentHistory)?(
                                 <div>
                                 {
-                                    this.state.currentApartment.map((apartment, ind) => {
+                                    this.state.paymentHistory.map((apartment, ind) => {
 
                                         var partsArrayHistory = apartment.split(',');
 
@@ -305,7 +295,7 @@ class Tenant extends Component {
 
                                                         <span>To: </span> <span>{partsArrayHistory[0]}</span>
                                                         <br />
-                                                        <span>Amount: </span> <span>{partsArrayHistory[1]}</span>
+                                                        <span>Amount: </span> <span>{this.state.web3.fromWei(partsArrayHistory[1], 'ether')} ETH</span>
                                                         <br />
                                                         <span>Date: </span> <span>{partsArrayHistory[2]}</span>
                                                         <br />
@@ -318,7 +308,8 @@ class Tenant extends Component {
                                 }
                             </div>
 
-                            ):(null)}
+                            ):(null)
+                            }
                             
                             </div>
                     </Tab>

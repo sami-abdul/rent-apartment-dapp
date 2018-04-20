@@ -159,7 +159,7 @@ contract DataController is Repository, DateTime {
     }
 
     // Function used to collect rent
-    function collectRent(bytes32 _apartment) public returns (bool success) {
+    function collectRent(bytes32 _apartment, uint hikedRent) public returns (bool success) {
         Apartment storage apartment = apartments[_apartment];
         uint rentPrice = apartment.rentPrice;
         address tenant = apartment.tenant;
@@ -177,14 +177,14 @@ contract DataController is Repository, DateTime {
             Date memory nextRentDate = Date(year, month, day);
 
             apartments[_apartment].nextRentDate = nextRentDate;
-            apartments[_apartment].rentPrice = apartment.rentPrice * (apartment.rentHikeRate / 100 + 1);
+            apartments[_apartment].rentPrice = hikedRent;
             apartmentsArr[apartments[_apartment].index].nextRentDate = nextRentDate;
-            apartmentsArr[apartments[_apartment].index].rentPrice = apartment.rentPrice * (apartment.rentHikeRate / 100 + 1);
+            apartmentsArr[apartments[_apartment].index].rentPrice = hikedRent;
 
             bytes32 paymentId = keccak256(_apartment, msg.sender, tenant, rentPrice);
             paymentHistory[tenant].push(Payment(paymentId, _apartment, msg.sender, rentPrice, now));
 
-            RentCollected(_apartment, tenant, msg.sender, rentPrice);
+            RentCollected(_apartment, tenant, msg.sender, hikedRent);
 
             return true;
         }

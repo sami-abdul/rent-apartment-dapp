@@ -14,6 +14,8 @@ var dataControllerContract
 var deployedInstance
 var mAccounts
 
+const factor = 100000000000000;
+
 const imgStyle = {
 
     float: "left",
@@ -85,7 +87,7 @@ class Landlord extends Component {
                 this.instantiateContract()
             })
             .catch(() => {
-                // console.log('Error finding web3.')
+                console.log('Error finding web3.')
             })
 
         this.props.fetchAllProfiles();
@@ -247,22 +249,21 @@ class Landlord extends Component {
     }
 
     collectRent(apartmentID) {
-        // let gasEstimate
-        // deployedInstance.approveHireRequest.estimateGas(data.requestID, data.apartmentID, data.tenantID)
-        //     .then((result) => {
-        //         gasEstimate = result * 2
-        //         // console.log("Estimated gas to approve hire request: " + gasEstimate)
-        //     })
-        //     .then((result) => {
-        deployedInstance.collectRent(apartmentID, {
-            from: this.props.user.wallet,
-            gas: 1000000,
-            gasPrice: this.state.web3.eth.gasPrice
-        })
-            // })
-            .then(() => {
+        var tempData = null
+        deployedInstance.getApartment.call(apartmentID, { from: this.props.user.wallet })
+        .then((result) => {
+            tempData = result
+            var rent = this.state.web3.fromWei(tempData[5].c[0] * factor, 'ether') * (tempData[6].c[0] / 100 + 1)
+            deployedInstance.collectRent(apartmentID, this.state.web3.toWei(rent, 'ether'), {
+                from: this.props.user.wallet,
+                gas: 1000000,
+                gasPrice: this.state.web3.eth.gasPrice
+            })
+            .then((result) => {
+                console.log(result)
                 this.getData()
             })
+        }) 
     }
 
     acceptRequest(uniqueKeys, apartmetnID, tenantID) {

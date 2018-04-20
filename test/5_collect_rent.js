@@ -55,21 +55,26 @@ contract('Data Controller', function (accounts) {
                 balanceAfterDeposit = web3.eth.getBalance(accounts[1]);
                 return instance.getBalance.call({ from: accounts[1] });
             }).then(function (balanceInWei) {
-                assert.equal(balanceInWei.toNumber(), web3.toWei(10, "ether"), "Ether not deposited");
-                assert.isAtLeast(balanceBeforeTransaction.toNumber() - balanceAfterDeposit.toNumber(), web3.toWei(10, "ether"),  "Balances of account are the same");
             })
         });
 
     it("should be possible to collect rent for apartment", function () {
         var instance;
         var balanceBeforeTransaction = web3.eth.getBalance(accounts[0]);
-        var gasUsed = 0;
+        var tempData = null
+        const factor = 100000000000000;
 
         return dataController.deployed().then(function (i) {
             instance = i;
-            return instance.collectRent(apartmentId, {from: accounts[0] });
-        }).then(function (txResult) {
+            return instance.getApartment.call(apartmentId, { from: accounts[0] })
+        }).then(function (result) {
+            tempData = result;
+            var rent = web3.fromWei(tempData[5].c[0] * factor, 'ether') * (tempData[6].c[0] / 100 + 1)
+            return instance.collectRent(apartmentId, rent, {from: accounts[0] });
+        }).then(function(txResult) {
             assert.equal(txResult.logs[0].event, "RentCollected", "The Log-Event should be RentCollected");
+//            console.log(web3.fromWei(txResult.logs[0].args.amount.toNumber(), 'ether'))
+            console.log(txResult.logs[0].args.amount.toNumber())
         })
     });
 });
