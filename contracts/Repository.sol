@@ -58,8 +58,11 @@ contract Repository {
     mapping(address => bytes32) internal tenantsToApartment;
     mapping(bytes32 => Apartment) internal apartments;
 
-    // Payment data store
+    // Payment history data store
     mapping(address => Payment[]) internal paymentHistory;
+
+    // Rent history data store
+    mapping(address => Payment[]) internal rentHistory;
 
     // Hire requests data stores
     Request[] requestsArr;

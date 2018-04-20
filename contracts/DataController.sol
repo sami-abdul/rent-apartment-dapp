@@ -181,8 +181,11 @@ contract DataController is Repository, DateTime {
             apartmentsArr[apartments[_apartment].index].nextRentDate = nextRentDate;
             apartmentsArr[apartments[_apartment].index].rentPrice = hikedRent;
 
-            bytes32 paymentId = keccak256(_apartment, msg.sender, tenant, rentPrice);
-            paymentHistory[tenant].push(Payment(paymentId, _apartment, msg.sender, rentPrice, now));
+            Payment memory payment = Payment(keccak256(_apartment, msg.sender, rentPrice, now), _apartment, msg.sender, rentPrice, now);
+            paymentHistory[tenant].push(payment);
+
+            Payment memory rent = Payment(keccak256(_apartment, tenant, rentPrice, now), _apartment, tenant, rentPrice, now);
+            rentHistory[msg.sender].push(rent);
 
             RentCollected(_apartment, tenant, msg.sender, hikedRent);
 
@@ -191,28 +194,22 @@ contract DataController is Repository, DateTime {
         return false;
     }
 
-    // Function used to get rent history of an apartments
-//    function getRentHistory() public view returns(address[], uint[], uint[]) {
-//        address[] memory tos = new address[](payments.length);
-//        uint[] memory amounts = new uint[](payments.length);
-//        uint[] memory dates = new uint[](payments.length);
-//
-//        for (uint i = 0; i < apartmentsArr.length; i++) {
-//            if (apartmentsArr[i].owner == msg.sender) {
-//                Payment[] storage payments = paymentHistory[msg.sender];
-//
-//                for (uint j = 0; i < payments.length; i++) {
-//                    if (payments[i].apartment == _apartment) {
-//                        tos[i] = payments[i].to;
-//                        amounts[i] = payments[i].amount;
-//                        dates[i] = payments[i].date;
-//                    }
-//                }
-//            }
-//        }
-//
-//        return(tos, amounts, dates);
-//    }
+    // Function used to get rent history of landlord
+    function getRentHistory() public view returns(address[], uint[], uint[]) {
+        Payment[] storage rents = rentHistory[msg.sender];
+
+        address[] memory froms = new address[](rents.length);
+        uint[] memory amounts = new uint[](rents.length);
+        uint[] memory dates = new uint[](rents.length);
+
+        for (uint i = 0; i < rents.length; i++) {
+            froms[i] = rents[i].to;
+            amounts[i] = rents[i].amount;
+            dates[i] = rents[i].date;
+        }
+
+        return(froms, amounts, dates);
+    }
 
 
     /**

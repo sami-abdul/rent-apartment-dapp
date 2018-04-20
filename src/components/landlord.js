@@ -22,9 +22,9 @@ const imgStyle = {
     height: "170px"
 };
 
-const imgStyle1={
+const imgStyle1 = {
     height: "100px",
-    float:"left"
+    float: "left"
 };
 
 const balancesStyle = {
@@ -34,9 +34,9 @@ const balancesStyle = {
 const balanceStyle = {
     float: "right"
 };
-const backcolorR={
+const backcolorR = {
     // background:"red"
-    color:"red"
+    color: "red"
 }
 
 class Landlord extends Component {
@@ -48,7 +48,8 @@ class Landlord extends Component {
             web3: null,
             data: [],
             requests: [],
-            balance: 0
+            balance: 0,
+            rentHistory: []
         }
         // this.editData=this.editData.bind(this);
     }
@@ -110,6 +111,7 @@ class Landlord extends Component {
         this.getApartment()
         this.getRequests()
         this.getBalance()
+        this.getRentHistory()
     }
 
     getApartment() {
@@ -138,30 +140,30 @@ class Landlord extends Component {
     }
 
     getRequests() {
-            deployedInstance.getAllHireRequests.call({ from: this.props.user.wallet })
-                .then((result) => {
-                    //console.log("Result: " + result)
-                    let count = 0
-                    let nestedCount = 0
-                    let arr = []
-                    result.map((items) => {
-                        count++
-                        items.map((item) => {
-                            if (count == 1) {
-                                arr[nestedCount] = item
-                            } else {
-                                arr[nestedCount] += "," + item
-                            }
-                            nestedCount++
-                        })
-                        nestedCount = 0
+        deployedInstance.getAllHireRequests.call({ from: this.props.user.wallet })
+            .then((result) => {
+                //console.log("Result: " + result)
+                let count = 0
+                let nestedCount = 0
+                let arr = []
+                result.map((items) => {
+                    count++
+                    items.map((item) => {
+                        if (count == 1) {
+                            arr[nestedCount] = item
+                        } else {
+                            arr[nestedCount] += "," + item
+                        }
+                        nestedCount++
                     })
-
-                    this.setState({
-                        requests: arr
-                    })
+                    nestedCount = 0
                 })
-        }
+
+                this.setState({
+                    requests: arr
+                })
+            })
+    }
 
     getBalance() {
         let bal = this.state.web3.fromWei(this.state.web3.eth.getBalance(this.props.user.wallet))
@@ -229,20 +231,12 @@ class Landlord extends Component {
     }
 
     approveHireRequest(data) {
-        // let gasEstimate
-        // deployedInstance.approveHireRequest.estimateGas(data.requestID, data.apartmentID, data.tenantID)
-        //     .then((result) => {
-        //         gasEstimate = result * 2
-        //         // console.log("Estimated gas to approve hire request: " + gasEstimate)
-        //     })
-        //     .then((result) => {
         deployedInstance.approveHireRequest(data.requestID, data.apartmentID, data.tenantID, {
             from: this.props.user.wallet,
             gas: 1000000,
             gasPrice: this.state.web3.eth.gasPrice
         }
         )
-            // })
             .then(() => {
                 this.getData()
             })
@@ -251,19 +245,19 @@ class Landlord extends Component {
     collectRent(apartmentID) {
         var tempData = null
         deployedInstance.getApartment.call(apartmentID, { from: this.props.user.wallet })
-        .then((result) => {
-            tempData = result
-            var rent = this.state.web3.fromWei(tempData[5].c[0] * factor, 'ether') * (tempData[6].c[0] / 100 + 1)
-            deployedInstance.collectRent(apartmentID, this.state.web3.toWei(rent, 'ether'), {
-                from: this.props.user.wallet,
-                gas: 1000000,
-                gasPrice: this.state.web3.eth.gasPrice
-            })
             .then((result) => {
-                console.log(result)
-                this.getData()
+                tempData = result
+                var rent = this.state.web3.fromWei(tempData[5].c[0] * factor, 'ether') * (tempData[6].c[0] / 100 + 1)
+                deployedInstance.collectRent(apartmentID, this.state.web3.toWei(rent, 'ether'), {
+                    from: this.props.user.wallet,
+                    gas: 1000000,
+                    gasPrice: this.state.web3.eth.gasPrice
+                })
+                    .then((result) => {
+                        console.log(result)
+                        this.getData()
+                    })
             })
-        }) 
     }
 
     acceptRequest(uniqueKeys, apartmetnID, tenantID) {
@@ -274,6 +268,31 @@ class Landlord extends Component {
             tenantID: tenantID
         }
         this.approveHireRequest(acceptRequestData);
+    }
+
+    getRentHistory() {
+        deployedInstance.getRentHistory.call({ from: this.props.user.wallet })
+            .then((result) => {
+                let count = 0
+                let nestedCount = 0
+                let arr = []
+                result.map((items) => {
+                    count++
+                    items.map((item) => {
+                        if (count == 1) {
+                            arr[nestedCount] = item
+                        } else {
+                            arr[nestedCount] += "," + item
+                        }
+                        nestedCount++
+                    })
+                    nestedCount = 0
+                })
+                console.log("Rents: " + arr);
+                this.setState({
+                    rentHistory: arr
+                })
+            })
     }
 
     render() {
@@ -319,7 +338,7 @@ class Landlord extends Component {
                                                     <br />
                                                     <span>Rent Hike Rate: </span> <span>{partsArray[5]}%</span>
                                                     <br />
-                                                    
+
                                                     {
                                                         (partsArray[2].includes("0x00")) ?
                                                             (<Button className="btn waves-effect waves-light" title='edit' style={{ display: 'block' }} onClick={() => { this.editData(partsArray[0]).bind(this) }}>EDIT</Button>)
@@ -352,24 +371,61 @@ class Landlord extends Component {
 
                                 if (!partsRequestArray[0].includes("0x0000000")) {
 
-                                return (
-                                    <Collapsible key={ind}>
-                                        <CollapsibleItem header={partsRequestArray[0]}>
-                                            <p>
-                                                <img src={img1} alt="Buildings" style={imgStyle1} />      
-                                                <span>From: </span> <span>{partsRequestArray[1]}</span>
-                                                <br />
-                                                <span>Apartment ID: </span> <span>{partsRequestArray[2]}</span>
-                                                <br />
-                                                <Button className="btn waves-effect waves-light" type="submit" name="action" title='acceptRequest' style={{ display: 'block' }} onClick={() => { this.acceptRequest(partsRequestArray[0], partsRequestArray[2], partsRequestArray[1]).bind(this) }}>Accept Request</Button>
-                                            </p>
-                                        </CollapsibleItem>
-                                    </Collapsible>
-                                )
-                            }
+                                    return (
+                                        <Collapsible key={ind}>
+                                            <CollapsibleItem header={partsRequestArray[0]}>
+                                                <p>
+                                                    <img src={img1} alt="Buildings" style={imgStyle1} />
+                                                    <span>From: </span> <span>{partsRequestArray[1]}</span>
+                                                    <br />
+                                                    <span>Apartment ID: </span> <span>{partsRequestArray[2]}</span>
+                                                    <br />
+                                                    <Button className="btn waves-effect waves-light" type="submit" name="action" title='acceptRequest' style={{ display: 'block' }} onClick={() => { this.acceptRequest(partsRequestArray[0], partsRequestArray[2], partsRequestArray[1]).bind(this) }}>Accept Request</Button>
+                                                </p>
+                                            </CollapsibleItem>
+                                        </Collapsible>
+                                    )
+                                }
                             })
                         }
                     </Tab>
+
+                    <Tab title="Rent History" >
+                    <div>
+                            {
+                             (this.state.rentHistory)?(
+                                <div>
+                                {
+                                    this.state.rentHistory.map((apartment, ind) => {
+
+                                        var partsArrayHistory = apartment.split(',');
+
+                                        return (
+                                            <Collapsible key={ind}  >
+                                                <CollapsibleItem header={partsArrayHistory[2]} >
+                                                    <p>
+
+                                                        <span>To: </span> <span>{partsArrayHistory[0]}</span>
+                                                        <br />
+                                                        <span>Amount: </span> <span>{this.state.web3.fromWei(partsArrayHistory[1], 'ether')} ETH</span>
+                                                        <br />
+                                                        <span>Date: </span> <span>{partsArrayHistory[2]}</span>
+                                                        <br />
+
+                                                    </p>
+                                                </CollapsibleItem>
+                                            </Collapsible>
+                                        )
+                                    })
+                                }
+                            </div>
+
+                            ):(null)
+                            }
+                            
+                            </div>
+                    </Tab>
+
                 </Tabs>
             </div>
         )
