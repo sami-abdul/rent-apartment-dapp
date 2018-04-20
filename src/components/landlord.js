@@ -399,17 +399,20 @@ class Landlord extends Component {
                                     this.state.rentHistory.map((apartment, ind) => {
 
                                         var partsArrayHistory = apartment.split(',');
+                                        var date = new Date(partsArrayHistory[2] * 1000)
+                                        var dateString = date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear()
 
                                         return (
                                             <Collapsible key={ind}  >
-                                                <CollapsibleItem header={partsArrayHistory[2]} >
+                                                <CollapsibleItem header={dateString} >
                                                     <p>
 
                                                         <span>To: </span> <span>{partsArrayHistory[0]}</span>
                                                         <br />
                                                         <span>Amount: </span> <span>{this.state.web3.fromWei(partsArrayHistory[1], 'ether')} ETH</span>
                                                         <br />
-                                                        <span>Date: </span> <span>{partsArrayHistory[2]}</span>
+                                                        {/* <span>Date: </span> <span>{partsArrayHistory[2]}</span> */}
+                                                        <span>Date: </span> <span>{dateString}</span>
                                                         <br />
 
                                                     </p>
