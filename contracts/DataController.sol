@@ -211,6 +211,36 @@ contract DataController is Repository, DateTime {
         return(froms, amounts, dates);
     }
 
+    // Function used to get the status of rent of only this month
+    function isRentPaid() public onlyTenant view returns(bool) {
+        Apartment memory apartment;
+        Payment[] memory payments = paymentHistory[msg.sender];
+        Payment memory latestPayment = payments[payments.length - 1];
+
+        for (uint i = 0; i < apartmentsArr.length; i++) {
+            if (apartmentsArr[i].tenant == msg.sender) {
+                apartment = apartmentsArr[i];
+                break;
+            }
+        }
+
+        Date memory nextRentDate = apartment.nextRentDate;
+        uint16 year = nextRentDate.year;
+        uint16 month = nextRentDate.month;
+        uint8 day = nextRentDate.day;
+
+        RentEvent(year, month, day);
+
+//        uint timestamp = toTimestamp(year, month, day);
+
+//        if (timeStamp > latestPayment.date) {
+//            return true;
+//        }
+//        return false;
+    }
+
+    event RentEvent(uint16 y, uint16 m, uint8 d);
+
 
     /**
      * Public functions allowed for current tenants only

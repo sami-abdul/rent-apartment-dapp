@@ -189,6 +189,7 @@ class Tenant extends Component {
     render() {
         return (
             <div>
+                <Button style={balancesStyle} className="btn waves-effect waves-light" s={5} >Apartment Code: 123456</Button>
                 <Button style={balancesStyle} className="btn waves-effect waves-light" s={12} >Balance: {this.state.balance} ETH</Button>
                 <Tabs className='tab-demo z-depth-1'>
                     <Tab title="Search Apartment" className="active">

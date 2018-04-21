@@ -73,8 +73,18 @@ contract('Data Controller', function (accounts) {
             return instance.collectRent(apartmentId, rent, {from: accounts[0] });
         }).then(function(txResult) {
             assert.equal(txResult.logs[0].event, "RentCollected", "The Log-Event should be RentCollected");
-//            console.log(web3.fromWei(txResult.logs[0].args.amount.toNumber(), 'ether'))
             console.log(txResult.logs[0].args.amount.toNumber())
+        })
+    });
+
+    it("rent should be paid now", function () {
+        var instance;
+
+        return dataController.deployed().then(function (i) {
+            instance = i;
+            return instance.isRentPaid.call({ from: accounts[1] })
+        }).then(function (result) {
+            console.log("Rent: " + result)
         })
     });
 });

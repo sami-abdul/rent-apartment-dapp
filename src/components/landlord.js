@@ -407,7 +407,7 @@ class Landlord extends Component {
                                                 <CollapsibleItem header={dateString} >
                                                     <p>
 
-                                                        <span>To: </span> <span>{partsArrayHistory[0]}</span>
+                                                        <span>From: </span> <span>{partsArrayHistory[0]}</span>
                                                         <br />
                                                         <span>Amount: </span> <span>{this.state.web3.fromWei(partsArrayHistory[1], 'ether')} ETH</span>
                                                         <br />
