@@ -194,10 +194,14 @@ class Tenant extends Component {
     }
 
     render() {
+        var apartmentCode = 'Apartment Code not available'
+        if (currentApartment[7] == true)
+            apartmentCode = 'Apartment Code: 123456'
         return (
             <div>
-                <Button style={balancesStyle} className="btn waves-effect waves-light" s={5} >Apartment Code: 123456</Button>
+                <Button style={balancesStyle} className="btn waves-effect waves-light" s={5} >{apartmentCode}</Button>
                 <Button style={balancesStyle} className="btn waves-effect waves-light" s={12} >Balance: {this.state.balance} ETH</Button>
+
                 <Tabs className='tab-demo z-depth-1'>
                     <Tab title="Search Apartment" className="active">
                         <form onSubmit={this.submit.bind(this)}>
