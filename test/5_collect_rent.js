@@ -73,7 +73,6 @@ contract('Data Controller', function (accounts) {
             return instance.collectRent(apartmentId, rent, {from: accounts[0] });
         }).then(function(txResult) {
             assert.equal(txResult.logs[0].event, "RentCollected", "The Log-Event should be RentCollected");
-            console.log(txResult.logs[0].args.amount.toNumber())
         })
     });
 });
