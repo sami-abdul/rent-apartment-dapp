@@ -42,13 +42,14 @@ contract DataController is Repository, DateTime {
     }
 
     // Function used to get all apartments of a landlord
-    function getApartments() public view returns(bytes32[], bytes32[], address[], bytes32[], uint[], uint16[]) {
+    function getApartments() public view returns(bytes32[], bytes32[], address[], bytes32[], uint[], uint16[], bool[]) {
         bytes32[] memory ids = new bytes32[](apartmentsArr.length);
         bytes32[] memory names = new bytes32[](apartmentsArr.length);
         address[] memory tenants = new address[](apartmentsArr.length);
         bytes32[] memory locations = new bytes32[](apartmentsArr.length);
         uint[] memory rentPrices = new uint[](apartmentsArr.length);
         uint16[] memory rentHikeRates = new uint16[](apartmentsArr.length);
+        bool[] memory rentStatuses = new bool[](apartmentsArr.length);
 
         for (uint i = 0; i < apartmentsArr.length; i++) {
             if (apartmentsArr[i].owner == msg.sender) {
@@ -58,10 +59,11 @@ contract DataController is Repository, DateTime {
                 locations[i] = apartmentsArr[i].location;
                 rentPrices[i] = apartmentsArr[i].rentPrice;
                 rentHikeRates[i] = apartmentsArr[i].rentHikeRate;
+                rentStatuses[i] = isRentPaid(tenants[i]);
             }
         }
 
-        return (ids, names, tenants, locations, rentPrices, rentHikeRates);
+        return (ids, names, tenants, locations, rentPrices, rentHikeRates, rentStatuses);
     }
 
     // Function used to return the status of the apartment
@@ -106,7 +108,7 @@ contract DataController is Repository, DateTime {
     // Function used to add apartment by the landlord
     function addApartment(bytes32 _name, bytes32 _location, uint _rentPrice, uint8 _rentHikeRate) public returns(bytes32 id) {
         id = keccak256(_name, _location, _rentPrice, _rentHikeRate);
-        Apartment memory apartment = Apartment(id, 123456, apartmentsArr.length, _name, msg.sender, address(0), _location, _rentPrice, _rentHikeRate, Date(0, 0, 0));
+        Apartment memory apartment = Apartment(id, 123456, apartmentsArr.length, _name, msg.sender, address(0), _location, _rentPrice, _rentHikeRate, 0);
         apartments[id] = apartment;
         apartmentsArr.push(apartment);
         ApartmentAdded(id);
@@ -133,13 +135,11 @@ contract DataController is Repository, DateTime {
     function approveHireRequest(bytes32 _request, bytes32 _apartment, address _potentialTenant) public onlyLandlord(_apartment) returns (bool success) {
         require(isRequestSent(_apartment, _potentialTenant));
 
-        Date memory nextRentDate = Date(getYear(now), getMonth(now), getDay(now));
-
         apartments[_apartment].tenant = _potentialTenant;
-        apartments[_apartment].nextRentDate = nextRentDate;
+        apartments[_apartment].nextRentDate = now;
 
         apartmentsArr[apartments[_apartment].index].tenant = _potentialTenant;
-        apartmentsArr[apartments[_apartment].index].nextRentDate = nextRentDate;
+        apartmentsArr[apartments[_apartment].index].nextRentDate = now;
 
         tenantsToApartment[_potentialTenant] = _apartment;
         tenantToOwner[_potentialTenant] = msg.sender;
@@ -164,7 +164,7 @@ contract DataController is Repository, DateTime {
         uint rentPrice = apartment.rentPrice;
         address tenant = apartment.tenant;
 
-        if (toTimestamp(apartment.nextRentDate.year, apartment.nextRentDate.month, apartment.nextRentDate.day) <= now) {
+        if (apartment.nextRentDate <= now) {
 //            require(balances[tenant] >= rentPrice);
 //            require(balances[tenant] - rentPrice < balances[tenant]);
 //            require(msg.sender.balance + rentPrice > msg.sender.balance);
@@ -172,9 +172,7 @@ contract DataController is Repository, DateTime {
             balances[tenant] = balances[tenant] - rentPrice;
             msg.sender.transfer(rentPrice);
 
-            var (month, year) = getNextMonthDate(getYear(now), getMonth(now));
-            uint8 day = getDay(now);
-            Date memory nextRentDate = Date(year, month, day);
+            uint nextRentDate = getNextMonthDate(now);
 
             apartments[_apartment].nextRentDate = nextRentDate;
             apartments[_apartment].rentPrice = hikedRent;
@@ -212,34 +210,27 @@ contract DataController is Repository, DateTime {
     }
 
     // Function used to get the status of rent of only this month
-    function isRentPaid() public onlyTenant view returns(bool) {
-        Apartment memory apartment;
-        Payment[] memory payments = paymentHistory[msg.sender];
-        Payment memory latestPayment = payments[payments.length - 1];
+    function isRentPaid(address _tenant) public view returns(bool) {
+        Payment[] memory payments = paymentHistory[_tenant];
 
-        for (uint i = 0; i < apartmentsArr.length; i++) {
-            if (apartmentsArr[i].tenant == msg.sender) {
-                apartment = apartmentsArr[i];
-                break;
+        if (payments.length > 0) {
+            Payment memory latestPayment = payments[payments.length - 1];
+
+            for (uint i = 0; i < apartmentsArr.length; i++) {
+                if (apartmentsArr[i].tenant == _tenant) {
+                    Apartment apartment = apartmentsArr[i];
+
+                    if (apartment.nextRentDate > latestPayment.date) {
+                        return true;
+                    }
+                    break;
+                }
             }
+            return false;
         }
 
-        Date memory nextRentDate = apartment.nextRentDate;
-        uint16 year = nextRentDate.year;
-        uint16 month = nextRentDate.month;
-        uint8 day = nextRentDate.day;
-
-        RentEvent(year, month, day);
-
-//        uint timestamp = toTimestamp(year, month, day);
-
-//        if (timeStamp > latestPayment.date) {
-//            return true;
-//        }
-//        return false;
+        return false;
     }
-
-    event RentEvent(uint16 y, uint16 m, uint8 d);
 
 
     /**
@@ -281,10 +272,13 @@ contract DataController is Repository, DateTime {
     }
 
     // Function used to get the current apartment occupied by tenant
-    function getCurrentApartment() public onlyTenant view returns(bytes32, bytes32, address, address, bytes32, uint, uint16) {
+    function getCurrentApartment() public onlyTenant view returns(bytes32, bytes32, address, address, bytes32, uint, uint16, bool) {
+//    function getCurrentApartment() public onlyTenant view returns(bytes32, bytes32, address, address, bytes32, uint, uint16) {
         bytes32 apartmentId = tenantsToApartment[msg.sender];
         Apartment storage apartment = apartments[apartmentId];
-        return (apartment.id, apartment.name, apartment.owner, apartment.tenant, apartment.location, apartment.rentPrice, apartment.rentHikeRate);
+        bool isRented = isRentPaid(apartment.tenant);
+        return (apartment.id, apartment.name, apartment.owner, apartment.tenant, apartment.location, apartment.rentPrice, apartment.rentHikeRate, isRented);
+//        return (apartment.id, apartment.name, apartment.owner, apartment.tenant, apartment.location, apartment.rentPrice, apartment.rentHikeRate);
     }
 
     /**

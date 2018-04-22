@@ -136,6 +136,7 @@ class Landlord extends Component {
                 this.setState({
                     data: arr
                 })
+                console.log(arr)
             })
     }
 

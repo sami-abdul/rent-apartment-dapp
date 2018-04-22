@@ -17,14 +17,7 @@ contract Repository {
         bytes32 location;
         uint rentPrice;
         uint16 rentHikeRate;
-        Date nextRentDate;
-    }
-
-    // Date data struct
-    struct Date {
-        uint16 year;
-        uint16 month;
-        uint8 day;
+        uint nextRentDate;
     }
 
     // Payment data struct

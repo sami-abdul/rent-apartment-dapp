@@ -76,15 +76,4 @@ contract('Data Controller', function (accounts) {
             console.log(txResult.logs[0].args.amount.toNumber())
         })
     });
-
-    it("rent should be paid now", function () {
-        var instance;
-
-        return dataController.deployed().then(function (i) {
-            instance = i;
-            return instance.isRentPaid.call({ from: accounts[1] })
-        }).then(function (result) {
-            console.log("Rent: " + result)
-        })
-    });
 });

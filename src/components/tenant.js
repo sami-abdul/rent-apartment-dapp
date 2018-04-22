@@ -105,15 +105,19 @@ class Tenant extends Component {
     }
 
     makePayment() {
-        deployedInstance.makePayment({
-            from: this.props.user.wallet,
-            value: this.state.web3.toWei(this.state.currentApartment[5].c[0] / 10000),
-            gas: 1000000,
-            gasPrice: this.state.web3.eth.gasPrice
-        })
-        .then((result) => {
-            this.getData()
-        })
+        if (currentApartment[7] == false) {
+            deployedInstance.makePayment({
+                from: this.props.user.wallet,
+                value: this.state.web3.toWei(this.state.currentApartment[5].c[0] / 10000),
+                gas: 1000000,
+                gasPrice: this.state.web3.eth.gasPrice
+            })
+            .then((result) => {
+                this.getData()
+            })
+        } else {
+            window.alert('You have already paid rent for this month.')
+        }
     }
 
     getData() {
@@ -178,12 +182,15 @@ class Tenant extends Component {
     }
 
     hire(AppartmentID, OwnerID) {
-        console.log(AppartmentID, OwnerID);
-        let hireData = {
-            apartment: AppartmentID,
-            owner: OwnerID
+        if (currentApartment.length == 0) {
+            let hireData = {
+                apartment: AppartmentID,
+                owner: OwnerID
+            }
+            this.hireApartment(hireData);
+        } else {
+            window.alert('You are already a tenant. You cannot hire more apartments')
         }
-        this.hireApartment(hireData);
     }
 
     render() {
