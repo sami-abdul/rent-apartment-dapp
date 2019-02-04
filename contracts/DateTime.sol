@@ -1,4 +1,4 @@
-pragma solidity ^0.4.2;
+pragma solidity 0.5.0;
 
 /**
 * Date and Time utilities for smart contracts
@@ -70,7 +70,7 @@ contract DateTime {
         }
     }
 
-    function parseTimestamp(uint timestamp) internal pure returns (_DateTime dt) {
+    function parseTimestamp(uint timestamp) internal pure returns (_DateTime memory dt) {
         uint secondsAccountedFor = 0;
         uint buf;
         uint8 i;

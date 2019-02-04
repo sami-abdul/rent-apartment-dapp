@@ -1,4 +1,4 @@
-pragma solidity ^0.4.2;
+pragma solidity 0.5.0;
 
 import "./Repository.sol";
 import "./DateTime.sol";
@@ -42,7 +42,7 @@ contract DataController is Repository, DateTime {
     }
 
     // Function used to get all apartments of a landlord
-    function getApartments() public view returns(bytes32[], bytes32[], address[], bytes32[], uint[], uint16[], bool[]) {
+    function getApartments() public view returns(bytes32[] memory, bytes32[] memory, address[] memory, bytes32[] memory, uint[] memory, uint16[] memory, bool[] memory) {
         bytes32[] memory ids = new bytes32[](apartmentsArr.length);
         bytes32[] memory names = new bytes32[](apartmentsArr.length);
         address[] memory tenants = new address[](apartmentsArr.length);
@@ -89,7 +89,7 @@ contract DataController is Repository, DateTime {
      */
 
     // Function used to get all requests for a landlord
-    function getAllHireRequests() public view returns(bytes32[], address[], bytes32[]) {
+    function getAllHireRequests() public view returns(bytes32[] memory, address[] memory, bytes32[] memory) {
         bytes32[] memory ids = new bytes32[](requestsArr.length);
         address[] memory froms = new address[](requestsArr.length);
         bytes32[] memory apartments = new bytes32[](requestsArr.length);
@@ -193,7 +193,7 @@ contract DataController is Repository, DateTime {
     }
 
     // Function used to get rent history of landlord
-    function getRentHistory() public view returns(address[], uint[], uint[]) {
+    function getRentHistory() public view returns(address[] memory, uint[] memory, uint[] memory) {
         Payment[] storage rents = rentHistory[msg.sender];
 
         address[] memory froms = new address[](rents.length);
@@ -218,7 +218,7 @@ contract DataController is Repository, DateTime {
 
             for (uint i = 0; i < apartmentsArr.length; i++) {
                 if (apartmentsArr[i].tenant == _tenant) {
-                    Apartment apartment = apartmentsArr[i];
+                    Apartment memory apartment = apartmentsArr[i];
 
                     if (apartment.nextRentDate > latestPayment.date) {
                         return true;
@@ -246,7 +246,7 @@ contract DataController is Repository, DateTime {
     }
 
     // Function used to get payment history of an apartment by tenant
-    function getPaymentHistory(bytes32 _apartment) public onlyTenant view returns(address[], uint[], uint[]) {
+    function getPaymentHistory(bytes32 _apartment) public onlyTenant view returns(address[] memory, uint[] memory, uint[] memory) {
         Payment[] storage payments = paymentHistory[msg.sender];
 
         address[] memory tos = new address[](payments.length);
